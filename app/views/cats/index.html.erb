@@ -1,0 +1,10 @@
+<div class="contents row">
+  <% @cats.each do |cat| %>
+    <div class="content_post" >
+      <p><%= cat.c_name %></p>
+      <span class="name">
+        <%= cat.text %>
+      </span>
+    </div>
+  <% end %>
+</div>

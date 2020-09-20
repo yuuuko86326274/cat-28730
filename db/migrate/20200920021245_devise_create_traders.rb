@@ -1,12 +1,18 @@
 # frozen_string_literal: true
 
-class DeviseCreatePersonals < ActiveRecord::Migration[6.0]
+class DeviseCreateTraders < ActiveRecord::Migration[6.0]
   def change
-    create_table :personals do |t|
+    create_table :traders do |t|
       ## Database authenticatable
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
-      # t.references :user          , null: false, forein_key: true
+      t.string :t_name,             null: false
+      t.string :t_postal_code,      null: false
+      t.integer :area_id,           null: false
+      t.string :t_city,               null: false
+      t.string :t_address_num,      null: false
+      t.string :t_building_num
+      t.string :t_tel,              null: false
       ## Recoverable
       t.string   :reset_password_token
       t.datetime :reset_password_sent_at
@@ -36,9 +42,9 @@ class DeviseCreatePersonals < ActiveRecord::Migration[6.0]
       t.timestamps null: false
     end
 
-    add_index :personals, :email,                unique: true
-    add_index :personals, :reset_password_token, unique: true
-    # add_index :personals, :confirmation_token,   unique: true
-    # add_index :personals, :unlock_token,         unique: true
+    add_index :traders, :email,                unique: true
+    add_index :traders, :reset_password_token, unique: true
+    # add_index :traders, :confirmation_token,   unique: true
+    # add_index :traders, :unlock_token,         unique: true
   end
 end

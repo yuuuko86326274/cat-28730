@@ -80,6 +80,8 @@ https://gyazo.com/7abbf07d4c995bfff7d046e6d0694f77
 
 | Column           | Type       | Option                                 |
 | ---------------- | ---------- | -------------------------------------- |
+| email            | string     | null: false                            |
+| password         | string     | null: false                            |
 | t_name           | string     | null: false                            |
 | t_postal_code    | string     | null: false                            |
 | area_id          | integer    | null: false                            |
@@ -91,7 +93,7 @@ https://gyazo.com/7abbf07d4c995bfff7d046e6d0694f77
 ### Association
 
 - has_many :families
-- has_many :cats, through: :cats
+- has_many :cats
 - belongs_to_active_hash :area
 
 
@@ -106,7 +108,7 @@ https://gyazo.com/7abbf07d4c995bfff7d046e6d0694f77
 ### Association
 
 - has_many :favorites
-- has_many :families,through: :trader
+- has_many :families
 - belongs_to :user
 - has_one :address
 
@@ -186,7 +188,7 @@ https://gyazo.com/7abbf07d4c995bfff7d046e6d0694f77
 
 | Column              | Type       | Option                                 |
 | ------------------- | ---------- | -------------------------------------- |
-| donation            | string     | null: false                            |
+| donation            | string     |                                        |
 | cat                 | references | null: false, forein_key: true          |
 | personal            | references | null: false, forein_key: true          |
 | trader              | references | null: false, forein_key: true          |
