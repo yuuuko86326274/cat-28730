@@ -34,19 +34,12 @@ class Cat < ApplicationRecord
   end
 
   with_options numericality: { other_than: 0 } do
-    validates :breed
-    validates :ope
-    validates :sex
-    validates :age
-    validates :hair_length
-    validates :color
-    validates :how_many
-    validates :eye_color
-    validates :character
-    validates :fleas
-    validates :veccine
-    validates :kuchu
-    validates :single
-    validates :senior
+    validates :ope_id
+    validates :sex_id
+    validates :age_id
+    validates :character_id
+    validates :fleas_id
+    validates :veccine_id
+    validates :kuchu_id
   end
 end

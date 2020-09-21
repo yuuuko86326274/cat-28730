@@ -2,15 +2,22 @@ class CatsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
 
   def index
-    @cats = Cat.all
+    @cats = Cat.includes(:trader).order('created_at DESC')
   end
 
   def new
-    @cat = Cat.new
+    @cats = Cat.new
   end
   
   def create
-    @cat = Cat.new(cat_params)
+    # binding.pry
+    @cats = Cat.new(cat_params)
+    if @cats.valid?
+      @cats.save
+      redirect_to root_path
+    else
+      render 'new'
+    end
   end
 
   private
@@ -23,8 +30,8 @@ class CatsController < ApplicationController
   def cat_params
     params.require(:cat).permit(
       :c_name,
-      :c_images,
       :c_text,
+      :price,
       :breed_id,
       :ope_id,
       :sex_id,
@@ -38,7 +45,8 @@ class CatsController < ApplicationController
       :veccine_id,
       :kuchu_id,
       :single_id,
-      :senior_id
+      :senior_id,
+      images: []
       ).merge(trader_id: current_trader.id)
   end
 end

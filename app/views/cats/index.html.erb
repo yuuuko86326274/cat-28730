@@ -1,11 +1,14 @@
-aaaaaaaaa
-aaaaaaaaa
-<div class="contents row">
+<div class="contents_row">
   <% @cats.each do |cat| %>
     <div class="content_post" >
-      <p><%= cat.c_name %></p>
+      <div class="messages">
+      <% cat.images.each do |image| %>
+        <%= image_tag image, class:'cat-image' %>
+      <% end %>
+      </div>
+      <%= cat.c_name %>
       <span class="name">
-        <%= cat.text %>
+        <%= cat.c_text %>
       </span>
     </div>
   <% end %>
