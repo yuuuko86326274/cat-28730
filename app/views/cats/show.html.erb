@@ -1,0 +1,101 @@
+
+<%# 商品の概要 %>
+<div class="item-show">
+  <div class="item-box">
+    <h2 class="name">
+      <%= @cat.c_name %>
+    </h2>
+    <div class='item-img-content'>
+      <%# <%= image_tag @item.image ,class:"item-box-img" %>
+      <% @cat.images.each do |img| %>
+        <%= image_tag(img, class: "item-box-img") %>
+          <%# if @cat.family.present? %>
+            <%# <div class='sold-out'> %>
+              <%# <span>Sold Out!!</span> %>
+            <%# </div> %>
+          <%# end %>
+       <% end %>
+    </div>
+    <% if trader_signed_in? && current_trader.id == @cat.trader_id %>
+      <%= link_to '編集', edit_cat_path, method: :get, class: "item-red-btn" %>
+      <p class='or-text'>or</p>
+      <%= link_to '削除', cat_path, method: :delete, class:'item-destroy' %>
+    <%# elsif %>
+      <%# unless @family.present? %>
+        <%#= link_to '購入画面に進む', cat_family_path(@item.id), class:"item-red-btn" %>
+      <%# end %>
+    <% end %>
+
+    <div class="item-explain-box">
+      <%= @cat.c_text %>
+    </div>
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">種類</th>
+          <td class="detail-value"><%= @cat.breed.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">性格</th>
+          <td class="detail-value"><%= @cat.character.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">性別</th>
+          <td class="detail-value"><%= @cat.sex.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">去勢・避妊手術</th>
+          <td class="detail-value"><%= @cat.ope.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">毛の長さ</th>
+          <td class="detail-value"><%= @cat.hair_length.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">毛の色</th>
+          <td class="detail-value"><%= @cat.color.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">眼の色</th>
+          <td class="detail-value"><%= @cat.eye_color.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">希望飼育頭数</th>
+          <td class="detail-value"><%= @cat.how_many.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">独身者応募</th>
+          <td class="detail-value"><%= @cat.single.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">高齢者応募</th>
+          <td class="detail-value"><%= @cat.senior.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">保護している団体や個人様</th>
+          <td class="detail-value"><%= @cat.trader.t_name %></td>
+        </tr> 
+          <th class="detail-item">ノミ取り処置</th>
+          <td class="detail-value"><%= @cat.fleas.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">ワクチン処置</th>
+          <td class="detail-value"><%= @cat.veccine.name %></td>
+        </tr>
+         <tr>
+          <th class="detail-item">駆虫処置</th>
+          <td class="detail-value"><%= @cat.kuchu.name %></td>
+        </tr>
+      </tbody>
+    </table>
+        <div class="item-price-box">
+        保護にかかった金額
+          <span class="item-price">
+            <%= @cat.price %>
+          </span>
+          <span class="item-postage">
+            (税込) 送料込み
+          </span>
+        </div>
+    </div>
+  <%# /商品の概要 %>

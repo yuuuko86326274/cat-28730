@@ -1,15 +1,19 @@
 <div class="contents_row">
   <% @cats.each do |cat| %>
     <div class="content_post" >
-      <div class="messages">
-      <% cat.images.each do |image| %>
-        <%= image_tag image, class:'cat-image' %>
+    <%= link_to cat_path(cat) do %>
+      <div class="one_cat">
+      <% if cat.images.count > 0 %>
+        <%= image_tag cat.images.first, class:'cat-image' %>
+          <%# if cat.family.present? %>
+          <%# <div class='family_done'> %>
+              <%# <span>家族ができました!!</span> %>
+          <%# </div> %>
+          <%# end  %>
       <% end %>
-      </div>
       <%= cat.c_name %>
-      <span class="name">
-        <%= cat.c_text %>
-      </span>
+      </div>
+    <% end %>  
     </div>
   <% end %>
 </div>
