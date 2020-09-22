@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'traders/show'
+  get 'personals/show'
   devise_for :personals, controllers:{
     sessions:      'personals/sessions',
     passwords:     'personals/passwords',
@@ -12,4 +14,6 @@ Rails.application.routes.draw do
   root to: 'cats#index'
   # resources :users, only: [:new, :create, :destroy]
   resources :cats
+  resources :traders, only: :show
+  resources :personals, only: :show
 end

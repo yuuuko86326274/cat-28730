@@ -15,8 +15,8 @@
         <h1 class="grid-6"><a href="/">Cat-28730</a></h1>
         <% if personal_signed_in? %>
           <div class="user_nav grid-6">
+            <%= link_to "マイページ", personals_show_path %>
             <%= link_to "ログアウト", destroy_personal_session_path, method: :delete %>
-            マイページ
         <% else %>
           <div class="grid-6">
             <%= link_to "ログイン", new_personal_session_path, class: "post" %>
@@ -29,11 +29,11 @@
     <%= yield %>
     <footer>
       <div class="header__bar row">
-        業者ページ
+        保護された方のページ
         <% if trader_signed_in? %>
           <div class="user_nav grid-6">
+            <%= link_to "保護された方のマイページ", "/traders/#{current_trader.id}" %>
             <%= link_to "ログアウト", destroy_trader_session_path, method: :delete %>
-            業者マイページ
         <% else %>
           <div class="grid-6">
             <%= link_to "ログイン", new_trader_session_path, class: "post" %>

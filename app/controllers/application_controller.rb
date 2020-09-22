@@ -8,6 +8,11 @@ class ApplicationController < ActionController::Base
       username == ENV['BASIC_AUTH_USER'] && password == ENV['BASIC_AUTH_PASSWORD']
     end
   end
+
+  def after_sign_in_path_for(resource)
+    root_path
+  end
+
   # before_action :logged_in_user, only:[:edit, :update, :destroy]
 
   # protected
