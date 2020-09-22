@@ -1,16 +1,16 @@
 class ApplicationController < ActionController::Base
-  # before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :basic_auth
+
+  private
+
+  def basic_auth
+    authenticate_or_request_with_http_basic do |username, password|
+      username == ENV["BASIC_AUTH_USER"] && password == ENV["BASIC_AUTH_PASSWORD"]
+    end
+  end
   # before_action :logged_in_user, only:[:edit, :update, :destroy]
 
   # protected
-
-  # def devise_parameter_sanitizer
-  #   if resource_class == Trader
-  #     TraderParameterSanitizer.new(Trader, :trader, params)
-  #   else
-  #     super
-  #   end
-  # end
 
   # def configure_permitted_parameters
   #   devise_parameter_sanitizer.permit(:sign_up, keys: [:t_name, :t_postal_code, :area_id, :t_city, :t_address_num, :t_tel])

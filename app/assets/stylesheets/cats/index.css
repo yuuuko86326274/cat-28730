@@ -1,0 +1,17 @@
+.contents_row{
+  display: flex;
+}
+
+.content_post{
+  width: 200px;
+}
+
+.messages{
+  width: 200px;
+  height: 300px;
+}
+
+.cat-image{
+  width: 200px;
+  height: 200px;
+}
