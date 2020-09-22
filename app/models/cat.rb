@@ -20,9 +20,11 @@ class Cat < ApplicationRecord
   belongs_to_active_hash :single
   belongs_to_active_hash :senior
 
+  validates :price, numericality: { greater_than_or_equal_to: 1000, less_than_or_equal_to: 9999999 , allow_blank: true }
+
   with_options presence: true do
-    validates :c_name
-    validates :c_text
+    validates :c_name, length: { maximum: 40 }
+    validates :c_text, length: { maximum: 1000 }
     validates :ope_id
     validates :sex_id
     validates :age_id

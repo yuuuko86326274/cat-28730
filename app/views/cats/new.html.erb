@@ -4,7 +4,7 @@
   <%= render 'shared/error_messages', model: f.object %>
     <div class="list">名前
        <span class="indispensable">必須</span>
-      <%= f.text_field :c_name, placeholder: "name" %>
+      <%= f.text_field :c_name, placeholder: "name", maxlength:"40" %>
     </div>
     <div class="list">写真
       <span class="indispensable">必須</span>
@@ -34,7 +34,7 @@
     </div>
     <div class="list">紹介
       <span class="indispensable">必須</span>
-      <%= f.text_area :c_text, placeholder: "text", rows: "10" %>
+      <%= f.text_area :c_text, placeholder: "text", cols: "1000" %>
     </div>
     <div class="list">ノミ取り処置
       <span class="indispensable">必須</span>
