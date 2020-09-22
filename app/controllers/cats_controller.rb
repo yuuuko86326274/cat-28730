@@ -12,7 +12,7 @@ class CatsController < ApplicationController
   def new
     @cats = Cat.new
   end
-  
+
   def create
     # binding.pry
     @cats = Cat.new(cat_params)
@@ -49,10 +49,9 @@ class CatsController < ApplicationController
   end
 
   private
+
   def move_to_index
-    unless trader_signed_in?
-      redirect_to action: :index 
-    end
+    redirect_to action: :index unless trader_signed_in?
   end
 
   def cat_params
@@ -75,6 +74,6 @@ class CatsController < ApplicationController
       :single_id,
       :senior_id,
       images: []
-      ).merge(trader_id: current_trader.id)
+    ).merge(trader_id: current_trader.id)
   end
 end

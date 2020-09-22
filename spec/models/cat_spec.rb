@@ -6,7 +6,7 @@ RSpec.describe Cat, type: :model do
     @cat = FactoryBot.build(:cat, trader_id: @trader.id)
     @cat.images = fixture_file_upload('public/images/test_image.png')
   end
-  
+
   describe '猫登録情報の保存' do
     context '登録がうまくいくとき' do
       it '全ての値が正しく入力されていたら保存できること' do
