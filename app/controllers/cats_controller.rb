@@ -5,6 +5,10 @@ class CatsController < ApplicationController
     @cats = Cat.includes(:trader).order('created_at DESC')
   end
 
+  def show
+    @cat = Cat.find(params[:id])
+  end
+
   def new
     @cats = Cat.new
   end
@@ -17,6 +21,30 @@ class CatsController < ApplicationController
       redirect_to root_path
     else
       render 'new'
+    end
+  end
+
+  def edit
+    @cat = Cat.find(params[:id])
+  end
+
+  def update
+    @cat = Cat.find(params[:id])
+    # binding.pry
+    if @cat.valid?
+      @cat.update(cat_params)
+      redirect_to cat_path
+    else
+      render 'edit'
+    end
+  end
+
+  def destroy
+    @cat = Cat.find(params[:id])
+    if @cat.destroy
+      redirect_to root_path
+    else
+      render 'show'
     end
   end
 
