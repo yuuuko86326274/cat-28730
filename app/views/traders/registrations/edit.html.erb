@@ -31,6 +31,41 @@
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>
 
+  <div class="field">
+    <%= f.label :t_name %><br />
+    <%= f.text_field :t_name, placeholder:"例）（株）ニャンコ、山田 太郎" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :t_postal_code %><br />
+    <%= f.text_field :t_postal_code, placeholder:"例）123-4567",maxlength:"8" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :area_id %><br />
+    <%= f.collection_select(:area_id, Area.all, :id, :name, {}) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :t_city %><br />
+    <%= f.text_field :t_city, placeholder:"例）横浜市緑区" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :t_address_num %><br />
+    <%= f.text_field :t_address_num, placeholder:"例）青山1-1-1" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :t_building_num %><br />
+    <%= f.text_field :t_building_num, placeholder:"例）小山ビル209" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :t_tel %><br />
+    <%= f.text_field :t_tel, placeholder:"半角、ハイフンなし" %>
+  </div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>
