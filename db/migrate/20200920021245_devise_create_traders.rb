@@ -9,7 +9,7 @@ class DeviseCreateTraders < ActiveRecord::Migration[6.0]
       t.string :t_name,             null: false
       t.string :t_postal_code,      null: false
       t.integer :area_id,           null: false
-      t.string :t_city,               null: false
+      t.string :t_city,             null: false
       t.string :t_address_num,      null: false
       t.string :t_building_num
       t.string :t_tel,              null: false

@@ -1,0 +1,2 @@
+module FaamiliesHelper
+end

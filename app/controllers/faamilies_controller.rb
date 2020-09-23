@@ -1,0 +1,2 @@
+class FaamiliesController < ApplicationController
+end
