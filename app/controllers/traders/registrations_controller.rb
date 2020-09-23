@@ -45,7 +45,7 @@ class Traders::RegistrationsController < Devise::RegistrationsController
     devise_parameter_sanitizer.permit(:sign_up, keys: [:t_name, :t_postal_code, :area_id, :t_city, :t_address_num, :t_building_num, :t_tel])
   end
 
-  def after_update_path_for(resource)
+  def after_update_path_for(_resource)
     trader_path(id: current_trader.id)
   end
   # If you have extra params to permit, append them to the sanitizer.

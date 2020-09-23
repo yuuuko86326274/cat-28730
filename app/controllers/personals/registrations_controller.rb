@@ -40,7 +40,7 @@ class Personals::RegistrationsController < Devise::RegistrationsController
 
   protected
 
-  def after_update_path_for(resource)
+  def after_update_path_for(_resource)
     personal_path(id: current_personal.id)
   end
   # If you have extra params to permit, append them to the sanitizer.
