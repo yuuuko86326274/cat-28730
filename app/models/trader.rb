@@ -6,7 +6,7 @@ class Trader < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # has_many :families
-  has_many :cats
+  has_many :cats, dependent: :destroy
   belongs_to_active_hash :area
 
   with_options presence: true do

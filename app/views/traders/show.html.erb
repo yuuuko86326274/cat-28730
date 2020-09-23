@@ -1,0 +1,60 @@
+<h2>保護された方のマイページ</h2>
+<div class="mypage">
+  <table class="detail-table">
+    <tbody>
+      <tr>
+        <th class="detail-item">登録名</th>
+        <td class="detail-value"><%= current_trader.t_name %></td>
+      </tr>
+      <tr>
+        <th class="detail-item">メールアドレス</th>
+        <td class="detail-value"><%= current_trader.email %></td>
+      </tr>
+      <tr>
+        <th class="detail-item">郵便番号</th>
+        <td class="detail-value"><%= current_trader.t_postal_code %></td>
+      </tr>
+      <tr>
+        <th class="detail-item">市</th>
+        <td class="detail-value"><%= current_trader.t_city %></td>
+      </tr>
+      <tr>
+        <th class="detail-item">番地</th>
+        <td class="detail-value"><%= current_trader.t_address_num %></td>
+      </tr>
+      <tr>
+        <th class="detail-item">ビルの名前</th>
+        <td class="detail-value"><%= current_trader.t_building_num %></td>
+      </tr>
+      <tr>
+        <th class="detail-item">電話番号</th>
+        <td class="detail-value"><%= current_trader.t_tel %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= link_to "マイページ情報の編集はこちら",edit_trader_registration_path %>
+
+  <h3>あなたが保護した猫の一覧</h3>
+  <div class="contents_row">
+  <% current_trader.cats.each do |cat| %>
+    <div class="content_post" >
+    <%= link_to cat_path(cat) do %>
+      <div class="one_cat">
+      <% if cat.images.count > 0 %>
+        <%= image_tag cat.images.first, class:'cat-image' %>
+          <%# if cat.family.present? %>
+          <%# <div class='family_done'> %>
+              <%# <span>家族ができました!!</span> %>
+          <%# </div> %>
+          <%# end  %>
+      <% end %>
+      <%= cat.c_name %>
+      </div>
+    <% end %>  
+    <%= link_to "編集", edit_cat_path(cat) %>
+    <%= link_to '削除', cat_path(cat), method: :delete, class:'item-destroy' %>
+    </div>
+  <% end %>
+  </div>
+</div>
+
