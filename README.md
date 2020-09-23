@@ -110,7 +110,6 @@ https://gyazo.com/7abbf07d4c995bfff7d046e6d0694f77
 - has_many :favorites
 - has_many :families
 - belongs_to :user
-- has_one :address
 
 
 ##  addresses テーブル
@@ -128,12 +127,10 @@ https://gyazo.com/7abbf07d4c995bfff7d046e6d0694f77
 | first_pkey       | string     | null: false                            |
 | last_pkey        | string     | null: false                            |
 | birthday         | date       | null: false                            |
-| personal         | references | null: false, forein_key: true          |
 | family           | references | null: false, forein_key: true          |
 
 ### Association
 
-- belongs_to :personal
 - belongs_to :family
 - belongs_to_active_hash :area
 

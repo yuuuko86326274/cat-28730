@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_20_130945) do
+ActiveRecord::Schema.define(version: 2020_09_23_100632) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -31,6 +31,24 @@ ActiveRecord::Schema.define(version: 2020_09_20_130945) do
     t.string "checksum", null: false
     t.datetime "created_at", null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "first_pkey"
+    t.string "last_pkey"
+    t.date "birthday"
+    t.string "postal_code"
+    t.integer "area_id"
+    t.string "city"
+    t.string "address_num"
+    t.string "building_num"
+    t.string "tel"
+    t.bigint "family_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["family_id"], name: "index_addresses_on_family_id"
   end
 
   create_table "cats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -55,6 +73,16 @@ ActiveRecord::Schema.define(version: 2020_09_20_130945) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["trader_id"], name: "index_cats_on_trader_id"
+  end
+
+  create_table "families", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "donation"
+    t.bigint "cat_id"
+    t.bigint "trader_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cat_id"], name: "index_families_on_cat_id"
+    t.index ["trader_id"], name: "index_families_on_trader_id"
   end
 
   create_table "personals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
