@@ -20,9 +20,9 @@
       <%= link_to '編集', edit_cat_path, method: :get, class: "item-red-btn" %>
       <p class='or-text'>or</p>
       <%= link_to '削除', cat_path, method: :delete, class:'item-destroy' %>
-    <%# elsif %>
+    <% elsif %>
       <%# unless @family.present? %>
-        <%#= link_to '購入画面に進む', cat_family_path(@item.id), class:"item-red-btn" %>
+        <%= link_to '飼育決定画面に進む',  cat_families_path(@cat.id), class:"item-red-btn" %>
       <%# end %>
     <% end %>
 
@@ -94,7 +94,7 @@
             <%= @cat.price %>
           </span>
           <span class="item-postage">
-            (税込) 送料込み
+            (税込) 
           </span>
         </div>
     </div>
