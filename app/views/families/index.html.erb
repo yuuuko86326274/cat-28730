@@ -55,25 +55,6 @@
       <%= f.text_area :first_pkey, class:"input-name", id:"first-name-kana", placeholder:"例) リクタロウ" %>
     </div>
   </div>
-  <%# <div class="form-group">
-    <div class='form-text-wrap'>
-      <label class="form-text">生年月日</label>
-      <span class="indispensable">必須</span> %>
-    <%# </div> %>
-    <%# <div class='input-birth-wrap'>
-      <%= raw sprintf(
-        f.date_select(
-          :birthday,
-                    class:'select-birth',
-                    id:"birth-date",
-                    use_month_numbers: true,
-                    prompt:'--',
-                    start_year: 1930,
-                    end_year: (Time.now.year - 5),
-                    date_separator: '%s'),
-                  "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
-    <%# </div> %>
-  <%# </div> %>
       <div class="form-group">
         <div class='form-text-wrap'>
           <label class="form-text">郵便番号</label>
