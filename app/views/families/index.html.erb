@@ -1,0 +1,187 @@
+<div class='transaction-contents'>
+  <div class='transaction-main'>
+    <h1 class='transaction-title-text'>
+      飼育決定内容の確認
+    </h1>
+    <%# 購入内容の表示 %>
+    <div class='buy-item-info'>
+      <%# <%= image_tag @item.images, class: 'buy-item-img' %>
+        <div class='item-img-contenttttt'>
+          <% @cat.images.each do |img| %>
+          <%= image_tag(img, class: "family-cat-img") %>
+          <% end %>
+        </div>
+      <div class='buy-item-right-content'>
+        <h2 class='buy-item-text'>
+          <%= @cat.c_name %>
+        </h2>
+      </div>
+    </div>
+    <%# /購入内容の表示 %>
+
+
+    <%= form_with url: cat_families_path(@cat.id), method: :post, id: 'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= render 'shared/error_messages', model: @donation %>
+    <%# 配送先の入力 %>
+    <div class='shipping-address-form'>
+      <h1 class='info-input-haedline'>
+        個人情報入力
+      </h1>
+        <div class="form-group">
+    <p class='form-info-header'>
+      本人確認
+    </p>
+    <p class='form-info-text'>
+      安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他の会員さまに公開されることはありません。
+    </p>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">お名前(全角)</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <div class='input-name-wrap'>
+      <%= f.text_area :last_name, class:"input-name", id:"last-name", placeholder:"例) 山田" %>
+      <%= f.text_area :first_name, class:"input-name", id:"first-name", placeholder:"例) 陸太郎" %>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">お名前カナ(全角)</label>
+      <span class="indispensable">必須</span>
+    </div>
+    <div class='input-name-wrap'>
+      <%= f.text_area :last_pkey, class:"input-name", id:"last-name-kana", placeholder:"例) ヤマダ" %>
+      <%= f.text_area :first_pkey, class:"input-name", id:"first-name-kana", placeholder:"例) リクタロウ" %>
+    </div>
+  </div>
+  <%# <div class="form-group">
+    <div class='form-text-wrap'>
+      <label class="form-text">生年月日</label>
+      <span class="indispensable">必須</span> %>
+    <%# </div> %>
+    <%# <div class='input-birth-wrap'>
+      <%= raw sprintf(
+        f.date_select(
+          :birthday,
+                    class:'select-birth',
+                    id:"birth-date",
+                    use_month_numbers: true,
+                    prompt:'--',
+                    start_year: 1930,
+                    end_year: (Time.now.year - 5),
+                    date_separator: '%s'),
+                  "<p> 年 </p>", "<p> 月 </p>") + "<p> 日 </p>" %>
+    <%# </div> %>
+  <%# </div> %>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">郵便番号</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_field :postal_code, class:"input-default", id:"postal-code", placeholder:"例）123-4567", maxlength:"8" %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">都道府県</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.collection_select(:area_id, Area.all, :id, :name, {}, {class:"select-box", id:"prefecture"}) %>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">市区町村</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_field :city, class:"input-default", id:"city", placeholder:"例）横浜市緑区"%>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">番地</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_field :address_num, class:"input-default", id:"addresses", placeholder:"例）青山1-1-1"%>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">建物名</label>
+          <span class="form-any">任意</span>
+        </div>
+        <%= f.text_field :building_num, class:"input-default", id:"building", placeholder:"例）柳ビル103"%>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">電話番号</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_field :tel, class:"input-default", id:"phone-number", placeholder:"例）09012345678",maxlength:"11"%>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">保護されている方へのメッセージ</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_area :message, class:"input-default", id:"phone-number", placeholder:"例）初めて猫を迎え入れます。私の家族は3人で、6歳の子供がおります。活発な猫ちゃんと遊ぶのが楽しみです。",maxlength:"1000"%>
+      </div>
+    <p class='info-text'>※ 本人情報は正しく入力してください。確認後、保護された方から登録電話番号にご連絡いたしますので、通じるようにしてお待ちください。</p>
+    </div>
+    <%# 支払額の表示 %>
+    <div class='item-payment'>
+      <h1 class='item-payment-title'>
+        保護にかかった金額
+      </h1>
+      <p class='item-payment-price'>
+        ¥<%= @cat.price %>
+      </p>
+    </div>
+    <%# /支払額の表示 %>
+    <%# カード情報の入力 %>
+    <h1 class='credit-card-form'>寄付額入力
+    </h1>
+      <div class='info-input-haedline'>
+        <label class="form-text">任意の寄付金額</label>
+        <span class="indispensable">必須</span>
+          <%= f.text_field :donation, placeholder: "1000円以上でお願いします" %>
+          <p>寄付金額は任意です。（最低額1000円は諸費用としてお支払いお願いします。）</p>
+          <p>※お願い。保護された方へのお気持ちとして、「保護にかかった金額」よりお気持ち多くご寄付くださいますと、他の保護猫飼育の力となります。どうぞご協力お願いします。</p>
+        </div>
+      </div>
+      <h1 class="form-group">クレジットカード情報入力</h1>
+        <div class='form-text-wrap'>
+          <label class="form-text">カード情報</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_field :number, class:"input-default", id:"card-number", placeholder:"カード番号(半角英数字)", maxlength:"16" %>
+        <div class='available-card'>
+          <%= image_tag 'card-visa.gif', class: 'card-logo'%>
+          <%= image_tag 'card-mastercard.gif', class: 'card-logo'%>
+          <%= image_tag 'card-jcb.gif', class: 'card-logo'%>
+          <%= image_tag 'card-amex.gif', class: 'card-logo'%>
+        </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">有効期限</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <div class='input-expiration-date-wrap'>
+          <%= f.text_field :exp_month, class:"input-expiration-date", id:"card-exp-month", placeholder:"例)12" %>
+          <p>月</p>
+          <%= f.text_field :exp_year, class:"input-expiration-date", id:"card-exp-year", placeholder:"例)24" %>
+          <p>年</p>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class='form-text-wrap'>
+          <label class="form-text">セキュリティコード</label>
+          <span class="indispensable">必須</span>
+        </div>
+        <%= f.text_field :cvc,class:"input-default", id:"card-cvc", placeholder:"カード背面4桁もしくは3桁の番号", maxlength:"3" %>
+      </div>
+    </div>
+    <%# /カード情報の入力 %>
+    <div class='buy-btn'>
+      <%= f.submit "飼育を決定する" ,class:"buy-red-btn" %>
+    </div>
+    <% end %>
+  </div>
+</div>

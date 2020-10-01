@@ -1,32 +1,34 @@
-.contents_row{
+/* .trader-contents_row{
   display: flex;
-}
+} */
 
-.content_post{
-  width: 200px;
-}
+/* .trader-content_post{
+  position: relative;
+ 
+} */
 
-.one_cat{
+.trader-one_cat{
   width: 200px;
   height: 250px;
   position: relative;
 }
 
-.cat-image{
+.trader-cat-image{
   width: 200px;
   height: 200px;
+
 }
 
-.family-done {
+.trader-family-done {
   position: absolute;
-  top: 60%;
-  width: 100%;
+  top: 50%;
+  width: 200px;
   text-align: center;
   background-color: crimson;
   transform: skewY(-10deg);
 }
 
-.family-done>span {
+.trader-family-done>span {
   color: #FFF;
   font-size: 20px;
   font: bold;

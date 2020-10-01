@@ -5,9 +5,8 @@ class Personal < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   # has_many :favorites
-  # has_many :families
+  has_many :families
   # belongs_to :user
-  # has_one :address
 
   with_options presence: true do
     validates :email

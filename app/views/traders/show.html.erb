@@ -39,14 +39,14 @@
   <% current_trader.cats.each do |cat| %>
     <div class="content_post" >
     <%= link_to cat_path(cat) do %>
-      <div class="one_cat">
+      <div class="trader-one-cat">
       <% if cat.images.count > 0 %>
-        <%= image_tag cat.images.first, class:'cat-image' %>
-          <%# if cat.family.present? %>
-          <%# <div class='family_done'> %>
-              <%# <span>家族ができました!!</span> %>
-          <%# </div> %>
-          <%# end  %>
+        <%= image_tag cat.images.first, class:'trader-cat-image' %>
+          <% if cat.family.present? %>
+          <div class='trader-family-done'>
+            <span>家族ができました!!</span>
+          </div>
+          <% end %>
       <% end %>
       <%= cat.c_name %>
       </div>

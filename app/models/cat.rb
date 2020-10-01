@@ -2,7 +2,7 @@ class Cat < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
 
   belongs_to :trader
-  # has_one :family
+  has_one :family, dependent: :destroy
   has_many_attached :images
   # has_one :favorite
   belongs_to_active_hash :breed
