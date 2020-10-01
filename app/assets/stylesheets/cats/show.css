@@ -1,4 +1,26 @@
-.item-box-img{
+.show-cat-image{
   width: 500px;
   height: 400px;
+}
+
+.show-one-cat{
+  width: 500px;
+  height: 400px;
+  position: relative;
+}
+
+
+.show-family-done {
+  position: absolute;
+  top: 80%;
+  width: 100%;
+  text-align: center;
+  background-color: crimson;
+  transform: skewY(-10deg);
+}
+
+.show-family-done>span {
+  color: #FFF;
+  font-size: 20px;
+  font: bold;
 }

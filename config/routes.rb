@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   root to: 'cats#index'
   # resources :users, only: [:new, :create, :destroy]
   resources :cats do
-    resources :families, only: [:index, :create]
+    resources :families, only: [:index, :new, :create]
   end
   
   resources :traders, only: :show

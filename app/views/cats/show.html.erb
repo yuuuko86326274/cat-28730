@@ -5,15 +5,15 @@
     <h2 class="name">
       <%= @cat.c_name %>
     </h2>
-    <div class='item-img-content'>
+    <div class='show-one-cat'>
       <%# <%= image_tag @item.image ,class:"item-box-img" %>
       <% @cat.images.each do |img| %>
-        <%= image_tag(img, class: "item-box-img") %>
-          <%# if @cat.family.present? %>
-            <%# <div class='sold-out'> %>
-              <%# <span>Sold Out!!</span> %>
-            <%# </div> %>
-          <%# end %>
+        <%= image_tag(img, class: "show-cat-image") %>
+          <% if @cat.family.present? %>
+            <div class='show-family-done'>
+              <span>家族が出来ました!!</span>
+            </div>
+          <% end %>
        <% end %>
     </div>
     <% if trader_signed_in? && current_trader.id == @cat.trader_id %>

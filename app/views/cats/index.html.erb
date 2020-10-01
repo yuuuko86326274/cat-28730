@@ -5,11 +5,11 @@
       <div class="one_cat">
       <% if cat.images.count > 0 %>
         <%= image_tag cat.images.first, class:'cat-image' %>
-          <%# if cat.family.present? %>
-          <%# <div class='family_done'> %>
-              <%# <span>家族ができました!!</span> %>
-          <%# </div> %>
-          <%# end  %>
+          <% if cat.family.present? %>
+           <div class='family-done'>
+              <span>家族ができました!!</span>
+          </div>
+          <% end  %>
       <% end %>
       <%= cat.c_name %>
       </div>
