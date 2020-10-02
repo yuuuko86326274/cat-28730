@@ -28,21 +28,7 @@
     </header>
     <%= yield %>
     <footer>
-      <div class="header__bar row">
-        保護された方のページ
-        <% if trader_signed_in? %>
-          <div class="user_nav grid-6">
-            <%= link_to "保護された方のマイページ", "/traders/#{current_trader.id}" %>
-            <%= link_to "ログアウト", destroy_trader_session_path, method: :delete %>
-        <% else %>
-          <div class="grid-6">
-            <%= link_to "ログイン", new_trader_session_path, class: "post" %>
-            <%= link_to "新規登録", new_trader_registration_path, class: "post" %>
-          </div>
-        <% end %>
-        </div>
-      </div>
-      <%= link_to "猫登録", new_cat_path %>
+      
       <p>
         Copyright Cat-28730 2020.
       </p>
