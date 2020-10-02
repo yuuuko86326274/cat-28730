@@ -1,5 +1,4 @@
 class FamiliesController < ApplicationController
-  # require 'date'
   require 'payjp'
 
   before_action :move_to_login
@@ -15,16 +14,10 @@ class FamiliesController < ApplicationController
   end
 
   def create
-    # @trader = Trader.find(params[:id])
-    # @donation = Donation.new(donation_params)
-    # date = params.permit(:birthday)
-    # birthday = Date.parse.date
     @donation = Donations.new(donation_params)
-
     if @donation.valid?
       @donation.save
       pay_donation
-      # binding.pry
       redirect_to root_path
     else
       render 'index'
@@ -62,8 +55,8 @@ class FamiliesController < ApplicationController
       :message,
       :token
     ).merge(cat_id: @cat.id)
-          .merge(personal_id: current_personal.id)
-          .merge(trader_id: @trader)
+     .merge(personal_id: current_personal.id)
+     .merge(trader_id: @trader)
   end
 
   def pay_donation

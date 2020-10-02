@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Trader type: :model do
+RSpec.describe Trader, type: :model do
   before do
     @trader = FactoryBot.build(:trader)
   end

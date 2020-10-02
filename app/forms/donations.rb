@@ -4,7 +4,7 @@ class Donations
 
   with_options presence: true do
     validates :token
-    validates :donation
+    validates :donation, numericality: { greater_than_or_equal_to: 1000, less_than_or_equal_to: 9_999_999 }
     validates :first_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'は全角で入力してください。' }
     validates :last_name, format: { with: /\A[ぁ-んァ-ン一-龥]/, message: 'は全角で入力してください。' }
     validates :first_pkey, format: { with: /\A[\p{katakana} ー－&&[^ -~｡-ﾟ]]+\z/, message: 'は全角カタカナで入力して下さい。' }
