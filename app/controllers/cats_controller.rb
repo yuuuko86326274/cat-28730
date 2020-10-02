@@ -2,7 +2,7 @@ class CatsController < ApplicationController
   before_action :move_to_index, except: [:index, :show]
 
   def index
-    @cats = Cat.includes(:trader).order('created_at DESC')
+    @cats = Cat.includes(:trader).order('created_at DESC').limit(30)
   end
 
   def show
