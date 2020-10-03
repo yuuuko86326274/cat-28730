@@ -5,37 +5,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <script type="text/javascript" src="https://js.pay.jp/v1/"></script>
-    <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.18.1/build/cssreset/cssreset-min.css">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+    <%= javascript_pack_tag 'application' %>
   </head>
 
   <body>
-    <header class="header">
-      <div class="header__bar row">
-        <h1 class="grid-6"><a href="/">あなたにぴったりのネコに出会おう</a></h1>
-          <div class="search">検索
-          </div>
-          <div class="favorite">お気に入り
-          </div>
-        <% if personal_signed_in? %>
-          <div class="user_nav grid-6">
-            <%= link_to "あなたのマイページ", personals_show_path %>
-            <%= link_to "ログアウト", destroy_personal_session_path, method: :delete %>
-          </div>
-        <% else %>
-          <div class="grid-6">
-            <%= link_to "ログイン", new_personal_session_path, class: "post" %>
-            <%= link_to "新規登録", new_personal_registration_path, class: "post" %>
-          </div>
-        <% end %>
-      </div>
-    </header>
     <%= yield %>
-    <footer>
-      <p>
-        Copyright Cat-28730 2020.
-      </p>
-    </footer>
   </body>
 </html>

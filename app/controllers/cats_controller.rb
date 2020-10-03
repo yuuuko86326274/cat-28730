@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  before_action :move_to_index, except: [:index, :show]
+  before_action :move_to_registration, except: [:index, :show]
 
   def index
     @cats = Cat.includes(:trader).order('created_at DESC').limit(30)
@@ -7,7 +7,6 @@ class CatsController < ApplicationController
 
   def show
     @cat = Cat.find(params[:id])
-    # @family = Family.find(params[:id])
   end
 
   def new
@@ -51,8 +50,8 @@ class CatsController < ApplicationController
 
   private
 
-  def move_to_index
-    redirect_to action: :index unless trader_signed_in?
+  def move_to_registration
+    redirect_to new_trader_registration_path unless trader_signed_in?
   end
 
   def cat_params

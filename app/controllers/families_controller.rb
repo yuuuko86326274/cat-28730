@@ -36,7 +36,7 @@ class FamiliesController < ApplicationController
   end
 
   def family_cat
-    redirect_to root_path if @cat.family.present? # || current_trader.id == @cat.trader_id
+    redirect_to root_path if @cat.family.present? && current_trader.id == @trader
   end
 
   def donation_params

@@ -1,34 +1,31 @@
+<%= render "shared/header" %>
 
 <%# 商品の概要 %>
 <div class="item-show">
   <div class="item-box">
-    <h2 class="name">
-      <%= @cat.c_name %>
-    </h2>
     <div class='show-one-cat'>
-      <%# <%= image_tag @item.image ,class:"item-box-img" %>
-      <% @cat.images.each do |img| %>
-        <%= image_tag(img, class: "show-cat-image") %>
-          <% if @cat.family.present? %>
-            <div class='show-family-done'>
-              <span>家族が出来ました!!</span>
-            </div>
-          <% end %>
-       <% end %>
+    <% @cat.images.each do |img| %>
+      <%= image_tag(img, class: "show-cat-image") %>
+      <% if @cat.family.present? %>
+        <div class='show-family-done'>
+          <span>家族が出来ました!!</span>
+        </div>
+      <% end %>
+    <% end %>
     </div>
     <% if trader_signed_in? && current_trader.id == @cat.trader_id %>
       <%= link_to '編集', edit_cat_path, method: :get, class: "item-red-btn" %>
       <p class='or-text'>or</p>
       <%= link_to '削除', cat_path, method: :delete, class:'item-destroy' %>
-    <% elsif %>
-      <%# unless @family.present? %>
+    <% else %>
+      <% unless @cat.family.present?  %>
         <%= link_to '飼育決定画面に進む',  cat_families_path(@cat.id), class:"item-red-btn" %>
-      <%# end %>
+      <% end %>
     <% end %>
 
-    <div class="item-explain-box">
-      <%= @cat.c_text %>
-    </div>
+    <h2 class="name">
+      <%= "名前 #{@cat.c_name}" %>
+    </h2>
     <table class="detail-table">
       <tbody>
         <tr>
@@ -88,6 +85,9 @@
         </tr>
       </tbody>
     </table>
+        <div class="item-explain-box">
+          <%= "保護された方からのメッセージ #{@cat.c_text}" %>
+        </div>
         <div class="item-price-box">
         保護にかかった金額
           <span class="item-price">
@@ -97,5 +97,7 @@
             (税込) 
           </span>
         </div>
-    </div>
+</div>
   <%# /商品の概要 %>
+
+<%= render "shared/footer"%>
