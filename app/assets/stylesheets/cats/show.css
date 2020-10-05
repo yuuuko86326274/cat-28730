@@ -1,14 +1,45 @@
-.show-cat-image{
-  width: 500px;
-  height: 400px;
+.item-show{
+  display: flex;
+  background-color: blanchedalmond;
+  justify-content: center;
+  height: 140vh;
+  width: 100%;
+}
+
+.item-box{
+  background-color: #ffff;
+  height: 1426px;
+  width: 80%;
+  min-width: 560px;
+  min-height: 1300px;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
+  margin: 30px;
+  border: 1px solid lightsteelblue;
 }
 
 .show-one-cat{
-  width: 500px;
-  height: 400px;
+  width: calc(100% - 60px);
+  height: calc(100% - 60px);
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.show-cat-scroll{
+  height: 510px;
+  width: 510px;
+  overflow-x:scroll;
+  overflow-y:hidden;
   position: relative;
 }
 
+.show-cat-image{
+  height: 510px;
+  width: 510px;
+}
 
 .show-family-done {
   position: absolute;
@@ -23,4 +54,83 @@
   color: #FFF;
   font-size: 20px;
   font: bold;
+}
+
+.btn{
+  display: flex;
+  width: 400px;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.or-text{
+  padding-top: 10px;
+}
+
+.item-red-btn{
+  background-color: royalblue;
+  padding: 5px;
+  margin: 5px;
+  color: #ffff;
+}
+
+.item-destroy{
+  background-color: palevioletred;
+  padding: 5px;
+  margin: 5px;
+  color: #ffff;
+}
+
+.item-blue-btn{
+  background-color: royalblue;
+  padding: 5px;
+  margin: 5px;
+  color: #ffff;
+}
+
+.name{
+  font-size: x-large;
+  margin-top: 30px;
+}
+
+.table-twin{
+  display: flex;
+  margin-top: 15px;
+}
+
+.detail-table{
+  margin: 10px;
+}
+
+.detail-item{
+  padding: 5px;
+  border: 1px solid lightsteelblue;
+}
+
+.detail-value{
+  padding: 5px;
+  border: 1px solid lightsteelblue;
+}
+
+.detail-table-under{
+  margin-top: 15px;
+  display: flex;
+}
+
+.detail-item-under{
+  padding: 5px;
+  max-width: 680px;
+  min-width: 480px;
+  border: 1px solid lightsteelblue;
+}
+
+.detail-value-under{
+  padding: 5px;
+  max-width: 680px;
+  min-width: 480px;
+  min-height: 250px;
+  border: 1px solid lightsteelblue;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }

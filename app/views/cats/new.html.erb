@@ -1,83 +1,160 @@
 <%= render "shared/header" %>
 
-<div class="content">
-  <h3>猫を登録する</h3>
-  <%= form_with model: @cats, url: cats_path, method: :post, local: true do |f| %>
-  <%= render 'shared/error_messages', model: f.object %>
-    <div class="list">名前
-       <span class="indispensable">必須</span>
-      <%= f.text_field :c_name, placeholder: "name", maxlength:"40" %>
-    </div>
-    <div class="list">写真
-      <span class="indispensable">必須</span>
-      <div class="click-upload">
-        <p>
-          クリックしてファイルをアップロード
-        </p>
-        <div id="image-list"></div>
+<div class="contents-show">
+  <div class="content">
+    <h3>猫を登録する</h3>
+    <div class="content-all">
+    <%= form_with model: @cats, url: cats_path, method: :post, local: true do |f| %>
+    <%= render 'shared/error_messages', model: f.object %>
+      <div class="list">
+        <div class="list-in">名前
+          <span class="indispensable">必須</span>
+        </div>
+          <div class="list-1">
+          <%= f.text_field :c_name, placeholder: "猫の名前（40字以内）", maxlength:"40" %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">写真
+        <span class="indispensable">必須</span>
+          <div class="click-upload">
+            <p>
+              クリックしてファイルをアップロード
+            </p>
+          </div>
+        </div>
+        <div id="image-list">
           <%= f.file_field :c_images, name: 'cat[images][]', id: 'cat_image', placeholder: "Image Url", multipul: true %>
         </div>
       </div>
-    <div class="list">性別
-      <span class="indispensable">必須</span>
-      <%= f.collection_select :sex_id, Sex.all, :id, :name, {} %>
+      <div class="list">
+        <div class="list-in">性格
+          <span class="indispensable">必須</span>
+        </div>
+          <div class="list-2">
+          <%= f.collection_select :character_id, Character.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">紹介
+          <span class="indispensable">必須</span>
+        </div>
+          <div >
+          <%= f.text_area :c_text, placeholder: "紹介文（1000字以内）",class:"list-3", maxlength: "1000" %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">性別
+          <span class="indispensable">必須</span>
+        </div>
+          <div class="list-4">
+          <%= f.collection_select :sex_id, Sex.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">去勢避妊手術
+          <span class="indispensable">必須</span>
+        </div>
+          <div class="list-5">
+          <%= f.collection_select :ope_id, Ope.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">年齢
+          <span class="indispensable">必須</span>
+        </div>
+          <div class="list-6">
+          <%= f.collection_select :age_id, Age.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">ノミ取り処置
+          <span class="indispensable">必須</span>
+        </div> 
+          <div class="list-7">
+          <%= f.collection_select :fleas_id, Fleas.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">ワクチン処置
+        <span class="indispensable">必須</span>
+        </div>
+          <div class="list-8">
+          <%= f.collection_select :veccine_id, Veccine.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">駆虫処置
+          <span class="indispensable">必須</span>
+        </div>
+          <div class="list-9">
+          <%= f.collection_select :kuchu_id, Kuchu.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">保護にかかった金額
+        </div>
+          <div class="list-10">
+          <%= f.text_field :price, placeholder: "1000円以上でご入力ください" %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">種類
+        </div>
+          <div class="list-11">
+          <%= f.collection_select :breed_id, Breed.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">毛の長さ
+        </div>
+          <div class="list-12">
+          <%= f.collection_select :hair_length_id, HairLength.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">毛の色
+        </div>
+          <div class="list-13">
+          <%= f.collection_select :color_id, Color.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">目の色
+        </div>
+          <div class="list-14">
+            <%= f.collection_select :eye_color_id, EyeColor.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+      <div class="list-in">希望飼育頭数
+        </div>
+          <div class="list-15">
+          <%= f.collection_select :how_many_id, HowMany.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">独身者
+        </div>
+          <div class="list-16">
+            <%= f.collection_select :single_id, Single.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">高齢者
+        </div>
+          <div class="list-17">
+            <%= f.collection_select :senior_id, Senior.all, :id, :name, {} %>
+          </div>
+      </div>
+      <div class="list-center">
+        <div class="list-18">
+        <%= f.submit "登録する" %>
+        </div>
+      </div>
+    <% end %>
     </div>
-    <div class="list">去勢避妊手術
-      <span class="indispensable">必須</span>
-      <%= f.collection_select :ope_id, Ope.all, :id, :name, {} %>
-    </div>
-    <div class="list">年齢
-      <span class="indispensable">必須</span>
-      <%= f.collection_select :age_id, Age.all, :id, :name, {} %>
-    </div>
-    <div class="list">性格
-      <span class="indispensable">必須</span>
-      <%= f.collection_select :character_id, Character.all, :id, :name, {} %>
-    </div>
-    <div class="list">紹介
-      <span class="indispensable">必須</span>
-      <%= f.text_area :c_text, placeholder: "text", cols: "1000" %>
-    </div>
-    <div class="list">ノミ取り処置
-      <span class="indispensable">必須</span>
-      <%= f.collection_select :fleas_id, Fleas.all, :id, :name, {} %>
-    </div>
-    <div class="list">ワクチン処置
-      <span class="indispensable">必須</span>
-      <%= f.collection_select :veccine_id, Veccine.all, :id, :name, {} %>
-    </div>
-    <div class="list">駆虫処置
-      <span class="indispensable">必須</span>
-      <%= f.collection_select :kuchu_id, Kuchu.all, :id, :name, {} %>
-    </div>
-    <div class="list">保護にかかった金額
-      <%= f.text_field :price, placeholder: "Price" %>
-    </div>
-    <div class="list">種類
-      <%= f.collection_select :breed_id, Breed.all, :id, :name, {} %>
-    </div>
-    <div class="list">毛の長さ
-      <%= f.collection_select :hair_length_id, HairLength.all, :id, :name, {} %>
-    </div>
-    <div class="list">毛の色
-      <%= f.collection_select :color_id, Color.all, :id, :name, {} %>
-    </div>
-    <div class="list">目の色
-      <%= f.collection_select :eye_color_id, EyeColor.all, :id, :name, {} %>
-    </div>
-    <div class="list">希望飼育頭数
-      <%= f.collection_select :how_many_id, HowMany.all, :id, :name, {} %>
-    </div>
-    <div class="list">独身者
-      <%= f.collection_select :single_id, Single.all, :id, :name, {} %>
-    </div>
-    <div class="list">高齢者
-      <%= f.collection_select :senior_id, Senior.all, :id, :name, {} %>
-    </div>
-    <div class="list">
-      <%= f.submit "SEND" %>
-    </div>
-  <% end %>
+  </div>
 </div>
 
 <%= render "shared/footer"%>
