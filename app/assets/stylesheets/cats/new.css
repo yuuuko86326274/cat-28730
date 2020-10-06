@@ -1,27 +1,35 @@
 .contents-show{
   background-color: blanchedalmond;
-  height: 100vh;
+  height: 110vh;
+  width: 100%;
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
 .content{
-  min-width: 80%;
-  min-height: 1000px;
   background-color: #ffff;
-  border: 1px solid lightsteelblue;
+  width: 80%;
+  height: 1180px;
+  min-height: 1000px;
+  min-width: 900px;
+  margin: 50px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 30px;
+  border: 1px solid lightsteelblue;
 }
 
 .content>h3{
   font-size: xx-large;
   margin-bottom: 30px;
+  margin-top: 30px;
 }
 
 .content-all{
+  width: calc(100% - 100px);
+  height: calc(100% - 100px);
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
@@ -52,6 +60,7 @@
 .list-3{
   padding: 5px;
   width: 680px;
+  font-size: 16px;
   min-height: 250px;
   word-wrap: break-word;
   display: -webkit-box;

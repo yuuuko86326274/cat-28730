@@ -1,9 +1,222 @@
-.family-cat-img{
-  width: 500px;
-  height: 500px;
+.transaction-contents{
+  display: flex;
+  background-color: blanchedalmond;
+  justify-content: center;
+  height: 190vh;
+  width: 100%;
+}
+
+.transaction-main{
+  background-color: #ffff;
+  height: 1950px;
+  width: 80%;
+  min-width: 600px;
+  min-height: 1000px;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  border: 1px solid lightsteelblue;
+}
+
+.transaction-sab{
+  justify-content: center;
+  padding: 30px;
+  min-width: 600px;
+  max-width: 950px;
+}
+
+.transaction-title-text{
+  text-align: center;
+  font-size: x-large;
+  font: bold;
+}
+
+.info-input-haedline{
+  font-size: large;
+  font: bold;
+  margin-top: 15px;
+}
+
+.form-group>p{
+  font-size: 16px;
+  margin: 10px;
+}
+
+.form-group{
+  display: flex;
+  min-width: 500px;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.form-text-wrap{
+  display: flex;
+  justify-content: flex-start;
+}
+
+.input-name-wrap{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.input-name-wrap>select{
+  width: 300px;
+}
+
+.input-name{
+  margin-left: 10px;
+  margin-top: 15px;
+}
+
+.input-default{
+  display: flex;
+  justify-content: flex-end;
+  width: 300px;
+}
+
+.input-default-wrap{
+  width: 600px;
+}
+
+.item-payment{
+  min-width: 500px;
+  margin-top: 50px;
+}
+
+.item-payment-title{
+  font-size: large;
+}
+
+.credit-card-form{
+  margin: 30px 10px 10px 10px;
+}
+
+.credit-card-form>p{
+  font-size: 16px;
+}
+
+.item-payment-cash>p{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.item-payment-cash{
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  margin: 15px 20px 0 10px;
+}
+
+.item-payment-cash>div{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.item-payment-price{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card-defalt{
+  /* min-width: 722px; */
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-group{
+  min-width: 540px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-group>h1{
+  margin-bottom: 15px;
+  font-size: large;
+}
+
+.form-text-wrap-card{
+  margin-top: 10px;
+  margin-left: 10px;
+  min-width: 200px;
+}
+
+.form-group{
+  display: flex;
+  justify-content: space-between;
+}
+
+.input-card-form{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.input-expiration-date-wrap{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.input-expiration-date{
+  width: 110px;
+}
+
+.input-expiration-cvc{
+  width: 252px;
+}
+
+.available-card{
+  display: flex;
+  justify-content: flex-end;
 }
 
 .card-logo{
   width: 50px;
   height: 30px;
+}
+
+.buy-btn{
+  display: flex;
+  justify-content: center;
+}
+
+.buy-red-btn{
+  margin-top: 50px;
+  font: bold;
+  font-size: large;
+  background-color: royalblue;
+  color: #ffff;
+  padding: 5px 76.01px;
+}
+
+.buy-item-info{
+  width: 300px;
+  height: 317px;
+  display: flex;
+  justify-content: flex-end;
+  overflow: hidden;
+}
+
+.item-img-contenttttt{
+  width: 150px;
+  height: 230px;
+  padding-top: 130px;
+}
+
+.family-image{
+  margin: 30px 3px 170px 0px;
+  width: 150px;
+  height: 150px;
+}
+
+.family-cat-img{
+  width: 150px;
+  height: 150px;
+}
+
+.buy-item-right-content{
+  display: flex;
+  justify-content: center;
+}
+
+.buy-item-text{
+
 }

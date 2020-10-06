@@ -15,14 +15,13 @@
   margin: 50px;
   display: flex;
   flex-direction: column;
-  margin: 30px;
   border: 1px solid lightsteelblue;
 }
 
 .show-one-cat{
   width: calc(100% - 60px);
   height: calc(100% - 60px);
-  margin: 30px;
+  margin: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
