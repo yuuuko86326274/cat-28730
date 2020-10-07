@@ -99,4 +99,5 @@
 .cat-name-center{
   display: flex;
   justify-content: center;
+  color: black;
 }

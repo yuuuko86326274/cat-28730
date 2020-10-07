@@ -34,12 +34,15 @@
   width: 510px;
   overflow-x:scroll;
   overflow-y:hidden;
+  display: flex;
   position: relative;
+  background-color: #ffff;
 }
 
 .show-cat-image{
   height: 510px;
   width: 510px;
+  margin: 1px;
 }
 
 .show-family-done {

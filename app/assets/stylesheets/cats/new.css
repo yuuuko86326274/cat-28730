@@ -1,21 +1,23 @@
 .contents-show{
   background-color: blanchedalmond;
-  height: 110vh;
+  height: 100vh;
   width: 100%;
   display: flex;
   overflow: scroll;
+  justify-content: center;
 }
 
 .content{
   background-color: #ffff;
   width: 80%;
-  height: 1250px;
-  min-height: 1000px;
+  height: 80%;
+  min-height: 1300px;
   min-width: 900px;
   margin: 50px;
   display: flex;
   flex-direction: column;
   border: 1px solid lightsteelblue;
+  overflow: scroll;
 }
 
 .content>h3{
@@ -32,7 +34,6 @@
   flex-direction: column;
   align-items: center;
 }
-
 
 .list{
   display: flex;
@@ -51,8 +52,6 @@
   font-weight: bold;
 }
 
-
-
 .list-2>select{
   padding-right: 254px;
 }
@@ -65,6 +64,25 @@
   word-wrap: break-word;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+}
+
+.cat-image-small{
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 800px;
+}
+
+.image-element{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 230px;
+  margin-right: 5px;
+}
+
+.center-center>div>div>img{
+  width: 200px;
+  height: 200px;
 }
 
 .list-4>select{
