@@ -4,11 +4,12 @@
   justify-content: center;
   height: 190vh;
   width: 100%;
+  overflow: scroll;
 }
 
 .transaction-main{
   background-color: #ffff;
-  height: 1950px;
+  height: 2000px;
   width: 80%;
   min-width: 600px;
   min-height: 1000px;
@@ -176,6 +177,7 @@
 .buy-btn{
   display: flex;
   justify-content: center;
+  margin-top: 10px;
 }
 
 .buy-red-btn{
@@ -215,8 +217,4 @@
 .buy-item-right-content{
   display: flex;
   justify-content: center;
-}
-
-.buy-item-text{
-
 }

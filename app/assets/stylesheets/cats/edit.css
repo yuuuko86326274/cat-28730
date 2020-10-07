@@ -10,7 +10,7 @@
 .content{
   background-color: #ffff;
   width: 80%;
-  height: 1180px;
+  height: 1250px;
   min-height: 1000px;
   min-width: 900px;
   margin: 50px;
@@ -118,8 +118,6 @@
   margin: 15px;
 }
 
-.list-18{
-}
 
 .list-18>input{
   font: bold;

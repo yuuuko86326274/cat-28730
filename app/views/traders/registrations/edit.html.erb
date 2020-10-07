@@ -75,7 +75,7 @@
       </div>
     <% end %>
       <div class="signup-footer">
-      <%= link_to "戻る", root_path, class:"link-login" %>
+      <%= link_to "戻る", :back, class:"link-login" %>
       </div>
       <div class="delete-mypage">
       <%= button_to "アカウントを削除する", registration_path(resource_name), data: { confirm: "本当に削除しますか?" }, method: :delete, class:"delete-mypage-btn"%>

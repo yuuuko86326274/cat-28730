@@ -13,6 +13,7 @@
   padding-bottom: 10px;
   display: flex;
   flex-direction: column;
+  min-height: 300px;
 }
 
 .movie>p {
@@ -21,6 +22,7 @@
 
 .video_flame{
   height: 38vh;
+  min-height: 300px;
   padding-bottom: 10px;
   display: flex;
   justify-content: center;
@@ -28,6 +30,7 @@
 }
 
 .video{
+  min-height: 300px;
   width: 60%;
   height: 38vh;
 }
