@@ -14,7 +14,7 @@
         <%= f.text_field :c_name, placeholder: "猫の名前（40字以内）", maxlength:"40" %>
         </div>
       </div>
-      <div class="list">
+      <div class="lists">
         <div class="list-in">写真
         <span class="indispensable">必須</span>
           <div class="click-upload">
@@ -23,8 +23,11 @@
             </p>
           </div>
         </div>
-        <div id="image-list">
+        <div class="center-center">
+          <div class="cat-image-smaller">
           <%= f.file_field :c_images, name: 'cat[images][]', id: 'cat_image', placeholder: "Image Url", multipul: true %>
+          </div>
+          <div id="image-list" class="cat-image-small"></div>
         </div>
       </div>
       <div class="list">

@@ -1,7 +1,7 @@
 .contents-show{
   background-color: blanchedalmond;
-  height: 110vh;
-  width: 120%;
+  height: 100vh;
+  width: 100%;
   display: flex;
   justify-content: center;
   overflow: scroll;
@@ -10,14 +10,15 @@
 .content{
   background-color: #ffff;
   width: 80%;
-  height: 1250px;
-  min-height: 1000px;
+  height: 80%;
+  min-height: 1300px;
   min-width: 900px;
   margin: 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
   border: 1px solid lightsteelblue;
+  overflow: scroll;
 }
 
 .content>h3{
@@ -60,11 +61,30 @@
 .list-3{
   padding: 5px;
   width: 680px;
-  min-height: 250px;
   font-size: 16px;
+  min-height: 250px;
   word-wrap: break-word;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+}
+
+.cat-image-small{
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 800px;
+}
+
+.image-element{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 230px;
+  margin-right: 5px;
+}
+
+.center-center>div>div>img{
+  width: 200px;
+  height: 200px;
 }
 
 .list-4>select{
@@ -117,7 +137,6 @@
   min-width: 500px;
   margin: 15px;
 }
-
 
 .list-18>input{
   font: bold;
