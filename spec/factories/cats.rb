@@ -2,7 +2,7 @@ FactoryBot.define do
   factory :cat do
     c_name { Faker::Lorem.characters(number: 40) }
     c_text { Faker::Lorem.characters(number: 1000) }
-    price { Faker::Number.between(from: 1000, to: 9_999_999)}
+    price { Faker::Number.between(from: 1000, to: 9_999_999) }
     breed_id {Faker::Number.between(from: 1, to: 21)}
     ope_id {Faker::Number.between(from: 1, to: 2)}
     sex_id {Faker::Number.between(from: 1, to: 2)}

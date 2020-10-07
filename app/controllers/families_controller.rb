@@ -55,8 +55,8 @@ class FamiliesController < ApplicationController
       :message,
       :token
     ).merge(cat_id: @cat.id)
-     .merge(personal_id: current_personal.id)
-     .merge(trader_id: @trader)
+          .merge(personal_id: current_personal.id)
+          .merge(trader_id: @trader)
   end
 
   def pay_donation
