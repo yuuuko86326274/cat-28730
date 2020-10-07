@@ -4,6 +4,7 @@
   width: 120%;
   display: flex;
   justify-content: center;
+  overflow: scroll;
 }
 
 .content{

@@ -1,0 +1,62 @@
+.user-contents-row{
+  width: 100%;
+  height: 100vh;
+  background-color: blanchedalmond;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: scroll;
+}
+
+.user-container{
+  width: 50%;
+  min-width: 250px;
+  height: 30%;
+  min-height: 480px;
+  background-color: #ffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid lightsteelblue;
+  margin-top: 50px;
+}
+
+.new-personal{
+  min-width: 250px;
+
+}
+
+.user-container>h2{
+  font-size: large;
+  margin-top: 30px;
+}
+
+.field{
+  width: 250px;
+  margin-top: 15px;
+}
+
+.field-in{
+  min-width: 250px;
+}
+
+.actions{
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.signup-footer{
+  min-width: 250px;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.signup-btn{
+  background-color: royalblue;
+  padding: 5px;
+  margin: 5px;
+  color: #ffff;
+}
