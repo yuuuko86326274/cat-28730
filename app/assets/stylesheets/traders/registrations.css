@@ -12,7 +12,7 @@
   width: 50%;
   min-width: 500px;
   height: 40%;
-  min-height: 1000px;
+  min-height: 1100px;
   background-color: #ffff;
   display: flex;
   flex-direction: column;
@@ -59,4 +59,20 @@
   padding: 5px;
   margin: 5px;
   color: #ffff;
+}
+
+.delete-mypage{
+  margin-top: 15px;
+}
+
+.delete-mypage-btn{
+  background-color: lightsteelblue;
+  padding: 5px;
+  color: black;
+  margin-top: 10px;
+  border: 1px solid #ffff;
+}
+
+.field>select{
+  width: 250px;
 }

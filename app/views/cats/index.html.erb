@@ -15,7 +15,6 @@
         <div class="contents-name-center">↓↓ただ今、飼い主募集中！↓↓</div>
       </div>
     </div>
-    <%# <div class="contents-paper"> %>
     <div class="contents_row">
       <% @cats.each do |cat| %>
         <div class="content_post">
@@ -29,7 +28,9 @@
               </div>
               <% end  %>
           <% end %>
+          <div class="cat-name-center">
           <%= cat.c_name %>
+          </div>
           </div>
         <% end %>  
         </div>

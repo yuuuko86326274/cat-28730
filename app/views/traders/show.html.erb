@@ -1,60 +1,78 @@
-<h2>保護された方のマイページ</h2>
-<div class="mypage">
-  <table class="detail-table">
-    <tbody>
-      <tr>
-        <th class="detail-item">登録名</th>
-        <td class="detail-value"><%= current_trader.t_name %></td>
-      </tr>
-      <tr>
-        <th class="detail-item">メールアドレス</th>
-        <td class="detail-value"><%= current_trader.email %></td>
-      </tr>
-      <tr>
-        <th class="detail-item">郵便番号</th>
-        <td class="detail-value"><%= current_trader.t_postal_code %></td>
-      </tr>
-      <tr>
-        <th class="detail-item">市</th>
-        <td class="detail-value"><%= current_trader.t_city %></td>
-      </tr>
-      <tr>
-        <th class="detail-item">番地</th>
-        <td class="detail-value"><%= current_trader.t_address_num %></td>
-      </tr>
-      <tr>
-        <th class="detail-item">ビルの名前</th>
-        <td class="detail-value"><%= current_trader.t_building_num %></td>
-      </tr>
-      <tr>
-        <th class="detail-item">電話番号</th>
-        <td class="detail-value"><%= current_trader.t_tel %></td>
-      </tr>
-    </tbody>
-  </table>
-  <%= link_to "マイページ情報の編集はこちら",edit_trader_registration_path %>
+<%= render "shared/header" %>
 
-  <h3>あなたが保護した猫の一覧</h3>
-  <div class="contents_row">
-  <% current_trader.cats.each do |cat| %>
-    <div class="content_post" >
-    <%= link_to cat_path(cat) do %>
-      <div class="trader-one-cat">
-      <% if cat.images.count > 0 %>
-        <%= image_tag cat.images.first, class:'trader-cat-image' %>
-          <% if cat.family.present? %>
-          <div class='trader-family-done'>
-            <span>家族ができました!!</span>
-          </div>
-          <% end %>
-      <% end %>
-      <%= cat.c_name %>
+
+<div class="mypage">
+  <div class="my-page-in">
+    <h2>マイページ</h2>
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">登録名</th>
+          <td class="detail-value"><%= current_trader.t_name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">メールアドレス</th>
+          <td class="detail-value"><%= current_trader.email %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">郵便番号</th>
+          <td class="detail-value"><%= current_trader.t_postal_code %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">市</th>
+          <td class="detail-value"><%= current_trader.t_city %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">番地</th>
+          <td class="detail-value"><%= current_trader.t_address_num %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">ビルの名前</th>
+          <td class="detail-value"><%= current_trader.t_building_num %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">電話番号</th>
+          <td class="detail-value"><%= current_trader.t_tel %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to "マイページ情報の編集はこちら",edit_trader_registration_path %>
+
+    <div class="contents-all-cat">
+      <div class="contents">
+        <div class="contents-name">
+          <div class="trader-name-center">保護した猫一覧</div>
+        </div>
       </div>
-    <% end %>  
-    <%= link_to "編集", edit_cat_path(cat) %>
-    <%= link_to '削除', cat_path(cat), method: :delete, class:'item-destroy' %>
+      <div class="contents_row">
+        <% current_trader.cats.each do |cat| %>
+          <div class="content_post" >
+            <%= link_to cat_path(cat) do %>
+              <div class="trader-one-cat">
+              <% if cat.images.count > 0 %>
+                <%= image_tag cat.images.first, class:'cat-image' %>
+                  <% if cat.family.present? %>
+                  <div class='trader-family-done'>
+                    <span>家族ができました!!</span>
+                  </div>
+                  <% end %>
+              <% end %>
+              <div class="cat-name-center">
+              <%= cat.c_name %>
+              </div>
+              </div>
+            <% end %> 
+            <div class="choice"> 
+            <%= link_to "編集", edit_cat_path(cat), class: "item-red-btn" %>
+            <div class="choice-or">or</div>
+            <%= link_to '削除', cat_path(cat), method: :delete, class:'item-destroy' %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
-  <% end %>
   </div>
 </div>
+
+<%= render "shared/footer"%>
 
