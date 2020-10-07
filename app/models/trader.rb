@@ -5,8 +5,8 @@ class Trader < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :families
-  has_many :cats
+  has_many :families, dependent: :destroy
+  has_many :cats, dependent: :destroy
   belongs_to_active_hash :area
 
   with_options presence: true do
