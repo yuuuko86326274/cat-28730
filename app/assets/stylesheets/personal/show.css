@@ -1,0 +1,34 @@
+.mypage{
+  width: 100%;
+  height: 100vh;
+  background-color: blanchedalmond;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow: scroll;
+}
+
+.mypage-in{
+  width: 80%;
+  min-width: 250px;
+  height: 30%;
+  min-height: 500px;
+  background-color: #ffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid lightsteelblue;
+  margin-top: 50px;
+}
+
+.mypage-in>h2{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: large;
+}
+
+.personal-favorite{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: large;
+}

@@ -1,35 +1,68 @@
-/* .trader-contents_row{
+.my-page-in{
+  width: 80%;
+  min-width: 250px;
+  min-height: 1000px;
+  background-color: #ffff;
   display: flex;
-} */
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid lightsteelblue;
+  margin-top: 50px;
+}
 
-/* .trader-content_post{
-  position: relative;
- 
-} */
+.my-page-in>h2{
+  margin-top: 50px;
+  margin-bottom: 50px;
+  font-size: x-large;
+}
 
-.trader-one_cat{
+.contents-all-cat{
+  margin-top: 50px;
+}
+
+.trader-favorite{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.trader-name-center{
+  font-size: x-large;
+}
+
+.cat-name-center{
+  display: flex;
+  justify-content: center;
+}
+
+.choice{
+  display: flex;
+  justify-content: space-around;
+}
+
+.choice-or{
+  margin-top: 10px;
+}
+
+.trader-one-cat{
   width: 200px;
   height: 250px;
   position: relative;
+  margin-top: 30px;
 }
 
-.trader-cat-image{
-  width: 200px;
-  height: 200px;
-
-}
-
-.trader-family-done {
+.trader-family-done{
   position: absolute;
-  top: 50%;
-  width: 200px;
+  top: 60%;
+  width: 100%;
   text-align: center;
   background-color: crimson;
   transform: skewY(-10deg);
 }
 
+
 .trader-family-done>span {
   color: #FFF;
-  font-size: 20px;
+  font-size: 16px;
   font: bold;
 }

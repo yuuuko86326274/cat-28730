@@ -1,0 +1,52 @@
+<header class="header">
+  <div class="title">
+    <div class="title-link">
+      <%= link_to root_path do %>
+      <div class="title-jump">
+        <div class="title-name">あなたにぴったりのネコに出会おう</div>
+        <%= image_tag 'k0130_13 (1).png', class:"icon"%>
+        <%= image_tag 'k0130_7.png', class:"icon"%>
+      </div>
+      <% end %>
+    </div>
+  </div>
+  
+  <% unless trader_signed_in? %>  
+    <div class="user-menu">↓↓猫を飼いたい方はこちらから↓↓
+    <ul class="header-bar-row">
+      <li class="search">検索</li>
+      <li class="favorite">ぴったり猫占い</li>
+    <% if personal_signed_in? %>
+      <li class="grid">
+        <%= link_to "マイページ", personals_show_path, class:"login" %>
+        <%= link_to "ログアウト", destroy_personal_session_path, method: :delete, class:"login" %>
+      </li>
+    <% else %>
+      <li class="grid">
+        <%= link_to "ログイン", new_personal_session_path, class:"login" %>
+        <%= link_to "新規登録", new_personal_registration_path, class:"login" %>
+      </li>
+    <% end %>
+    </ul>
+    </div>
+  <% end %>
+  <% unless  personal_signed_in? %>
+    <div class="user-menu">↓↓猫を保護した方はこちらから↓↓
+    <ul class="header-bar-row">
+      <li class="search">検索</li>
+      <li class="favorite"><%= link_to "猫登録", new_cat_path, class:"cat-registration" %></li>
+    <% if trader_signed_in? %>
+      <li class="grid">
+        <%= link_to "マイページ", "/traders/#{current_trader.id}", class:"login"  %>
+        <%= link_to "ログアウト", destroy_trader_session_path, method: :delete, class:"login"  %>
+      </li>
+    <% else %>
+      <li class="grid">
+        <%= link_to "ログイン", new_trader_session_path, class:"login"  %>
+        <%= link_to "新規登録", new_trader_registration_path, class:"login"  %>
+      </li>
+    <% end %>
+    </div>
+  <% end %>
+  </div>
+</header>

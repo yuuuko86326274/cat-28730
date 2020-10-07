@@ -1,7 +1,24 @@
-<h2>マイページ</h2>
+<%= render "shared/header" %>
 
-  <div class="field">
-  登録メールアドレス
-    <%= current_personal.email %>
+<div class="mypage">
+  <div class="mypage-in">
+
+    <h2>マイページ</h2>
+
+    <table class="detail-table">
+      <tbody>
+        <tr>
+          <th class="detail-item">メールアドレス</th>
+          <td class="detail-value"><%= current_personal.email %></td>
+        </tr>
+      </tbody>
+    </table>
+    <%= link_to "マイページ内容の編集はこちら", edit_personal_registration_path %>
+
+    <div class="personal-favorite">
+    お気に入りの猫一覧
+    </div>
   </div>
-  <%= link_to "マイページ内容の編集はこちら", edit_personal_registration_path %>
+</div>
+
+<%= render "shared/footer"%>

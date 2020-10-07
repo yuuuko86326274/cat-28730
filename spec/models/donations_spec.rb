@@ -8,7 +8,7 @@ RSpec.describe Donations, type: :model do
       personal = FactoryBot.create(:personal)
       @donations = FactoryBot.build(:donations, trader_id: trader.id, cat_id: cat.id, personal_id: personal.id)
     end
-  
+
     context '保存がうまくいくとき' do
       it 'すべての値が正しく入力されていれば保存できること' do
         expect(@donations).to be_valid
@@ -34,17 +34,17 @@ RSpec.describe Donations, type: :model do
         @donations.valid?
         expect(@donations.errors.full_messages).to include("Donation can't be blank")
       end
-      
+
       it 'donationが、¥9,999,999より高いと保存できないこと' do
         @donations.donation = '10000000'
         @donations.valid?
-        expect(@donations.errors.full_messages).to include("Donation must be less than or equal to 9999999")
+        expect(@donations.errors.full_messages).to include('Donation must be less than or equal to 9999999')
       end
-      
+
       it 'donationは半角数字以外の入力では保存できないこと' do
         @donations.donation = 'だめ'
         @donations.valid?
-        expect(@donations.errors.full_messages).to include("Donation is not a number")
+        expect(@donations.errors.full_messages).to include('Donation is not a number')
       end
 
       it 'tokenが空だと保存できないこと' do
@@ -52,43 +52,43 @@ RSpec.describe Donations, type: :model do
         @donations.valid?
         expect(@donations.errors.full_messages).to include("Token can't be blank")
       end
-      
+
       it 'first_nameが空では登録出来ないこと' do
         @donations.first_name = nil
         @donations.valid?
         expect(@donations.errors.full_messages).to include("First name can't be blank")
       end
-      
+
       it 'last_nameが空では登録出来ないこと' do
         @donations.last_name = nil
         @donations.valid?
         expect(@donations.errors.full_messages).to include("Last name can't be blank")
       end
-      
+
       it 'first_nameが存在してもlast_nameが空では登録できないこと' do
         @donations.last_name = ''
         @donations.valid?
         expect(@donations.errors.full_messages).to include("Last name can't be blank")
       end
-      
+
       it 'first_pkeyが空では登録出来ないこと' do
         @donations.first_pkey = nil
         @donations.valid?
         expect(@donations.errors.full_messages).to include("First pkey can't be blank")
       end
-      
+
       it 'last_pkeyが空では登録出来ないこと' do
         @donations.last_pkey = nil
         @donations.valid?
         expect(@donations.errors.full_messages).to include("Last pkey can't be blank")
       end
-      
+
       it 'first_pkeyが存在してもlast_pkeyが空では登録できないこと' do
         @donations.last_pkey = ''
         @donations.valid?
         expect(@donations.errors.full_messages).to include("Last pkey can't be blank")
       end
-      
+
       it 'postal_codeが空だと保存できないこと' do
         @donations.postal_code = nil
         @donations.valid?
@@ -98,13 +98,13 @@ RSpec.describe Donations, type: :model do
       it 'postal_codeが半角数字のハイフン入りの郵便番号でなければ保存できないこと' do
         @donations.postal_code = '333jjjj'
         @donations.valid?
-        expect(@donations.errors.full_messages).to include("Postal code は半角、ハイフンを入れて入力してください")
+        expect(@donations.errors.full_messages).to include('Postal code は半角、ハイフンを入れて入力してください')
       end
 
       it 'postal_codeが半角数字3桁、ハイフン、半角数字4桁の状態（例：111-1111）でないと保存できないこと' do
         @donations.postal_code = '333-jjj'
         @donations.valid?
-        expect(@donations.errors.full_messages).to include("Postal code は半角、ハイフンを入れて入力してください")
+        expect(@donations.errors.full_messages).to include('Postal code は半角、ハイフンを入れて入力してください')
       end
 
       it 'area_idが空、もしくは---指定だと保存できないこと' do
@@ -134,13 +134,13 @@ RSpec.describe Donations, type: :model do
       it 'telが半角11桁の数字でなければ保存できないこと' do
         @donations.tel = '1234567890'
         @donations.valid?
-        expect(@donations.errors.full_messages).to include("Tel は半角、ハイフンなしで入力してください")
+        expect(@donations.errors.full_messages).to include('Tel は半角、ハイフンなしで入力してください')
       end
 
       it 'telがハイフン入りでは保存できないこと' do
         @donations.tel = '123-456-890'
         @donations.valid?
-        expect(@donations.errors.full_messages).to include("Tel は半角、ハイフンなしで入力してください")
+        expect(@donations.errors.full_messages).to include('Tel は半角、ハイフンなしで入力してください')
       end
 
       it 'messageが空だと保存できないこと' do
