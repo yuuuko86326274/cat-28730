@@ -7,8 +7,8 @@
   https://www.neko-matching-service.com/
 ## テスト用アカウント等
   ### ID/Pass
-  | Basic認証ID     |   admin           |
-  | Basic認証Pass   |   2222            |
+  || Basic認証ID   ||   admin           ||
+  || Basic認証Pass ||   2222            ||
 
   ### 飼育決定者用
   | メールアドレス   |    yyyy@yyyy    |
