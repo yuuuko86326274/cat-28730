@@ -1,11 +1,10 @@
 # README
+## アプリの名前
+  ## 「あなたにぴったりのネコに出会おう」
   ![](app/assets/images/cat28730.png) 
 
-## アプリの名前
-  あなたにぴったりのネコに出会おう
-
 ## URL 
-  https://www.neko-matching-service.com/
+https://www.neko-matching-service.com/
 
 ## 利用方法
 - 保護猫(cat)と猫を飼いたい人(personal)のマッチングアプリです。
@@ -86,7 +85,7 @@
 
 # テーブル設計
 ### ER図
-https://gyazo.com/2a6e95675ddf3377bc835ec6e9bf2f22
+![](app/assets/images/drowio.png) 
 
 ## users テーブル
 | Column           | Type       | Option                   |
