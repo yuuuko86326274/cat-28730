@@ -1,10 +1,10 @@
 # README
-
 ## application name
   'cat-28730'
 
 ## url 
   https://www.neko-matching-service.com/
+
 ## テスト用アカウント等
   ### ID/Pass
   | Basic認証ID   |   admin           |
@@ -13,15 +13,19 @@
 
   ### 飼育決定者用
   | メールアドレス   |    yyyy@yyyy    |
+  ---
   | パスワード      |     67yyyyyy    |
 
   ### 飼育決定者用カード情報
   | 番号              |     4242424242424242    |
+    ---
   | 期限              |     12/24               |
+    ---
   | セキュリティコード   |     123                |
 
   ### 猫登録業者用
   | メールアドレス名    |     uuuu@uuuu            |
+    ---
   | パスワード         |     67uuuuuu             |
 
 ## 利用方法
@@ -33,14 +37,20 @@
 ## 目指した課題解決
   ### ペルソナ
   | 猫を飼いたい人               |
+    ---
   | 猫が飼えるか不安のある人       |
+    ---
   | 占い好きな人                 |
+    ---
   | 猫の動画、画像で癒されたい人    |
+    ---
   | 20から50代                  |
 
   ### ペルソナの課題
   | 猫を飼いたいが飼えるか不安     |   占い形式で判断させる                  |
+  ---
   | かわいい猫を飼いたい          |   たくさんの猫から選ぶ                  |
+  ---
   | 動画で癒されたい             |   トップに表示の毎日更新される動画を見れる  |
 
 ## 洗い出した要件
@@ -61,6 +71,7 @@
 
 ## 実装した機能
 一覧表示,詳細表示,会員登録,猫登録,猫飼育決定,マイページ,猫登録業者マイページ,猫編集,猫削除
+
 ## 実装予定の機能
 お気に入り登録,検索（占い方式)
 
@@ -69,17 +80,14 @@
   https://gyazo.com/2a6e95675ddf3377bc835ec6e9bf2f22
 
 ## users テーブル
-
 | Column           | Type       | Option                   |
 | ---------------- | ---------- | ------------------------ |
 | nickname         | string     | null: false              |
-
 ### Association
 - has_one :personal
 
 
 ##  traders テーブル
-
 | Column           | Type       | Option                                 |
 | ---------------- | ---------- | -------------------------------------- |
 | email            | string     | null: false                            |
@@ -91,31 +99,25 @@
 | t_address_num    | string     | null: false                            |
 | t_building_num   | string     |                                        |
 | t_tel            | string     | null: false                            |
-
 ### Association
-
 - has_many :families, dependent: :destroy
 - has_many :cats, dependent: :destroy
 - belongs_to_active_hash :area
 
 
 ##  personals テーブル
-
 | Column           | Type       | Option                        |
 | ---------------- | ---------- | ----------------------------- |
 | email            | string     | null: false                   |
 | password         | string     | null: false                   |
 | user             | references | null: false, forein_key: true |
-
 ### Association
-
 - has_many :favorites
 - has_many :families
 - belongs_to :user
 
 
 ##  addresses テーブル
-
 | Column           | Type       | Option                                 |
 | ---------------- | ---------- | -------------------------------------- |
 | postal_code      | string     | null: false                            |
@@ -129,15 +131,12 @@
 | first_pkey       | string     | null: false                            |
 | last_pkey        | string     | null: false                            |
 | family           | references | null: false, forein_key: true          |
-
 ### Association
-
 - belongs_to :family
 - belongs_to_active_hash :area
 
 
 ##  cats テーブル
-
 | Column              | Type       | Option                                 |
 | ------------------- | ---------- | -------------------------------------- |
 | images              | string     | null: false                            |
@@ -159,9 +158,7 @@
 | sinior_id           | integer    |                                        |
 | price               | integer    |                                        |
 | trader              | references | null: false, forein_key: true          |
-
 ### Association
-
 - belongs_to :trader
 - has_one :family, dependent: :destroy
 - has_many_attached :images
@@ -183,7 +180,6 @@
 
 
 ##  families テーブル
-
 | Column              | Type       | Option                                 |
 | ------------------- | ---------- | -------------------------------------- |
 | donation            | string     | null: false                            |
@@ -191,9 +187,7 @@
 | cat                 | references | null: false, forein_key: true          |
 | personal            | references | null: false, forein_key: true          |
 | trader              | references | null: false, forein_key: true          |
-
 ### Association
-
 - belongs_to :cat
 - belongs_to :personal
 - belongs_to :trader
@@ -201,13 +195,10 @@
 
 
 ##  favorites テーブル
-
 | Column           | Type       | Option                               |
 | ---------------- | ---------- | ------------------------------------ |
 | cat              | references | null: false, forein_key: true        |
 | personal         | references | null: false, forein_key: true        |
-
 ### Association
-
 - belongs_to :cat
 - belongs_to :personal
