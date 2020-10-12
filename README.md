@@ -1,5 +1,5 @@
 # README
-  ![](cat28730.png=full) 
+  ![](assets/images/cat28730.png=full) 
 
 ## Application Name
   あなたにぴったりのネコに出会おう
