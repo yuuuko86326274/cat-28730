@@ -28,9 +28,9 @@
       </div>
 
       <h2 class="name">
-        <% if @cat.sex.id[1]%>
+        <% if @cat.sex_id == 1 %>
           <%= "#{@cat.c_name}くん" %>
-        <% elsif @cat.sex.id[2]%>
+        <% elsif @cat.sex_id == 2 %>
           <%= "#{@cat.c_name}ちゃん" %>
         <% end %>
       </h2>
