@@ -35,7 +35,9 @@ https://www.neko-matching-service.com/
 ## 使用技術
 - Ruby 2.6.5
 - Ruby on Rails 6.0.0
-- MySQL2 0.5.3 
+- JavaSclipt
+- PayJP
+- MariaDB
 - Nginx
 - Puma
 - AWS
