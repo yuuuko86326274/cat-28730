@@ -33,9 +33,11 @@ https://www.neko-matching-service.com/
   - 現在ある保護猫サイトは倫理観強めである事が多い。
 
 ## 使用技術
+- HTML
+- CSS
+- JavaSclipt
 - Ruby 2.6.5
 - Ruby on Rails 6.0.0
-- JavaSclipt
 - PayJP
 - MariaDB
 - Nginx
