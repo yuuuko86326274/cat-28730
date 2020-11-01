@@ -33,18 +33,20 @@ https://www.neko-matching-service.com/
   - 現在ある保護猫サイトは倫理観強めである事が多い。
 
 ## 使用技術
+- VScode
+- Git/GitHub (Issues,pull requestで擬似チーム開発)
 - HTML
 - CSS
-- JavaSclipt
+- JavaSclipt (決済処理,投稿画像プレビュー)
 - Ruby 2.6.5
 - Ruby on Rails 6.0.0
 - PayJP
-- MariaDB
-- Nginx
-- Puma
+- MariaDB (開発環境/MySQL）
+- Nginx 
+- Unicorn (開発環境/Puma)
 - AWS
   - S3
-  - EC2
+  - EC2(VPC/ACM/ELB)
   - Route53
 - Capistrano
 - RSpec
