@@ -40,7 +40,7 @@ https://www.neko-matching-service.com/
 - JavaSclipt (決済処理,投稿画像プレビュー)
 - Ruby 2.6.5
 - Ruby on Rails 6.0.0
-- PayJP
+- PayJP (API)
 - MariaDB (開発環境/MySQL）
 - Nginx 
 - Unicorn (開発環境/Puma)
@@ -50,6 +50,7 @@ https://www.neko-matching-service.com/
   - Route53
 - Capistrano
 - RSpec
+- Rubocop
 
 ## 要件一覧
 | 優先順位（高：3、中：2、低：1）| 機能             | 目的                                | 詳細                                                | ストーリー(ユースケース)                            |見積もり（所要時間）       |
