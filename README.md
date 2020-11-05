@@ -37,7 +37,7 @@ https://www.neko-matching-service.com/
 - Git/GitHub (Issues,pull requestで擬似チーム開発)
 - HTML
 - CSS
-- JavaSclipt (決済処理,投稿画像プレビュー)
+- JavaScript (決済処理,投稿画像プレビュー)
 - Ruby 2.6.5
 - Ruby on Rails 6.0.0
 - PayJP (API)
@@ -50,7 +50,7 @@ https://www.neko-matching-service.com/
   - Route53
 - Capistrano
 - RSpec
-- Rubocop
+- RuboCop
 
 ## 要件一覧
 | 優先順位（高：3、中：2、低：1）| 機能             | 目的                                | 詳細                                                | ストーリー(ユースケース)                            |見積もり（所要時間）       |
