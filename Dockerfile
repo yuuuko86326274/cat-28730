@@ -1,14 +1,18 @@
 FROM ruby:2.6.5
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 
-// 「-qqオプション」はエラー以外何も吐かないことを意味する。
-// 「-y」オプションは全部yesで実行することを意味する。
+RUN apt-get update && apt-get install -y --no-install-recommends\
+    nodejs \
+    mariadb-client \
+    build-essential  \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /cat-28730
-WORKDIR /cat-28730
+WORKDIR /myproject
 
-COPY Gemfile /cat-28730/Gemfile
-COPY Gemfile.lock /cat-28730/Gemfile.lock
+COPY Gemfile /myproject/Gemfile
+COPY Gemfile.lock /myproject/Gemfile.lock
 
+RUN gem install bundler
 RUN bundle install
-COPY . /cat-28730
+
+COPY . /myproject
