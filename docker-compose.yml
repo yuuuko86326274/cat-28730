@@ -1,6 +1,25 @@
 version: '3'
 
 services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: dockerize -wait tcp://db:3306 -timeout 20s bundle exec unicorn -p 3000 -c /myproject/config/unicorn.rb
+    # pry-byebugを使えるようにする
+    tty: true 
+    stdin_open: true
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/myproject:cached 
+      #ソケット通信用ファイルをnginxコンテナと共有
+      - tmp-data:/myproject/tmp/sockets
+      #画像データとかをnginxと共有
+      - public-data:/myproject/public
+
   db:
     image: mysql:5.7
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
@@ -11,18 +30,24 @@ services:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: root
       MYSQL_PASSWORD: password
-
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
-    # pry-byebugを使えるようにする
-    tty: true 
-    stdin_open: true
-    depends_on:
-      - db
-    ports:
-      - "3000:3000"
+    #dbのデータを永続化しておく
     volumes:
-      - .:/myproject
+      - mysql-data:/var/lib/mysql
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - 80:80
+    restart: always #明示的にstopさせるまでリスタートする。（失敗するたび遅延あり）
+    volumes:
+      - tmp-data:/myproject/tmp/sockets
+      - public-data:/myproject/public
+    depends_on:
+      - web 
+
+volumes:
+  public-data:
+  tmp-data:
+  mysql-data:
