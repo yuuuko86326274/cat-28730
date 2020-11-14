@@ -13,11 +13,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
+RUN mkdir /myproject
 WORKDIR /myproject
 
 COPY Gemfile /myproject/Gemfile
 COPY Gemfile.lock /myproject/Gemfile.lock
-
+# 注意！！ Gemfile.lockにかいてあるbundlerバージョンが2.0.1以降だとエラーが出ます！
+ENV BUNDLER_VERSION 2.1.4
 RUN gem install bundler
 RUN bundle install
 
