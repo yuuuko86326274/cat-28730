@@ -2,10 +2,11 @@ version: '3'
 
 services:
   web:
-    build:
+    build: 
       context: .
       dockerfile: Dockerfile
     command: dockerize -wait tcp://db:3306 -timeout 20s bundle exec unicorn -p 3000 -c /myproject/config/unicorn.rb
+    # command: /bin/sh -c "rm -f /myproject/tmp/pids/unicorn.pid && bundle exec rails server -b '0.0.0.0'"
     # pry-byebugを使えるようにする
     tty: true 
     stdin_open: true
@@ -21,15 +22,15 @@ services:
       - public-data:/myproject/public
 
   db:
-    image: mysql:5.6.47
+    image: mysql:5.6
     command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
     ports: 
       - '4306:3306'
     environment:
-      MYSQL_DATABASE: docker_development
+      MYSQL_DATABASE: cat_28730_development
       MYSQL_ROOT_PASSWORD: password
       MYSQL_USER: root
-      MYSQL_PASSWORD:
+      MYSQL_PASSWORD: password
     #dbのデータを永続化しておく
     volumes:
       - mysql-data:/var/lib/mysql
