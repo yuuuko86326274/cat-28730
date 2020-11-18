@@ -20,7 +20,7 @@ jobs:
           - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
           - MYSQL_ROOT_HOST: '%'
 
-    working_directory: ~/projects/cat-28730
+    working_directory: ~/project
 
     steps:
       - checkout
