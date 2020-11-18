@@ -13,7 +13,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends\
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir /myproject
 WORKDIR /myproject
 
 COPY Gemfile /myproject/Gemfile
@@ -25,3 +24,5 @@ RUN gem install bundler
 RUN bundle install
 
 COPY . /myproject
+
+CMD ["rails", "server", "-b", "0.0.0.0"]
