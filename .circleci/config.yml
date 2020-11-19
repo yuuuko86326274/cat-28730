@@ -51,7 +51,7 @@ jobs:
 # rubocopを走らせる記述です。
       - run:
           name: Rubocop
-          command: bundle exec rubocop
+          command: bundle exec rubocop -a
 
 # rspecを走らせる記述です。
       - run:
