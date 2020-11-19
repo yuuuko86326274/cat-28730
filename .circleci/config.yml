@@ -54,14 +54,12 @@ jobs:
           command: bundle exec rubocop
 
 # rspecを走らせる記述です。
-      # run tests!
       - run:
           name: tests
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
               circleci tests split --split-by=timings)"
-
 
 # ③ここでRspecJunitFormatterというgemをインストールしていないとエラーになります。gemfileに記述しましょう。
             bundle exec rspec \
