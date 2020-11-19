@@ -42,7 +42,7 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
 
 # ②ちょっと無理やりですが、database.ymlとdatabase.yml.ciを入れ替える記述です。
-      - run: mv config/database.yml.ci config/database.yml 
+      #- run: mv config/database.yml.ci config/database.yml 
 
       # Database setup
       - run: bundle exec rake db:create
