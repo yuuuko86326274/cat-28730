@@ -48,7 +48,7 @@ https://www.neko-matching-service.com/
   - S3
   - EC2(VPC/ACM/ELB)
   - Route53
-- Cercle CI
+- CercleCI
 - Capistrano
 - RSpec
 - RuboCop
