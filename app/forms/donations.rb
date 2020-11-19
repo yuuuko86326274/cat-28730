@@ -23,7 +23,8 @@ class Donations
 
   def save
     family = Family.create(message: message, donation: donation, cat_id: cat_id, trader_id: trader_id, personal_id: personal_id)
-    Address.create(first_name: first_name, last_name: last_name, first_pkey: first_pkey, last_pkey: last_pkey, postal_code: postal_code,
-       area_id: area_id, city: city, address_num: address_num, building_num: building_num, tel: tel, family_id: family.id)
+    Address.create(first_name: first_name, last_name: last_name, first_pkey: first_pkey, last_pkey: last_pkey,
+       postal_code: postal_code, area_id: area_id, city: city, address_num: address_num,
+       building_num: building_num, tel: tel, family_id: family.id)
   end
 end
