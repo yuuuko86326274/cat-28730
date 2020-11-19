@@ -20,8 +20,7 @@ jobs:
           - MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
           - MYSQL_ROOT_HOST: '%'
 
-    working_directory: ~/project
-
+    working_directory: ~/cat-28730
     steps:
       - checkout
       # Download and cache dependencies
@@ -34,7 +33,6 @@ jobs:
       - run:
           name: install dependencies
           command: |
-# ①bundler2.0.1以降のものを使っているのであれば、環境変数と合わせて指定する必要があります。
             gem install bundler -v 2.0.2
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
