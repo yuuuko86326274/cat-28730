@@ -11,7 +11,7 @@ jobs:
       - image: circleci/ruby:2.6.5-node-browsers
         environment:
 #  ①注意！！ bundlerのバージョンが2.0.1以上だと、bundle installに失敗します。ここに環境として指定します。
-          - BUNDLER_VERSION: 2.0.2
+          - BUNDLER_VERSION: 2.1.4
 #  ②注意！！ circleCIは仮想環境を構築するので、そのときに使うデータベースを指定する必要があります。
           - RAILS_ENV: 'test'
 
@@ -33,7 +33,7 @@ jobs:
       - run:
           name: install dependencies
           command: |
-            gem install bundler -v 2.0.2
+            gem install bundler -v 2.1.4
             bundle install --jobs=4 --retry=3 --path vendor/bundle
 
       - save_cache:
@@ -55,7 +55,7 @@ jobs:
 
 # rspecを走らせる記述です。
       - run:
-          name: tests
+          name: run tests
           command: |
             mkdir /tmp/test-results
             TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
