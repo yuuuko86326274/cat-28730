@@ -42,7 +42,9 @@ class Traders::RegistrationsController < Devise::RegistrationsController
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:t_name, :t_postal_code, :area_id, :t_city, :t_address_num, :t_building_num, :t_tel])
+    devise_parameter_sanitizer.permit(:sign_up,
+    keys: [:t_name, :t_postal_code, :area_id, :t_city, :t_address_num, :t_building_num, :t_tel]
+    )
   end
 
   #  更新（編集の反映）時にパスワード入力を省く
