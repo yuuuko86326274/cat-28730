@@ -34,19 +34,21 @@ https://www.neko-matching-service.com/
 ## 使用技術
 - VScode
 - Git/GitHub (Issues,pull requestで擬似チーム開発)
+- Docker (開発、テスト、本番)
 - HTML
 - CSS
 - JavaScript (決済処理,投稿画像プレビュー)
 - Ruby 2.6.5
 - Ruby on Rails 6.0.0
 - PayJP (API)
-- MariaDB (開発環境/MySQL）
-- Nginx 
-- Unicorn (開発環境/Puma)
+- MySQL 5.6
+- Nginx
+- Unicorn
 - AWS
   - S3
   - EC2(VPC/ACM/ELB)
   - Route53
+- Cercle CI
 - Capistrano
 - RSpec
 - RuboCop
