@@ -6,9 +6,14 @@ services:
       context: .
       dockerfile: Dockerfile
     command: dockerize -wait tcp://db:3306 -timeout 20s bundle exec unicorn -p 3000 -c /myproject/config/unicorn.rb
-    # command: /bin/sh -c "rm -f /myproject/tmp/pids/unicorn.pid && bundle exec rails server -b '0.0.0.0'"
-    # pry-byebugを使えるようにする
     tty: true 
+    # env_file:
+    #   - .env
+    # environment:
+    #   - AWS_SECRET_ACCESS_KEY: ${DOCKER_AWS_SECRET_ACCESS_KEY}
+    #   - AWS_ACCESS_KEY_ID: ${DOCKER_AWS_ACCESS_KEY_ID}
+    #   - PAYJP_PUBLIC_KEY: ${DOCKER_PAYJP_PUBLIC_KEY}
+    #   - PAYJP_SECRET_KEY: ${DOCKER_PAYJP_SECRET_KEY}
     stdin_open: true
     depends_on:
       - db
@@ -33,7 +38,6 @@ services:
       MYSQL_USER: root
       MYSQL_PASSWORD: password
     restart: always
-    #dbのデータを永続化しておく
     volumes:
       - mysql-data:/var/lib/mysql
   
