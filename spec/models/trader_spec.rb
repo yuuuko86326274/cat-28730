@@ -36,10 +36,10 @@ RSpec.describe Trader, type: :model do
 
       it '重複したemailが存在する場合登録できないこと' do
         @trader.save
-        another_user = FactoryBot.build(:trader)
-        another_user.email = @trader.email
-        another_user.valid?
-        expect(another_user.errors.full_messages).to include('Email has already been taken')
+        another_trader = FactoryBot.build(:trader)
+        another_trader.email = @trader.email
+        another_trader.valid?
+        expect(another_trader.errors.full_messages).to include("Email has already been taken")
       end
 
       it 'passwordが空では登録できないこと' do
