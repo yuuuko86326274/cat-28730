@@ -39,7 +39,7 @@ RSpec.describe Trader, type: :model do
         another_trader = FactoryBot.build(:trader)
         another_trader.email = @trader.email
         another_trader.valid?
-        expect(another_trader.errors.full_messages).to include("Email has already been taken")
+        expect(another_trader.errors.full_messages).to include('Email has already been taken')
       end
 
       it 'passwordが空では登録できないこと' do

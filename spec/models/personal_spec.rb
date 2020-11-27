@@ -29,7 +29,7 @@ RSpec.describe Personal, type: :model do
         another_personal = FactoryBot.build(:personal)
         another_personal.email = @personal.email
         another_personal.valid?
-        expect(another_personal.errors.full_messages).to include("Email has already been taken")
+        expect(another_personal.errors.full_messages).to include('Email has already been taken')
       end
 
       it 'passwordが空では登録できないこと' do

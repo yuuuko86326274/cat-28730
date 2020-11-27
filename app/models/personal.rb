@@ -10,6 +10,6 @@ class Personal < ApplicationRecord
 
   with_options presence: true do
     validates :email
-    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i }, length: { minimum: 6 }
+    validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }, length: { minimum: 6 }
   end
 end
