@@ -1,7 +1,7 @@
 FactoryBot.define do
+  password = Faker::Internet.password(min_length: 6)
   factory :trader do
     email {Faker::Internet.free_email}
-    password = Faker::Internet.password(min_length: 6)
     password {password}
     password_confirmation {password}
     t_name { '株式会社ニャンコ保護' }

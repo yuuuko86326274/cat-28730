@@ -26,10 +26,10 @@ RSpec.describe Personal, type: :model do
 
       it '重複したemailが存在する場合登録できないこと' do
         @personal.save
-        another_user = FactoryBot.build(:personal)
-        another_user.email = @personal.email
-        another_user.valid?
-        expect(another_user.errors.full_messages).to include('Email has already been taken')
+        another_personal = FactoryBot.build(:personal)
+        another_personal.email = @personal.email
+        another_personal.valid?
+        expect(another_personal.errors.full_messages).to include("Email has already been taken")
       end
 
       it 'passwordが空では登録できないこと' do

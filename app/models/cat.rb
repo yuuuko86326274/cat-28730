@@ -22,6 +22,8 @@ class Cat < ApplicationRecord
 
   validates :price, numericality: { greater_than_or_equal_to: 1000, less_than_or_equal_to: 9_999_999, allow_blank: true }
 
+  validate :image_type, :image_size, :image_length
+
   with_options presence: true do
     validates :c_name, length: { maximum: 40 }
     validates :c_text, length: { maximum: 1000 }
@@ -43,5 +45,32 @@ class Cat < ApplicationRecord
     validates :fleas_id
     validates :veccine_id
     validates :kuchu_id
+  end
+
+  private
+
+  def image_type
+    images.each do |image|
+      if !image.blob.content_type.in?(%('image/jpeg image/png'))
+        image.purge
+        errors.add(:images, 'はjpegまたはpng形式でアップロードしてください')
+      end
+    end
+  end
+
+  def image_size
+    images.each do |image|
+      if image.blob.byte_size > 5.megabytes
+        image.purge
+        errors.add(:images, "は1つのファイル5MB以内にしてください")
+      end
+    end
+  end
+
+  def image_length
+    if images.length > 5
+      image.purge
+      errors.add(:images, "は5枚以内にしてください")
+    end
   end
 end

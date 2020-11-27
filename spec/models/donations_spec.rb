@@ -3,10 +3,10 @@ require 'rails_helper'
 RSpec.describe Donations, type: :model do
   describe '飼育決定情報の保存' do
     before do
-      trader = FactoryBot.create(:trader)
-      cat = FactoryBot.create(:cat, images: fixture_file_upload('public/images/test_image.png'), trader_id: trader.id)
-      personal = FactoryBot.create(:personal)
-      @donations = FactoryBot.build(:donations, trader_id: trader.id, cat_id: cat.id, personal_id: personal.id)
+      @trader = FactoryBot.create(:trader)
+      @cat = FactoryBot.create(:cat, images: fixture_file_upload('/files/test_image.png'), trader_id: @trader.id)
+      @personal = FactoryBot.create(:personal)
+      @donations = FactoryBot.build(:donations, trader_id: @trader.id, cat_id: @cat.id, personal_id: @personal.id)
     end
 
     context '保存がうまくいくとき' do

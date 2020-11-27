@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe Cat, type: :model do
   before do
     @trader = FactoryBot.create(:trader)
-    @cat = FactoryBot.build(:cat, trader_id: @trader.id)
-    @cat.images = fixture_file_upload('public/images/test_image.png')
+    @cat = FactoryBot.build(:cat, images: fixture_file_upload('spec/fixtures/files/test_image.png'), trader_id: @trader.id)
   end
 
   describe '猫登録情報の保存' do
@@ -60,12 +59,6 @@ RSpec.describe Cat, type: :model do
     end
 
     context '保存がうまくいかないとき' do
-      it 'imagesが空だと保存できないこと' do
-        @cat.images = nil
-        @cat.valid?
-        expect(@cat.errors.full_messages).to include("Images can't be blank")
-      end
-
       it 'c_nameが空だと保存できないこと' do
         @cat.c_name = nil
         @cat.valid?
