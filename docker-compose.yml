@@ -1,5 +1,25 @@
 version: '3'
 services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # 一度サーバーが起動すると起動し続けるので、rm -f /workdir/tmp/pids/server.pidで、dockerが起動する度に一旦停止させる
+    command: /bin/sh -c "rm -f /workdir/tmp/pids/server.pid && bundle exec unicorn -p 3000 -c /workdir/config/unicorn.rb"
+    tty: true #pry-byebugを使えるようにする"
+    tty: true
+    stdin_open: true
+    depends_on:
+      - db # DB側のコンテナが出来上がってからwebを実行する
+    ports:
+      - "3000:3000" # ホストからゲストへポートフォワード
+    volumes:
+      - .:/workdir # ソースコード変更したらDocker側も即反映されるように
+      #ソケット通信用ファイルをnginxコンテナと共有
+      - tmp-data:/workdir/tmp/sockets
+      #画像データとかをnginxと共有
+      - public-data:/workdir/public
+
   db: # database.ymlと対応したものを読み込みます
     image: mysql:5.6
     environment:
@@ -22,17 +42,20 @@ services:
     ports:
       - "4307:3306" # ホストからゲストへポートフォワード。sequelProと繋ぎたいので、3306ではなく4307をポートに指定 
 
-  web: # さっき書いたDockerfileをwebって名前で扱うよ、って感じです
+  nginx:
     build:
-      context: .
+      context: ./nginx
       dockerfile: Dockerfile
-    # 一度サーバーが起動すると起動し続けるので、rm -f /workdir/tmp/pids/server.pidで、dockerが起動する度に一旦停止させる
-    command: /bin/sh -c "rm -f /workdir/tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
-    tty: true
-    stdin_open: true
-    depends_on:
-      - db # DB側のコンテナが出来上がってからwebを実行する
     ports:
-      - "3000:3000" # ホストからゲストへポートフォワード
+      - 80:80
+    restart: always #明示的にstopさせるまでリスタートする。（失敗するたび遅延あり）
     volumes:
-      - .:/workdir # ソースコード変更したらDocker側も即反映されるように
+      - tmp-data:/workdir/tmp/sockets
+      - public-data:/workdir/public
+    depends_on:
+      - web 
+
+volumes:
+  public-data:
+  tmp-data:
+  mysql-data:
