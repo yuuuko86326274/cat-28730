@@ -12,7 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2020_09_23_100632) do
 
-  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_100632) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "active_storage_blobs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_100632) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "addresses", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "first_name", null: false
     t.string "last_name", null: false
     t.string "first_pkey", null: false
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_100632) do
     t.index ["family_id"], name: "index_addresses_on_family_id"
   end
 
-  create_table "cats", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "cats", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "c_name", null: false
     t.text "c_text", null: false
     t.integer "price"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_100632) do
     t.index ["trader_id"], name: "index_cats_on_trader_id"
   end
 
-  create_table "families", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "families", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "donation", null: false
     t.string "message", null: false
     t.bigint "cat_id", null: false
@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_100632) do
     t.index ["trader_id"], name: "index_families_on_trader_id"
   end
 
-  create_table "personals", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "personals", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_100632) do
     t.index ["reset_password_token"], name: "index_personals_on_reset_password_token", unique: true
   end
 
-  create_table "traders", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "traders", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "t_name", null: false
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 2020_09_23_100632) do
     t.index ["reset_password_token"], name: "index_traders_on_reset_password_token", unique: true
   end
 
-  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=latin1", force: :cascade do |t|
+  create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
