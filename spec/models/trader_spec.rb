@@ -34,7 +34,7 @@ RSpec.describe Trader, type: :model do
         expect(@trader.errors.full_messages).to include("Email can't be blank")
       end
 
-      it '重複したemailが存在する場合登録できないこと', use_truncation: true do
+      it '重複したemailが存在する場合登録できないこと' do
         @trader.save
         another_trader = FactoryBot.build(:trader)
         another_trader.email = @trader.email
