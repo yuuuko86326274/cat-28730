@@ -59,4 +59,6 @@ production:
   database: cat_28730_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: <%= ENV['DB_DATABASE'] %>
+  host: <%= ENV['DB_HOST'] %>
   socket: /var/lib/mysql/mysql.sock
