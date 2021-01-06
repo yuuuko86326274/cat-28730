@@ -7,7 +7,6 @@ services:
     # 一度サーバーが起動すると起動し続けるので、rm -f /workdir/tmp/pids/server.pidで、dockerが起動する度に一旦停止させる
     command: /bin/sh -c "rm -f /workdir/tmp/pids/server.pid && bundle exec unicorn -p 3000 -c /workdir/config/unicorn.rb"
     tty: true #pry-byebugを使えるようにする"
-    tty: true
     stdin_open: true
     depends_on:
       - db # DB側のコンテナが出来上がってからwebを実行する
