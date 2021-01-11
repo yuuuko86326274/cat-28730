@@ -1,6 +1,6 @@
 $worker  = 2
   $timeout = 30
-  $app_dir = "/workdir" 
+  $app_dir = "/var/www/workdir/current" 
   $listen  = File.expand_path 'tmp/sockets/.unicorn.sock', $app_dir
   $pid     = File.expand_path 'tmp/pids/unicorn.pid', $app_dir
   $std_log = File.expand_path 'log/unicorn.log', $app_dir
