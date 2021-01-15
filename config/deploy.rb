@@ -12,12 +12,12 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 
 set :rbenv_type, :user
 set :rbenv_ruby, '2.6.5'
-
+set :rbenv_path, '/home/ec2-user/.rbenv/'
 # 出力するログのレベル。
 set :log_level, :debug
 
 # deploy先のディレクトリ。
-set :deploy_to, '/var/www/cat-28730'
+set :deploy_to, '/var/www/workdir'
 
 # secret_base_keyを読み込ませるため追記
 set :linked_files, fetch(:linked_files, []).push("config/master.key")
