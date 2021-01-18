@@ -7,9 +7,7 @@ executors:
         environment:  
           BUNDLER_VERSION: 2.1.4
           RAILS_ENV: test
-          DB_HOST: 127.0.0.1
-          DB_USERNAME: 'root'
-          DB_PASSWORD: ''
+         
       - image: circleci/mysql:5.6 
         environment:
           MYSQL_ROOT_HOST: '%'
@@ -100,7 +98,37 @@ commands:
       # Database setup
       # - run: bundle exec rake db:create
       # - run: bundle exec rake db:schema:load
+jobs:  
+  test:  
+    executor: default  
+    environment:  
+      RAILS_ENV: test  
+    steps:  
+      - checkout  
+      - setup  
+      - run:  
+          name: Wait for DB  
+          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 90s
+      
+      - run:
+          name: Use specific database.yml # CircleCI用のデータベース設定を使う
+          command: mv config/database.yml.ci config/database.yml
 
+      - run:
+          name: bundle update before database setup
+          command: |
+            bundle install
+            bundle update
+      - run:  
+          name: Database setup  
+          command: |
+            bin/rails db:create
+            bin/rails db:schema:load --trace  
+      # - run: # 普通のテストとシステムテストを実行する  
+      #     name: Rails Test  
+      #     command: |  
+      #       bin/rails test  
+      #       bin/rails test:system  
 # rubocopを走らせる記述です。
       - run:
           name: Rubocop
@@ -127,25 +155,76 @@ commands:
           path: /tmp/test-results
           destination: test-results
       
-      - add_ssh_keys:
-          fingerprints:
-            - "54:3d:77:be:0d:b3:9f:cf:5b:30:7d:08:d0:3b:b3:a1"
-      - deploy:
-          name: Capistrano deploy
-          command:
-            bundle exec cap production deploy
+      # - add_ssh_keys:
+      #     fingerprints:
+      #       - "54:3d:77:be:0d:b3:9f:cf:5b:30:7d:08:d0:3b:b3:a1"
+      # - deploy:
+      #     name: Capistrano deploy
+      #     command:
+      #       bundle exec cap production deploy
 
+# workflows:
+#   version: 2
+#   build_accept_deploy:
+#     jobs:
+#       - build
+#       - test:
+#           requires:
+#             - build
+#       - deploy:
+#           requires:
+#             - test
+#           filters:
+#             branches:
+#               only: master
+orbs:
+  aws-ecr: circleci/aws-ecr@6.7.0
+  aws-ecs: circleci/aws-ecs@1.1.0
 workflows:
-  version: 2
-  build_accept_deploy:
+  # Nginxのデプロイ
+  nginx-deploy:
     jobs:
-      - build
-      - test:
-          requires:
-            - build
-      - deploy:
-          requires:
-            - test
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./nginx/Dockerfile
+          repo: nginx
+          tag: "${CIRCLE_SHA1}"
           filters:
             branches:
               only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          family: 'Task01' # ECSのタスク定義名
+          cluster-name: 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01'  #ECSのクラスターのARN
+          service-name: 'ecs-rails-service'  #サービス名
+          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
+  # Railsのデプロイ
+  rails-deploy:
+    jobs:
+      - aws-ecr/build-and-push-image:
+          account-url: AWS_ECR_ACCOUNT_URL
+          region: AWS_REGION
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          create-repo: true
+          dockerfile: ./Dockerfile
+          repo: app
+          tag: "${CIRCLE_SHA1}"
+          filters:
+            branches:
+              only: master
+      - aws-ecs/deploy-service-update:
+          requires:
+            - aws-ecr/build-and-push-image
+          family: 'Task01' # ECSのタスク定義名
+          cluster-name: 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01' #ECSのクラスターのARN
+          service-name: 'ecs-rails-service' #サービス名
+          container-image-name-updates: "container=app,tag=${CIRCLE_SHA1}"
+
+
+#AWS_ECR_ACCOUNT_URL => ${アカウントID}.dkr.ecr.${リージョン}.amazonaws.com
