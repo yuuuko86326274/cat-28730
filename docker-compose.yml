@@ -46,7 +46,7 @@ services:
       context: ./nginx
       dockerfile: Dockerfile
     ports:
-      - 80:80
+      - "80:80"
     restart: always #明示的にstopさせるまでリスタートする。（失敗するたび遅延あり）
     volumes:
       - tmp-data:/workdir/tmp/sockets
