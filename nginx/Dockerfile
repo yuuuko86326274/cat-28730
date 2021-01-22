@@ -1,4 +1,4 @@
-FROM nginx:1.15.8
+FROM nginx:1.17.10
 #デフォルトのnginxファイルを削除して作成したものコンテナないにコピー
 RUN rm -f /etc/nginx/conf.d/*
 
