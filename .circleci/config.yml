@@ -123,6 +123,7 @@ jobs:
             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-Linux-x86_64 > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run: setup_remote_docker
       - run:
           name: docker-compose up --build -d
           command: docker-compose up --build -d
@@ -130,18 +131,18 @@ jobs:
       - run:
           name: docker-compose exec app rubocop
           command: docker-compose exec app rubocop
-      - run:
-          name: docker-compose exec app rails db:create
-          command: docker-compose exec app rails db:create
-      - run:
-          name: docker-compose exec app rails db:migrate
-          command: docker-compose exec app rails db:migrate
-      - run:
-          name: docker-compose exec app bash -c "yes n | rails webpacker:install"
-          command: docker-compose exec app bash -c "yes n | rails webpacker:install"
-      - run:
-          name: docker-compose exec app rails webpacker:compile RAILS_ENV=test
-          command: docker-compose exec app rails webpacker:compile RAILS_ENV=test
+      # - run:
+      #     name: docker-compose exec app rails db:create
+      #     command: docker-compose exec app rails db:create
+      # - run:
+      #     name: docker-compose exec app rails db:migrate
+      #     command: docker-compose exec app rails db:migrate
+      # - run:
+      #     name: docker-compose exec app bash -c "yes n | rails webpacker:install"
+      #     command: docker-compose exec app bash -c "yes n | rails webpacker:install"
+      # - run:
+      #     name: docker-compose exec app rails webpacker:compile RAILS_ENV=test
+      #     command: docker-compose exec app rails webpacker:compile RAILS_ENV=test
       - run:
           name: docker-compose exec app rspec
           command: docker-compose exec app rspec
@@ -151,6 +152,7 @@ jobs:
 orbs:
   aws-ecr: circleci/aws-ecr@6.7.0
   aws-ecs: circleci/aws-ecs@1.1.0
+
 workflows:
   build_and_test:  
     jobs:  
