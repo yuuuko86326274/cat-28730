@@ -21,9 +21,9 @@ commands:
       #     name: Update bundler # bundlerのバージョン２へのアップデート  
       #     command: gem update bundler
 
-      - run:  
-          name: Which bundler? # バージョン確認  
-          command: bundle -v  
+      # - run:  
+      #     name: Which bundler? # バージョン確認  
+      #     command: bundle -v  
 
       - restore_cache: # キャッシュを読み込む  
           keys:  
