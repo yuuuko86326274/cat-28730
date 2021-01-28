@@ -17,9 +17,9 @@ commands:
   setup:  
     steps:  
       - checkout  
-      - run:  
-          name: Update bundler # bundlerのバージョン２へのアップデート  
-          command: gem update bundler
+      # - run:  
+      #     name: Update bundler # bundlerのバージョン２へのアップデート  
+      #     command: gem update bundler
 
       - run:  
           name: Which bundler? # バージョン確認  
@@ -31,13 +31,13 @@ commands:
             - gem-cache-v1-  
 
       - run:  
-          name: Bundle Install  
+          name: Bundle Install
           command: bundle config set path 'vendor/bundle' || bundle install --deployment
 
       - save_cache: # キャッシュを保存する  
           key: gem-cache-v1-{{ checksum "Gemfile.lock" }}  
           paths:  
-            - vendor/bundle  
+            - vendor/bundle
       
       # 以下はRails6でWebpackerを使う場合は必須   
       - restore_cache:  
