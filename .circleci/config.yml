@@ -65,10 +65,9 @@ jobs:
           command: mv config/database.yml.ci config/database.yml
 
       - run:
-          name: bundle update before database setup
+          name: bundle install
           command: |
             bundle install
-            bundle update
       - run:  
           name: Database setup  
           command: |
