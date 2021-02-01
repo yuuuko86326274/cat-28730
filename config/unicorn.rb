@@ -37,7 +37,7 @@ app_path = File.expand_path('../../', __FILE__)
 worker_processes 1
 
 #アプリケーションの設置されているディレクトリを指定
-working_directory "app_path"
+working_directory app_path
 
 #Unicornの起動に必要なファイルの設置場所を指定
 pid "#{app_path}/tmp/pids/unicorn.pid"

@@ -104,9 +104,9 @@ orbs:
   aws-ecs: circleci/aws-ecs@1.1.0
 
 workflows:
-  build_and_test:  
-    jobs:  
-      - test
+  # build_and_test:  
+  #   jobs:  
+  #     - test
   # Nginxのデプロイ
   nginx-deploy:
     jobs:
