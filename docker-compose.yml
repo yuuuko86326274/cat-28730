@@ -3,13 +3,16 @@ services:
   web:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: ./docker/rails/Dockerfile
     # 一度サーバーが起動すると起動し続けるので、rm -f /workdir/tmp/pids/server.pidで、dockerが起動する度に一旦停止させる
     command: /bin/sh -c "rm -f /workdir/tmp/pids/server.pid && bundle exec unicorn -p 3000 -c /workdir/config/unicorn.rb"
     tty: true #pry-byebugを使えるようにする"
     stdin_open: true
     depends_on:
       - db # DB側のコンテナが出来上がってからwebを実行する
+    extends:
+      file: ./docker/mysql/password.yml
+      service: password
     ports:
       - "3000:3000" # ホストからゲストへポートフォワード
     volumes:
@@ -19,32 +22,22 @@ services:
       #画像データとかをnginxと共有
       - public-data:/workdir/public
 
-  db: # database.ymlと対応したものを読み込みます
-    image: mysql:5.6
-    environment:
-      MYSQL_DATABASE: docker_development
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: root
-      MYSQL_PASSWORD: password
+  db: 
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
     volumes:
       - ./mysql/mysql_data:/var/lib/mysql # データの永続化
     ports:
       - "4306:3306" # ホストからゲストへポートフォワード。sequelProと繋ぎたいので、3306ではなく4306をポートに指定
-
-  test-db:
-    image: mysql:5.6
-    environment:
-      MYSQL_DATABASE: docker_test
-      MYSQL_ROOT_PASSWORD: password
-      MYSQL_USER: test_root
-      MYSQL_PASSWORD: password
-    ports:
-      - "4307:3306" # ホストからゲストへポートフォワード。sequelProと繋ぎたいので、3306ではなく4307をポートに指定 
+    extends:  
+      file: ./docker/mysql/password.yml
+      service: password
 
   nginx:
     build:
-      context: ./nginx
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: ./docker/nginx/Dockerfile
     ports:
       - "80:80"
     restart: always #明示的にstopさせるまでリスタートする。（失敗するたび遅延あり）
