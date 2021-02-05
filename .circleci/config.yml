@@ -104,31 +104,31 @@ orbs:
   aws-ecs: circleci/aws-ecs@1.1.0
 
 workflows:
-  build_and_test:  
-    jobs:  
-      - test
+  # build_and_test:  
+  #   jobs:  
+  #     - test
   # Nginxのデプロイ
-  nginx-deploy:
-    jobs:
-      - aws-ecr/build-and-push-image:
-          account-url: AWS_ECR_ACCOUNT_URL
-          region: AWS_REGION
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          create-repo: true
-          dockerfile: ./docker/nginx/Dockerfile
-          repo: nginx
-          tag: "${CIRCLE_SHA1}"
-          filters:
-            branches:
-              only: master
-      - aws-ecs/deploy-service-update:
-          requires:
-            - aws-ecr/build-and-push-image
-          family: 'Task01' # ECSのタスク定義名
-          cluster-name: 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01'  #ECSのクラスターのARN
-          service-name: 'ecs-rails-service'  #サービス名
-          container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
+  # nginx-deploy:
+  #   jobs:
+  #     - aws-ecr/build-and-push-image:
+  #         account-url: AWS_ECR_ACCOUNT_URL
+  #         region: AWS_REGION
+  #         aws-access-key-id: AWS_ACCESS_KEY_ID
+  #         aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+  #         create-repo: true
+  #         dockerfile: ./docker/nginx/Dockerfile
+  #         repo: nginx
+  #         tag: "${CIRCLE_SHA1}"
+  #         filters:
+  #           branches:
+  #             only: master
+  #     - aws-ecs/deploy-service-update:
+  #         requires:
+  #           - aws-ecr/build-and-push-image
+  #         family: 'Task01' # ECSのタスク定義名
+  #         cluster-name: 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01'  #ECSのクラスターのARN
+  #         service-name: 'ecs-rails-service'  #サービス名
+  #         container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
   # Railsのデプロイ
   rails-deploy:
     jobs:
@@ -138,7 +138,7 @@ workflows:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           create-repo: true
-          dockerfile: ./docker/rails/Dockerfile
+          dockerfile: ./docker/rails/Dockerfile_production
           repo: app
           tag: "${CIRCLE_SHA1}"
           filters:
