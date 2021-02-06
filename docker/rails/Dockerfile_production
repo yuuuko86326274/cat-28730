@@ -11,8 +11,8 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
 RUN mkdir /workdir
 WORKDIR /workdir
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
+COPY Gemfile /workdir/Gemfile
+COPY Gemfile.lock /workdir/Gemfile.lock
 RUN gem install bundler -v 2.1.4
 RUN bundle install && \
     bundle exec rails webpacker:install
