@@ -9,7 +9,7 @@ RUN apt-get update -y && \
     npm install -g -y yarn && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-RUN mkdir /var/www/workdir
+RUN rm -rf /var/www/workdir/* && mkdir -p /var/www/workdir
 WORKDIR /var/www/workdir
 ADD Gemfile /var/www/workdir/Gemfile
 ADD Gemfile.lock /var/www/workdir/Gemfile.lock
