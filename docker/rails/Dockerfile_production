@@ -9,16 +9,16 @@ RUN apt-get update -y && \
     npm install -g -y yarn && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
-RUN mkdir /workdir
-WORKDIR /workdir
-COPY Gemfile /workdir/Gemfile
-COPY Gemfile.lock /workdir/Gemfile.lock
+RUN mkdir /var/www/workdir
+WORKDIR /var/www/workdir
+ADD Gemfile /var/www/workdir/Gemfile
+ADD Gemfile.lock /var/www/workdir/Gemfile.lock
 RUN gem install bundler -v 2.1.4
 RUN bundle install && \
     bundle exec rails webpacker:install
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
     echo "Asia/Tokyo" > /etc/timezone
-COPY . /workdir
+ADD . /var/www/workdir
 RUN rails assets:precompile && \
     yarn cache clean && \
     rm -rf node_modules tmp/cache
