@@ -1,6 +1,6 @@
 version: 2.1
-executors:  
-  default:  
+executors:
+  default:
     working_directory: ~/workdir
     docker:  
       - image: circleci/ruby:2.6.5-node
