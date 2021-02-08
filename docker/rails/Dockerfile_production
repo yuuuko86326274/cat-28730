@@ -18,7 +18,7 @@ RUN bundle install && \
     bundle exec rails webpacker:install
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
     echo "Asia/Tokyo" > /etc/timezone
-ADD . /var/www/workdir
+ADD /Users/matsunamiyuko/projects/cat-28730 /var/www/workdir
 RUN rails assets:precompile && \
     yarn cache clean && \
     rm -rf node_modules tmp/cache
