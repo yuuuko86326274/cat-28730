@@ -16,11 +16,10 @@ services:
     ports:
       - "3000:3000" # ホストからゲストへポートフォワード
     volumes:
-      - .:/workdir # ソースコード変更したらDocker側も即反映されるように
+      - .:/workdir
+      - /var/tmp
       #ソケット通信用ファイルをnginxコンテナと共有
-      - tmp-data:/workdir/tmp/sockets
-      #画像データとかをnginxと共有
-      - public-data:/workdir/public
+      - sockets:/workdir/tmp/sockets
 
   db: 
     build:
@@ -42,12 +41,10 @@ services:
       - "80:80"
     restart: always #明示的にstopさせるまでリスタートする。（失敗するたび遅延あり）
     volumes:
-      - tmp-data:/workdir/tmp/sockets
-      - public-data:/workdir/public
+      - sockets:/workdir/tmp/sockets
     depends_on:
       - web 
 
 volumes:
-  public-data:
-  tmp-data:
+  sockets:
   mysql-data:
