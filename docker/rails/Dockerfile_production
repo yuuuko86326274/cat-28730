@@ -12,8 +12,8 @@ RUN apt-get update -y && \
 
 RUN mkdir /workdir
 WORKDIR /workdir
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
+COPY Gemfile .
+COPY Gemfile.lock .
 
 RUN gem install bundler -v 2.1.4
 RUN bundle install && \
@@ -21,7 +21,7 @@ RUN bundle install && \
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
     echo "Asia/Tokyo" > /etc/timezone
 
-COPY . /workdir/
+COPY . .
 
 RUN rails assets:precompile && \
     yarn cache clean && \
