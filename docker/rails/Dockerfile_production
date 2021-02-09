@@ -23,6 +23,11 @@ RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
 
 COPY . .
 
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
+EXPOSE 3000
+
 RUN rails assets:precompile && \
     yarn cache clean && \
     rm -rf node_modules tmp/cache
