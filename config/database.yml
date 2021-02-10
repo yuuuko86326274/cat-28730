@@ -55,7 +55,6 @@ test:
 #
 production:
   <<: *default
-  database: cat_28730_production
   username: root
   password: <%= ENV['DATABASE_PASSWORD'] %>
   database: <%= ENV['DB_DATABASE'] %>
