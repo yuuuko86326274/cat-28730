@@ -70,11 +70,11 @@ gem 'active_hash'
 gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'payjp'
-# gem 'unicorn'
+gem 'unicorn', '5.4.1'
 
 group :production do
   # gem 'rails_12factor'
-  gem 'unicorn', '5.4.1'
+  # gem 'unicorn'
 end
 
  gem "aws-sdk-s3", require: false

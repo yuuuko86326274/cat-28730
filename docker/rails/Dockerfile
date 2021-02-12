@@ -16,3 +16,5 @@ RUN gem install bundler -v 2.1.4
 RUN bundle install
 
 ADD . /workdir
+
+EXPOSE 3000
