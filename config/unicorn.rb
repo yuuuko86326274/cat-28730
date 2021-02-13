@@ -34,7 +34,7 @@
 app_path = File.expand_path('../..', __FILE__)
 
 #アプリケーションサーバの性能を決定する
-worker_processes 8
+worker_processes 1
 
 #アプリケーションの設置されているディレクトリを指定
 working_directory app_path
@@ -46,10 +46,10 @@ pid "#{app_path}/tmp/pids/unicorn.pid"
 listen "#{app_path}/tmp/sockets/unicorn.sock"
 
 #エラーのログを記録するファイルを指定
-stderr_path "#{app_path}/log/unicorn.log"
+stderr_path "#{app_path}/log/unicorn.stdout.log"
 
 #通常のログを記録するファイルを指定
-stdout_path "#{app_path}/log/unicorn.log"
+stdout_path "#{app_path}/log/unicorn.stdout.log"
 
 #Railsアプリケーションの応答を待つ上限時間を設定
 timeout 60
