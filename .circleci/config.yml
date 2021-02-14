@@ -17,7 +17,7 @@ jobs:
           command: docker-compose build
       - run:
           name: setup db
-          command: docker-compose run workdir_db_1 rails db:create db:migrate
+          command: docker-compose run workdir_app_1 rails db:create db:migrate
       # - run:
       #     name: seed db
       #     command: docker-compose run workdir_app_1 rails db:seed_fu
