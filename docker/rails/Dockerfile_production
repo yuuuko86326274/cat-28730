@@ -31,4 +31,4 @@ RUN rails assets:precompile && \
     yarn cache clean && \
     rm -rf node_modules tmp/cache
 ENV RAILS_SERVE_STATIC_FILES="true"
-CMD ["bundle", "exec", "puma", "-e", "production", "-C", "/workdir/config/puma.rb"]
+CMD ["bundle", "exec", "unicorn", "-c", "config/unicorn.rb"]

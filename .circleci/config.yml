@@ -1,112 +1,135 @@
 version: 2.1
-executors:
-  default:
+jobs:
+  test:
+    machine:
+      image: circleci/classic:edge
+# executors:
+#   default:
     working_directory: ~/workdir
-    docker:  
-      - image: circleci/ruby:2.6.5-node
-        environment:  
-          BUNDLER_VERSION: 2.1.4
-          RAILS_ENV: test
+#     docker:  
+#       - image: circleci/ruby:2.6.5-node
+#         environment:  
+#           BUNDLER_VERSION: 2.1.4
+#           RAILS_ENV: test
          
-      - image: circleci/mysql:5.6 
-        environment:
-          MYSQL_ROOT_HOST: '%'
-          MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
-
-commands:  
-  setup:  
-    steps:  
+      # - image: circleci/mysql:5.6 
+      #   environment:
+      #     MYSQL_ROOT_HOST: '%'
+      #     MYSQL_ALLOW_EMPTY_PASSWORD: 'true'
+# commands:  
+  # setup:
+    steps:
       - checkout
-      - restore_cache: # キャッシュを読み込む  
-          keys:  
-            - gem-cache-v1-{{ checksum "Gemfile.lock" }}  
-            - gem-cache-v1-  
-
       - run:
-          name: install dependencies
+          name: Install Docker Compose
           command: |
-            gem install bundler -v 2.1.4
-            bundle install --jobs=4 --retry=3 --path vendor/bundle
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-Linux-x86_64 > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: docker-compose up --build -d
+          command: docker-compose up --build -d
+      - run: sleep 30
+      - run:
+          name: docker-compose exec app rubocop
+          command: docker-compose exec app rubocop
+      - run:
+          name: docker-compose exec app rails db:create
+          command: docker-compose exec app rails db:create
+      - run:
+          name: docker-compose exec app rails db:migrate
+          command: docker-compose exec app rails db:migrate
+      - run:
+          name: docker-compose exec app bash -c "yes n | rails webpacker:install"
+          command: docker-compose exec app bash -c "yes n | rails webpacker:install"
+      - run:
+          name: docker-compose exec app rails webpacker:compile RAILS_ENV=test
+          command: docker-compose exec app rails webpacker:compile RAILS_ENV=test
+      - run:
+          name: docker-compose exec app rspec
+          command: docker-compose exec app rspec
+      - run:
+          name: docker-compose down
+          command: docker-compose down
 
-      - save_cache: # キャッシュを保存する  
-          key: gem-cache-v1-{{ checksum "Gemfile.lock" }}  
-          paths:  
-            - vendor/bundle
+# commands:  
+#   setup:  
+#     steps:  
+#       - checkout
+#       - restore_cache: # キャッシュを読み込む  
+#           keys:  
+#             - gem-cache-v1-{{ checksum "Gemfile.lock" }}  
+#             - gem-cache-v1-  
+
+#       - run:
+#           name: install dependencies
+#           command: |
+#             gem install bundler -v 2.1.4
+#             bundle install --jobs=4 --retry=3 --path vendor/bundle
+
+#       - save_cache: # キャッシュを保存する  
+#           key: gem-cache-v1-{{ checksum "Gemfile.lock" }}  
+#           paths:  
+#             - vendor/bundle
       
-      # 以下はRails6でWebpackerを使う場合は必須   
-      - restore_cache:  
-          keys:  
-            - yarn-cache-v1-{{ checksum "yarn.lock" }}  
-            - yarn-cache-v1-  
+#       # 以下はRails6でWebpackerを使う場合は必須   
+#       - restore_cache:  
+#           keys:  
+#             - yarn-cache-v1-{{ checksum "yarn.lock" }}  
+#             - yarn-cache-v1-  
 
-      - run:  
-          name: Yarn Install  
-          command: yarn install --cache-folder ~/.cache/yarn  
+#       - run:  
+#           name: Yarn Install  
+#           command: yarn install --cache-folder ~/.cache/yarn  
 
-      - save_cache:  
-          key: yarn-cache-v1-{{ checksum "yarn.lock" }}  
-          paths:  
-            - ~/.cache/yarn  
+#       - save_cache:  
+#           key: yarn-cache-v1-{{ checksum "yarn.lock" }}  
+#           paths:  
+#             - ~/.cache/yarn  
 
-jobs:  
-  test:  
-    executor: default  
-    environment:  
-      RAILS_ENV: test  
-    steps:  
-      - checkout  
-      - setup  
-      - run:  
-          name: Wait for DB  
-          command: dockerize -wait tcp://127.0.0.1:3306 -timeout 90s
+# jobs:  
+#   test:  
+#     executor: default  
+#     environment:  
+#       RAILS_ENV: test  
+#     steps:  
+#       - checkout  
+#       - setup  
+#       - run:  
+#           name: Wait for DB  
+#           command: dockerize -wait tcp://127.0.0.1:3306 -timeout 90s
       
-      - run:
-          name: Use specific database.yml # CircleCI用のデータベース設定を使う
-          command: mv config/database.yml.ci config/database.yml
+#       - run:
+#           name: Use specific database.yml # CircleCI用のデータベース設定を使う
+#           command: mv config/database.yml.ci config/database.yml
 
-      - run:
-          name: bundle install
-          command: |
-            bundle install
-      - run:  
-          name: Database setup  
-          command: |
-            bin/rails db:create
-            bin/rails db:schema:load --trace  
-# rubocopを走らせる記述です。
-      - run:
-          name: Rubocop
-          command: bundle exec rubocop -a
+#       - run:
+#           name: bundle install
+#           command: |
+#             bundle install
+#       - run:  
+#           name: Database setup  
+#           command: |
+#             bin/rails db:create
+#             bin/rails db:schema:load --trace  
+# # rubocopを走らせる記述です。
+#       - run:
+#           name: Rubocop
+#           command: bundle exec rubocop -a
 
-# rspecを走らせる記述です。
-      - run:
-          name: run tests
-          command: |
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob "spec/**/*_spec.rb" | \
-              circleci tests split --split-by=timings)"
-            bundle exec rspec \
-              --format progress \
-              --format RspecJunitFormatter \
-              --out /tmp/test-results/rspec.xml \
-              --format progress \
-              $TEST_FILES
-
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
+# # rspecを走らせる記述です。
+#       - run:
+#           name: RSpec
+#           command: bundle exec rspec 
 
 orbs:
   aws-ecr: circleci/aws-ecr@6.7.0
   aws-ecs: circleci/aws-ecs@1.1.0
 
 workflows:
-  # build_and_test:  
-  #   jobs:  
-  #     - test
+  build_and_test:  
+    jobs:  
+      - test
   # Nginxのデプロイ
   nginx-deploy:
     jobs:
