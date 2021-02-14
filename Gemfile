@@ -34,12 +34,13 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'rubocop-rails'
   # gem 'capistrano'
   # gem 'capistrano-rbenv'
   # gem 'capistrano-bundler'
   # gem 'capistrano-rails'
   # gem 'capistrano3-unicorn'
-  gem 'rubocop', require: false
+  # gem 'rubocop', require: false
   gem 'rspec_junit_formatter'
 end
 
@@ -50,7 +51,7 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
-  # gem 'rubocop', require: false
+  gem 'rubocop'#, require: false
 end
 
 group :test do
@@ -59,6 +60,11 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+end
+
+group :production do
+  # gem 'rails_12factor'
+  # gem 'unicorn'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -72,9 +78,4 @@ gem 'image_processing', '~> 1.2'
 gem 'payjp'
 gem 'unicorn', '5.4.1'
 
-group :production do
-  # gem 'rails_12factor'
-  # gem 'unicorn'
-end
-
- gem "aws-sdk-s3", require: false
+gem "aws-sdk-s3", require: false
