@@ -7,10 +7,9 @@ RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
 RUN mkdir /workdir
 WORKDIR /workdir
 
-COPY Gemfile ./
-COPY Gemfile.lock ./
-
+COPY Gemfile .
+COPY Gemfile.lock .
 RUN gem install bundler -v 2.1.4
 RUN bundle install
 
-COPY . /workdir
+COPY . workdir

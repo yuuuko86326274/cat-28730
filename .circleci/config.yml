@@ -17,7 +17,7 @@ jobs:
           command: docker-compose build
       - run:
           name: setup db
-          command: docker-compose run workdir_app_1 rails db:create db:migrate
+          command: docker-compose run app_1 rails db:create db:migrate
       # - run:
       #     name: seed db
       #     command: docker-compose run workdir_app_1 rails db:seed_fu
@@ -26,10 +26,10 @@ jobs:
           command: docker-compose up -d
       - run:
           name: rubocop
-          command: docker-compose run workdir_app_1 rubocop
+          command: docker-compose run app_1 rubocop
       - run:
           name: rspec
-          command: docker-compose run workdir_app_1 rspec
+          command: docker-compose run app_1 rspec
       - run:
           name: docker-compose down
           command: docker-compose down
