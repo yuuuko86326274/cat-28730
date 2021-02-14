@@ -31,23 +31,23 @@ jobs:
           command: docker-compose up --build -d
       - run: sleep 30
       - run:
-          name: docker-compose exec app_1 rubocop
-          command: docker-compose exec app_1 rubocop
+          name: docker-compose exec workdir_app_1 rubocop
+          command: docker-compose exec workdir_app_1 rubocop
       - run:
-          name: docker-compose exec app_1 rails db:create
-          command: docker-compose exec app_1 rails db:create
+          name: docker-compose exec workdir_app_1 rails db:create
+          command: docker-compose exec workdir_app_1 rails db:create
       - run:
-          name: docker-compose exec app_1 rails db:migrate
-          command: docker-compose exec app_1 rails db:migrate
+          name: docker-compose exec workdir_app_1 rails db:migrate
+          command: docker-compose exec workdir_app_1 rails db:migrate
       - run:
-          name: docker-compose exec app_1 bash -c "yes n | rails webpacker:install"
-          command: docker-compose exec app_1 bash -c "yes n | rails webpacker:install"
+          name: docker-compose exec workdir_app_1 bash -c "yes n | rails webpacker:install"
+          command: docker-compose exec workdir_app_1 bash -c "yes n | rails webpacker:install"
       - run:
-          name: docker-compose exec app_1 rails webpacker:compile RAILS_ENV=test
-          command: docker-compose exec app_1 rails webpacker:compile RAILS_ENV=test
+          name: docker-compose exec workdir_app_1 rails webpacker:compile RAILS_ENV=test
+          command: docker-compose exec workdir_app_1 rails webpacker:compile RAILS_ENV=test
       - run:
-          name: docker-compose exec app_1 rspec
-          command: docker-compose exec app_1 rspec
+          name: docker-compose exec workdir_app_1 rspec
+          command: docker-compose exec workdir_app_1 rspec
       - run:
           name: docker-compose down
           command: docker-compose down
