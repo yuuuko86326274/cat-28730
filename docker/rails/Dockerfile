@@ -8,13 +8,14 @@ RUN apt-get update -qq && \
   vim \
   default-mysql-client 
 
+RUN mkdir /workdir
 WORKDIR /workdir
 
-ADD Gemfile .
-ADD Gemfile.lock .
+COPY Gemfile .
+COPY Gemfile.lock .
 RUN gem install bundler -v 2.1.4
 RUN bundle install
 
-ADD . /workdir
+COPY . workdir
 
 EXPOSE 3000
