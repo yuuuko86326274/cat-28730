@@ -11,11 +11,11 @@ RUN apt-get update -qq && \
 RUN mkdir /workdir
 WORKDIR /workdir
 
-COPY Gemfile ./
-COPY Gemfile.lock ./
+COPY Gemfile .
+COPY Gemfile.lock .
 RUN gem install bundler -v 2.1.4
 RUN bundle install
 
-COPY . /workdir
+COPY . workdir
 
 EXPOSE 3000
