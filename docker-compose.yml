@@ -1,6 +1,6 @@
 version: '3'
 services:
-  web:
+  app:
     build:
       context: .
       dockerfile: ./docker/rails/Dockerfile_development
@@ -33,7 +33,7 @@ services:
       file: ./docker/mysql/password.yml
       service: password
 
-  nginx:
+  web:
     build:
       context: .
       dockerfile: ./docker/nginx/Dockerfile
@@ -43,7 +43,7 @@ services:
     volumes:
       - sockets:/workdir/tmp/sockets
     depends_on:
-      - web 
+      - app
 
 volumes:
   sockets:
