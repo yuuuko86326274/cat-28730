@@ -20,7 +20,7 @@ jobs:
       - run:
           name: rubocop
           command: |
-            docker-compose exec app bin/bundle exec rubocop
+            docker-compose exec app bin/bundle exec rubocop -a
       - run:
           name: test
           command: |
