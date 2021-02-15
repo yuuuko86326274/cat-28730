@@ -12,24 +12,24 @@ jobs:
             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-Linux-x86_64 > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
-      - run:
-          name: docker-compose build
-          command: docker-compose build
-      - run:
-          name: setup db
-          command: docker-compose run workdir_app rails db:create db:migrate
-      # - run:
-      #     name: seed db
-      #     command: docker-compose run workdir_app_1 rails db:seed_fu
-      - run:
-          name: docker-compose up
-          command: docker-compose up -d
+       - run:
+          name: docker-compose up --build -d
+          command: |
+            set -x
+            docker-compose up --build -d
       - run:
           name: rubocop
-          command: docker-compose run workdir_app rubocop
+          command: |
+            docker-compose exec app bin/bundle exec rubocop
       - run:
-          name: rspec
-          command: docker-compose run workdir_app rspec
+          name: test
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob 'spec/**/*_spec.rb' | circleci tests split --split-by=timings)"
+            docker-compose exec app bin/rspec --format progress \
+                                                                  --format RspecJunitFormatter \
+                                                                  --out /tmp/test-results/rspec.xml \
+                                                                  $TEST_FILES
       - run:
           name: docker-compose down
           command: docker-compose down
@@ -42,7 +42,7 @@ workflows:
   build_and_test:  
     jobs:  
       - test
-  # # Nginxのデプロイ
+  # Nginxのデプロイ
   # nginx-deploy:
   #   jobs:
   #     - aws-ecr/build-and-push-image:
