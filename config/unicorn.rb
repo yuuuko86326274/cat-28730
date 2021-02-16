@@ -1,5 +1,5 @@
 # Railsのルートパスを求める。(RAILS_ROOT/config/unicorn.rbに配置している場合。)
-rails_root = File.expand_path('../../', __FILE__)
+rails_root = File.expand_path('../..', __FILE__)
 # RAILS_ENVを求める。（RAILS_ENV毎に挙動を変更したい場合に使用。今回は使用しません。)
 # rails_env = ENV['RAILS_ENV'] || "development"
 
@@ -19,17 +19,17 @@ working_directory rails_root
 timeout 30
 
 # Unicornのエラーログと通常ログの位置を指定。
-stderr_path File.expand_path('../../log/unicorn_stderr.log', __FILE__)
-stdout_path File.expand_path('../../log/unicorn_stdout.log', __FILE__)
+stderr_path "//#{rails_root}/log/unicorn_stderr.log"#File.expand_path('../../log/unicorn_stderr.log', __FILE__)
+stdout_path "//#{rails_root}/log/unicorn_stdout.log"#File.expand_path('../../log/unicorn_stdout.log', __FILE__)
 
 # Nginxで使用する場合は以下の設定を行う。
-listen File.expand_path('../../tmp/sockets/unicorn.sock', __FILE__)
+listen "//#{rails_root}/tmp/sockets/unicorn.sock"#File.expand_path('../../tmp/sockets/unicorn.sock', __FILE__)
 # とりあえず起動して動作確認をしたい場合は以下の設定を行う。
 # listen 80
 # ※「backlog」や「tcp_nopush」の設定もあるけど、よくわかって無い。
 
 # プロセスの停止などに必要なPIDファイルの保存先を指定。
-pid File.expand_path('../../tmp/pids/unicorn.pid', __FILE__)
+pid "//#{rails_root}/tmp/pids/unicorn.pid"#File.expand_path('../../tmp/pids/unicorn.pid', __FILE__)
 
 # 基本的には`true`を指定する。Unicornの再起動時にダウンタイムなしで再起動が行われる。
 preload_app true
