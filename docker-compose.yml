@@ -1,18 +1,11 @@
 version: '2'
 services:
+
   app:
     build:
       context: .
       dockerfile: ./docker/rails/Dockerfile_development
-    # 一度サーバーが起動すると起動し続けるので、rm -f /workdir/tmp/pids/server.pidで、dockerが起動する度に一旦停止させる
-    command: /bin/sh -c "rm -f /workdir/tmp/pids/server.pid && bundle exec unicorn -p 3000 -c /workdir/config/unicorn.rb"
-    tty: true #pry-byebugを使えるようにする"
-    stdin_open: true
-    depends_on:
-      - db # DB側のコンテナが出来上がってからwebを実行する
-    extends:
-      file: ./docker/mysql/password.yml
-      service: password
+    command: bundle exec unicorn -p 3000 -c config/unicorn.rb
     ports:
       - "3000:3000" # ホストからゲストへポートフォワード
     volumes:
@@ -20,15 +13,21 @@ services:
       - /var/tmp
       #ソケット通信用ファイルをnginxコンテナと共有
       - sockets:/workdir/tmp/sockets
+    tty: true
+    depends_on:
+      - db # DB側のコンテナが出来上がってからwebを実行する
+    extends:
+      file: ./docker/mysql/password.yml
+      service: password
 
   db: 
     build:
       context: .
       dockerfile: ./docker/mysql/Dockerfile
-    volumes:
-      - ./mysql/mysql_data:/var/lib/mysql # データの永続化
     ports:
       - "4306:3306" # ホストからゲストへポートフォワード。sequelProと繋ぎたいので、3306ではなく4306をポートに指定
+    volumes:
+      - ./mysql/mysql_data:/var/lib/mysql # データの永続化
     extends:  
       file: ./docker/mysql/password.yml
       service: password
@@ -39,7 +38,6 @@ services:
       dockerfile: ./docker/nginx/Dockerfile
     ports:
       - "80:80"
-    restart: always #明示的にstopさせるまでリスタートする。（失敗するたび遅延あり）
     volumes:
       - sockets:/workdir/tmp/sockets
     depends_on:

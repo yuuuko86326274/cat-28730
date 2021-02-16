@@ -15,25 +15,24 @@ default: &default
   encoding: utf8
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   username: root
-  password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
-  socket: /tmp/mysql.sock
+  password: password
+  host: db
+  # socket: /tmp/mysql.sock
 
 development:
   <<: *default
   database: cat_28730_development
-  username: root
-  password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
-  database: docker_development
-  host: db
+  # username: root
+  # password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
+  # database: docker_development
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
   database: cat_28730_test
-  username: root
-  password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
-
+  # username: root
+  # password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
 # ever seen by anyone, they now have access to your database.
@@ -46,7 +45,8 @@ test:
 # On Heroku and other platform providers, you may have a full connection URL
 # available as an environment variable. For example:
 #
-#   DATABASE_URL="mysql2://myuser:mypass@localhost/somedatabase"
+#   DATABASE_URL="mysql2://myuser:mypass@localhost/somedatabase"¥
+
 #
 # You can use this database configuration with:
 #
@@ -55,8 +55,13 @@ test:
 #
 production:
   <<: *default
-  username: root
-  password: <%= ENV['DATABASE_PASSWORD'] %>
-  database: <%= ENV['DB_DATABASE'] %>
+  # database: cat_28730_production
+  adapter: mysql2
+  encoding: utf8
+  charset: utf8
+  collation: utf8mb4_general_ci
+  database: <%= ENV.fetch['DB_DATABASE'] %>
   host: <%= ENV['DB_HOST'] %>
-  socket: /var/lib/mysql/mysql.sock
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PASSWORD'] %>
+  # socket: /var/lib/mysql/mysql.sock

@@ -16,6 +16,6 @@ COPY Gemfile.lock .
 RUN gem install bundler -v 2.1.4
 RUN bundle install
 
-COPY . workdir
+COPY . /workdir
 
 EXPOSE 3000
