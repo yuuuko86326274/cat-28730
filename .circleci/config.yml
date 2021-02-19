@@ -1,52 +1,52 @@
-# version: 2.1
-# jobs:
-#   test:
-#     machine:
-#       image: circleci/classic:edge
-#     working_directory: ~/workdir
-#     steps:
-#       - checkout
-#       - run:
-#           name: Install Docker Compose
-#           command: |
-#             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-Linux-x86_64 > ~/docker-compose
-#             chmod +x ~/docker-compose
-#             sudo mv ~/docker-compose /usr/local/bin/docker-compose
-#       - run:
-#           name: docker-compose up --build -d
-#           command: |
-#             set -x
-#             docker-compose up --build -d
-#       - run:
-#           name: docker-compose stop
-#           command: |
-#             set -x
-#             docker-compose stop
-#       - run:
-#           name: docker-compose up
-#           command: |
-#             set -x
-#             docker-compose up -d
-#       - run:
-#           name: rubocop
-#           command: |
-#             docker-compose exec app bin/bundle exec rubocop -a
-#       - run:
-#           name: test
-#           command: |
-#             mkdir /tmp/test-results
-#             TEST_FILES="$(circleci tests glob 'spec/**/*_spec.rb' | circleci tests split --split-by=timings)"
-#             docker-compose exec app bin/rspec --format progress \
-#                                                                   --format RspecJunitFormatter \
-#                                                                   --out /tmp/test-results/rspec.xml \
-#                                                                   $TEST_FILES
-#       - run:
-#           name: docker-compose down
-#           command: docker-compose down
+version: 2.1
+jobs:
+  test:
+    machine:
+      image: circleci/classic:edge
+    working_directory: ~/workdir
+    steps:
+      - checkout
+      - run:
+          name: Install Docker Compose
+          command: |
+            curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-Linux-x86_64 > ~/docker-compose
+            chmod +x ~/docker-compose
+            sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      - run:
+          name: docker-compose up --build -d
+          command: |
+            set -x
+            docker-compose up --build -d
+      - run:
+          name: docker-compose stop
+          command: |
+            set -x
+            docker-compose stop
+      - run:
+          name: docker-compose up
+          command: |
+            set -x
+            docker-compose up -d
+      - run:
+          name: rubocop
+          command: |
+            docker-compose exec app bin/bundle exec rubocop -a
+      - run:
+          name: test
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob 'spec/**/*_spec.rb' | circleci tests split --split-by=timings)"
+            docker-compose exec app bin/rspec --format progress \
+                                                                  --format RspecJunitFormatter \
+                                                                  --out /tmp/test-results/rspec.xml \
+                                                                  $TEST_FILES
+      - run:
+          name: docker-compose down
+          command: docker-compose down
 
-# orbs:
-#   aws-ecr: circleci/aws-ecr@6.7.0
-#   aws-ecs: circleci/aws-ecs@1.1.0
+orbs:
+  aws-ecr: circleci/aws-ecr@6.7.0
+  aws-ecs: circleci/aws-ecs@1.1.0
 
 # workflows:
 #   # build_and_test:  
