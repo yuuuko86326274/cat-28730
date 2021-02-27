@@ -165,6 +165,7 @@ GEM
     pry-rails (0.3.9)
       pry (>= 0.10.4)
     public_suffix (4.0.6)
+    puma (3.12.6)
     rack (2.2.3)
     rack-proxy (0.6.5)
       rack
@@ -332,6 +333,7 @@ DEPENDENCIES
   mysql2 (>= 0.5.3)
   payjp
   pry-rails
+  puma (~> 3.11)
   rails (~> 6.0.0)
   rspec-rails
   rspec_junit_formatter
