@@ -8,14 +8,18 @@ RUN apt-get update -qq && \
   vim \
   default-mysql-client 
 
-RUN mkdir /workdir
-WORKDIR /workdir
+ENV RAILS_ROOT /var/www/workdir
 
-COPY Gemfile .
-COPY Gemfile.lock .
+WORKDIR $RAILS_ROOT
+
+COPY Gemfile $RAILS_ROOT/Gemfile
+COPY Gemfile.lock $RAILS_ROOT/Gemfile.lock
+
 RUN gem install bundler -v 2.1.4
 RUN bundle install
 
-COPY . /workdir
+COPY . $RAILS_ROOT
 
 EXPOSE 3000
+
+CMD [ "config/containers/app_cmd.sh" ]
