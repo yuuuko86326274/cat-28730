@@ -1,36 +1,38 @@
 version: '2'
 services:
 
+  db:
+    build:
+      context: .
+      dockerfile: ./docker/mysql/Dockerfile
+    volumes:
+      - ./mysql/mysql_data:/var/lib/mysql
+    extends:  
+      file: ./docker/mysql/password.yml
+      service: password
+    ports:
+      - "4306:3306"
+
   app:
     build:
       context: .
       dockerfile: ./docker/rails/Dockerfile_development
-    command: bundle exec unicorn -p 3000 -c config/unicorn.rb
+    environment:
+      RAILS_ENV: development
+    command: bundle exec unicorn -p 3000 -c /workdir/config/unicorn.rb
+    env_file: .env
     ports:
-      - "3000:3000" # ホストからゲストへポートフォワード
+      - "3000:3000"
     volumes:
       - .:/workdir
       - /var/tmp
-      #ソケット通信用ファイルをnginxコンテナと共有
-      - sockets:/workdir/tmp/sockets
+      # # #ソケット通信用ファイルをnginxコンテナと共有
+      # - sockets:/workdir/tmp/sockets
     tty: true
     depends_on:
-      - db # DB側のコンテナが出来上がってからwebを実行する
-    extends:
-      file: ./docker/mysql/password.yml
-      service: password
-
-  db: 
-    build:
-      context: .
-      dockerfile: ./docker/mysql/Dockerfile
-    ports:
-      - "4306:3306" # ホストからゲストへポートフォワード。sequelProと繋ぎたいので、3306ではなく4306をポートに指定
-    volumes:
-      - ./mysql/mysql_data:/var/lib/mysql # データの永続化
-    extends:  
-      file: ./docker/mysql/password.yml
-      service: password
+      - db
+    links:
+      - db
 
   web:
     build:
@@ -38,11 +40,13 @@ services:
       dockerfile: ./docker/nginx/Dockerfile
     ports:
       - "80:80"
-    volumes:
-      - sockets:/workdir/tmp/sockets
-    depends_on:
+    # links:
+    #   - app
+    # depends_on:
+    #   - app
+    volumes_from:
       - app
 
 volumes:
-  sockets:
+  # sockets:
   mysql-data:

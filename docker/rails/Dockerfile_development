@@ -2,21 +2,23 @@ FROM ruby:2.6.5
 
 RUN apt-get update -qq && \
   apt-get install -y apt-utils \
-                     build-essential \
-                     libpq-dev \
-                     nodejs \
-                     vim \
-                     default-mysql-client 
+  build-essential \
+  libpq-dev \
+  nodejs \
+  default-mysql-client 
 
-RUN mkdir /workdir
-WORKDIR /workdir
+ENV RAILS_ROOT /workdir
 
-COPY Gemfile /workdir/Gemfile
-COPY Gemfile.lock /workdir/Gemfile.lock
+WORKDIR $RAILS_ROOT
+
+COPY Gemfile $RAILS_ROOT/Gemfile
+COPY Gemfile.lock $RAILS_ROOT/Gemfile.lock
 
 RUN gem install bundler -v 2.1.4
 RUN bundle install
 
-COPY . /workdir
+COPY . $RAILS_ROOT
 
 EXPOSE 3000
+
+#CMD [ "config/containers/app_cmd.sh" ]
