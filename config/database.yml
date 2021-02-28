@@ -17,11 +17,13 @@ default: &default
   username: root
   password: password
   host: db
+  # port: 3306
   # socket: /tmp/mysql.sock
 
 development:
   <<: *default
   database: cat_28730_development
+  # host: db
   # username: root
   # password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
   # database: docker_development
@@ -31,6 +33,7 @@ development:
 test:
   <<: *default
   database: cat_28730_test
+  # host: db
   # username: root
   # password: <%= ENV['MYSQL_ROOT_PASSWORD'] %>
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -55,13 +58,14 @@ test:
 #
 production:
   <<: *default
+  # host: db
   # database: cat_28730_production
   adapter: mysql2
   encoding: utf8
   charset: utf8
   collation: utf8mb4_general_ci
-  database: <%= ENV.fetch['DB_DATABASE'] %>
+  database: <%= ENV['DB_DATABASE'] %>
   host: <%= ENV['DB_HOST'] %>
   username: <%= ENV['DATABASE_USER'] %>
   password: <%= ENV['DATABASE_PASSWORD'] %>
-  # socket: /var/lib/mysql/mysql.sock
+  socket: /var/lib/mysql/mysql.sock
