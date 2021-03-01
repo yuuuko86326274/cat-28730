@@ -12,7 +12,7 @@ jobs:
             curl -L https://github.com/docker/compose/releases/download/1.19.0/docker-compose-Linux-x86_64 > ~/docker-compose
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
-      # - run: env > ~/.env
+      - run: env > ~/.env
       # - run:
       #     command: |
       #       echo AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} > ~/.env
@@ -26,20 +26,15 @@ jobs:
             set -x
             docker-compose build
       - run:
-          name: docker-compose run app rails db:create
+          name: docker-compose exec app rails db:create
           command: |
             set -x
-            docker-compose run app rails db:create
+            docker-compose exec app rails db:create
       - run:
-          name: docker-compose run app rails db:migrate
+          name: docker-compose exec app rails db:migrate
           command: |
             set -x
-            docker-compose run app rails db:migrate
-      - run:
-          name: docker-compose stop
-          command: |
-            set -x
-            docker-compose stop
+            docker-compose exec app rails db:migrate
       - run:
           name: docker-compose up -d
           command: |
