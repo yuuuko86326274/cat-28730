@@ -18,7 +18,7 @@ services:
       context: .
       dockerfile: ./docker/rails/Dockerfile_development
     environment:
-      RAILS_ENV: development
+      RAILS_ENV: test #development
     command: bundle exec unicorn -p 3000 -c /workdir/config/unicorn.rb
     # env_file: .env
     ports:
