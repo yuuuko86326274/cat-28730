@@ -14,66 +14,50 @@ jobs:
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       # - run: env > ~/.env
       # - run:
-      #       command: mkdir 
-      - run: 
-          command: |
-            echo AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} > ~/.env
-            echo AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} >> ~/.env
-            echo SECRET_KEY_BASE=${SECRET_KEY_BASE} >> ~/.env
-            echo PAYJP_PUBLIC_KEY={PAYJP_PUBLIC_KEY} >> ~/.env
-            echo PAYJP_SECRET_KEY={PAYJP_SECRET_KEY} >> ~/.env
-      # - run:
-      #     name: docker-compose up --build -d
-      #     command: 
-      #       docker-compose up --build -d
-      # - run:
-      #     name: docker-compose stop
       #     command: |
-      #       set -x
-      #       docker-compose stop
-      # - run:
-      #     name: docker-compose up
-      #     command: |
-      #       set -x
-      #       docker-compose up -d
-      # - run:
-      #     name: rubocop
-      #     command: |
-      #       docker-compose exec app bin/bundle exec rubocop -a
-      # - run:
-      #     name: test
-      #     command: |
-      #       mkdir /tmp/test-results
-      #       TEST_FILES="$(circleci tests glob 'spec/**/*_spec.rb' | circleci tests split --split-by=timings)"
-      #       docker-compose exec app bin/rspec --format progress \
-      #                                                             --format RspecJunitFormatter \
-      #                                                             --out /tmp/test-results/rspec.xml \
-      #                                                             $TEST_FILES
-      # - run:
-      #     name: docker-compose down
-      #     command: docker-compose down
+      #       echo AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} > ~/.env
+      #       echo AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} >> ~/.env
+      #       echo SECRET_KEY_BASE=${SECRET_KEY_BASE} >> ~/.env
+      #       echo PAYJP_PUBLIC_KEY={PAYJP_PUBLIC_KEY} >> ~/.env
+      #       echo PAYJP_SECRET_KEY={PAYJP_SECRET_KEY}
       - run:
           name: docker-compose up --build -d
-          command: docker-compose up --build -d
-      - run: sleep 30
+          command: |
+            set -x
+            docker-compose up --build -d
       - run:
-          name: docker-compose exec app rubocop
-          command: docker-compose exec workdir_app bin/bundle exec rubocop -a
-      # - run:
-      #     name: docker-compose exec app rails db:create
-      #     command: docker-compose exec app rails db:create
-      # - run:
-      #     name: docker-compose exec app rails db:migrate
-      #     command: docker-compose exec app rails db:migrate
-      # - run:
-      #     name: docker-compose exec app bash -c "yes n | rails webpacker:install"
-      #     command: docker-compose exec app bash -c "yes n | rails webpacker:install"
-      # - run:
-      #     name: docker-compose exec app rails webpacker:compile RAILS_ENV=test
-      #     command: docker-compose exec app rails webpacker:compile RAILS_ENV=test
+          name: docker-compose exec app rails db:create
+          command: |
+            set -x
+            docker-compose exec app rails db:create
       - run:
-          name: docker-compose exec app rspec
-          command: docker-compose exec workdir_app rspec
+          name: docker-compose exec app rails db:migrate
+          command: |
+            set -x
+            docker-compose exec app rails db:migrate
+      - run:
+          name: docker-compose stop
+          command: |
+            set -x
+            docker-compose stop
+      - run:
+          name: docker-compose up
+          command: |
+            set -x
+            docker-compose up -d
+      - run:
+          name: rubocop
+          command: |
+            docker-compose exec app bin/bundle exec rubocop -a
+      - run:
+          name: test
+          command: |
+            mkdir /tmp/test-results
+            TEST_FILES="$(circleci tests glob 'spec/**/*_spec.rb' | circleci tests split --split-by=timings)"
+            docker-compose exec app bin/rspec --format progress \
+                                                                  --format RspecJunitFormatter \
+                                                                  --out /tmp/test-results/rspec.xml \
+                                                                  $TEST_FILES
       - run:
           name: docker-compose down
           command: docker-compose down
