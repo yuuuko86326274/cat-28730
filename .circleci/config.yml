@@ -13,18 +13,11 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run: env > ~/.env
-      # - run:
-      #     command: |
-      #       echo AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} > ~/.env
-      #       echo AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} >> ~/.env
-      #       echo SECRET_KEY_BASE=${SECRET_KEY_BASE} >> ~/.env
-      #       echo PAYJP_PUBLIC_KEY={PAYJP_PUBLIC_KEY} >> ~/.env
-      #       echo PAYJP_SECRET_KEY={PAYJP_SECRET_KEY}
       - run:
           name: docker-compose build
           command: |
             set -x
-            docker-compose build
+            docker-compose up --build
       - run:
           name: docker-compose exec app rails db:create
           command: |
