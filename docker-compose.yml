@@ -26,8 +26,6 @@ services:
     volumes:
       - .:/workdir
       - /var/tmp
-      # # #ソケット通信用ファイルをnginxコンテナと共有
-      # - sockets:/workdir/tmp/sockets
     tty: true
     depends_on:
       - db
@@ -48,5 +46,4 @@ services:
       - app
 
 volumes:
-  # sockets:
   mysql-data:

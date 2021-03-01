@@ -28,7 +28,7 @@ jobs:
           command: |
             set -x
             docker-compose exec app rails db:migrate
-      -run:
+      - run:
           name: docker-compose down
           command: |
             set -x
