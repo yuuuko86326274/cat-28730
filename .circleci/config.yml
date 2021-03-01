@@ -14,10 +14,15 @@ jobs:
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run: env > ~/.env
       - run:
-          name: docker-compose up --build
+          name: docker-compose up --build -d
           command: |
             set -x
-            docker-compose up --build
+            docker-compose up --build -d
+      - run:
+          name: rubocop
+          command: |
+            set -x
+            docker-compose exec app bin/bundle exec rubocop -a
       - run:
           name: docker-compose exec app rails db:create
           command: |
@@ -38,11 +43,6 @@ jobs:
           command: |
             set -x
             docker-compose up -d
-      - run:
-          name: rubocop
-          command: |
-            set -x
-            docker-compose exec app bin/bundle exec rubocop -a
       - run:
           name: test
           command: |
