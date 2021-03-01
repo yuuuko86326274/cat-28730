@@ -13,7 +13,7 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       # - run: env > ~/.env
-      - run:
+      - run: 
           command: |
             echo AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID} > ~/.env
             echo AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY} >> ~/.env
