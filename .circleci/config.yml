@@ -58,7 +58,7 @@ jobs:
       - run: sleep 30
       - run:
           name: docker-compose exec app rubocop
-          command: docker-compose exec app rubocop
+          command: docker-compose exec app bin/bundle exec rubocop -a
       # - run:
       #     name: docker-compose exec app rails db:create
       #     command: docker-compose exec app rails db:create
