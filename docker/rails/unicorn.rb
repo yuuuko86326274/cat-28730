@@ -65,8 +65,12 @@ rails_root = ENV['RAILS_ROOT'] #File.expand_path('../../', __FILE__)
 # RAILS_ENVを求める。（RAILS_ENV毎に挙動を変更したい場合に使用。今回は使用しません。)
 # rails_env = ENV['RAILS_ENV'] || "development"
 
-# 追記に記載してます。入れた方がいいです。
-ENV['BUNDLE_GEMFILE'] = rails_root + "/Gemfile"
+# # 追記に記載してます。入れた方がいいです。
+# ENV['BUNDLE_GEMFILE'] = rails_root + "/Gemfile"
+# Make sure we use the correct Gemfile on restarts
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "#{rails_root}/Gemfile"
+end
 
 # Unicornは複数のワーカーで起動するのでワーカー数を定義
 # サーバーのメモリなどによって変更すること。
@@ -85,13 +89,13 @@ stderr_path  "#{rails_root}/log/unicorn_stderr.log" #File.expand_path('../../log
 stdout_path  "#{rails_root}/log/unicorn_stdout.log" #File.expand_path('../../log/unicorn_stdout.log', __FILE__)
 
 # # Nginxで使用する場合は以下の設定を行う。
-listen "/var/tmp/unicorn.sock"  #"#{rails_root}/tmp/sockets/unicorn.sock" #File.expand_path('../../tmp/sockets/unicorn.sock', __FILE__)
+listen "/var/tmp/unicorn.sock" #File.expand_path('../../tmp/sockets/unicorn.sock', __FILE__)
 # # とりあえず起動して動作確認をしたい場合は以下の設定を行う。
 # # listen 80
 # # ※「backlog」や「tcp_nopush」の設定もあるけど、よくわかって無い。
 
 # プロセスの停止などに必要なPIDファイルの保存先を指定。
-pid "/var/run/unicorn.pid"  #"#{rails_root}/tmp/pids/unicorn.pid"#File.expand_path('../../tmp/pids/unicorn.pid', __FILE__)
+pid "/var/run/unicorn.pid" #File.expand_path('../../tmp/pids/unicorn.pid', __FILE__)
 
 # 基本的には`true`を指定する。Unicornの再起動時にダウンタイムなしで再起動が行われる。
 preload_app true
@@ -100,23 +104,23 @@ preload_app true
 
 # USR2シグナルを受けると古いプロセスを止める。
 # 後述するが、記述しておくとNginxと連携する時に良いことがある。
-# before_fork do |server, worker|
-#   defined?(ActiveRecord::Base) and
-#       ActiveRecord::Base.connection.disconnect!
+before_fork do |server, worker|
+  defined?(ActiveRecord::Base) and
+      ActiveRecord::Base.connection.disconnect!
 
-#   old_pid = "#{server.config[:pid]}.oldbin"
-#   if old_pid != server.pid
-#     begin
-#       sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
-#       Process.kill(sig, File.read(old_pid).to_i)
-#     rescue Errno::ENOENT, Errno::ESRCH
-#     end
-#   end
-# end
+  old_pid = "#{server.config[:pid]}.oldbin"
+  if old_pid != server.pid
+    begin
+      sig = (worker.nr + 1) >= server.worker_processes ? :QUIT : :TTOU
+      Process.kill(sig, File.read(old_pid).to_i)
+    rescue Errno::ENOENT, Errno::ESRCH
+    end
+  end
+end
 
-# after_fork do |server, worker|
-#   defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
-# end
+after_fork do |server, worker|
+  defined?(ActiveRecord::Base) and ActiveRecord::Base.establish_connection
+end
 
 # $worker  = 2
 #   $timeout = 30
