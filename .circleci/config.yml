@@ -27,12 +27,12 @@ jobs:
           name: docker-compose exec app rails db:create
           command: |
             set -x
-            docker-compose exec app rails db:create
+            docker-compose exec app rails db:create RAILS_ENV=test
       - run:
-          name: docker-compose exec app rails db:migrate
+          name: docker-compose exec app rails db:migrate 
           command: |
             set -x
-            docker-compose exec app rails db:migrate
+            docker-compose exec app rails db:migrate RAILS_ENV=test
       - run:
           name: docker-compose down
           command: |
@@ -44,15 +44,10 @@ jobs:
             set -x
             docker-compose up -d
       - run:
-          name: test
+          name: docker-compose exec app rspec
           command: |
             set -x
-            mkdir /tmp/test-results
-            TEST_FILES="$(circleci tests glob 'spec/**/*_spec.rb' | circleci tests split --split-by=timings)"
-            docker-compose exec app bin/rspec --format progress \
-                                                                  --format RspecJunitFormatter \
-                                                                  --out /tmp/test-results/rspec.xml \
-                                                                  $TEST_FILES
+            docker-compose exec app bin/bundle exec rspec
       - run:
           name: docker-compose down
           command: docker-compose down
