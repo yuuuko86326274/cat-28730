@@ -21,27 +21,27 @@ jobs:
       #       echo PAYJP_PUBLIC_KEY={PAYJP_PUBLIC_KEY} >> ~/.env
       #       echo PAYJP_SECRET_KEY={PAYJP_SECRET_KEY}
       - run:
-          name: docker-compose up --build -d
+          name: docker-compose build
           command: |
             set -x
-            docker-compose up --build -d
+            docker-compose build
+      # - run:
+      #     name: docker-compose run app rails db:create
+      #     command: |
+      #       set -x
+      #       docker-compose run app rails db:create
       - run:
-          name: docker-compose exec app rails db:create
+          name: docker-compose run app rails db:migrate
           command: |
             set -x
-            docker-compose exec app rails db:create
-      - run:
-          name: docker-compose exec app rails db:migrate
-          command: |
-            set -x
-            docker-compose exec app rails db:migrate
+            docker-compose run app rails db:migrate
       - run:
           name: docker-compose stop
           command: |
             set -x
             docker-compose stop
       - run:
-          name: docker-compose up
+          name: docker-compose up -d
           command: |
             set -x
             docker-compose up -d
