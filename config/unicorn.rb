@@ -66,7 +66,10 @@ rails_root = ENV['RAILS_ROOT'] #File.expand_path('../../', __FILE__)
 # rails_env = ENV['RAILS_ENV'] || "development"
 
 # 追記に記載してます。入れた方がいいです。
-ENV['BUNDLE_GEMFILE'] = rails_root + "/Gemfile"
+# ENV['BUNDLE_GEMFILE'] = rails_root + "/Gemfile"
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "#{rails_root}/Gemfile"
+end
 
 # Unicornは複数のワーカーで起動するのでワーカー数を定義
 # サーバーのメモリなどによって変更すること。
@@ -100,6 +103,7 @@ preload_app true
 
 # USR2シグナルを受けると古いプロセスを止める。
 # 後述するが、記述しておくとNginxと連携する時に良いことがある。
+#切替必要
 before_fork do |server, worker|
   defined?(ActiveRecord::Base) and
       ActiveRecord::Base.connection.disconnect!
