@@ -60,7 +60,7 @@ workflows:
   # build_and_test:  
   #   jobs:  
   #     - test
-  Nginxのデプロイ
+  # Nginxのデプロイ
   nginx-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
