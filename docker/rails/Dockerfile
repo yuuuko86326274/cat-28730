@@ -9,7 +9,7 @@ RUN apt-get update -qq && \
   default-mysql-client 
 
 ENV RAILS_ROOT /var/www/workdir
-RUN mkdir $RAILS_ROOT/log
+RUN mkdir -p $RAILS_ROOT/log
 WORKDIR $RAILS_ROOT
 
 COPY Gemfile $RAILS_ROOT/Gemfile
