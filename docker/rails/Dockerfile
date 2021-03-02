@@ -9,7 +9,7 @@ RUN apt-get update -qq && \
   default-mysql-client 
 
 ENV RAILS_ROOT /var/www/workdir
-
+RUN mkdir $RAILS_ROOT/log
 WORKDIR $RAILS_ROOT
 
 COPY Gemfile $RAILS_ROOT/Gemfile
@@ -20,6 +20,7 @@ RUN bundle install
 
 COPY . $RAILS_ROOT
 
+WORKDIR $RAILS_ROOT
 EXPOSE 3000
 
 CMD [ "config/containers/app_cmd.sh" ]

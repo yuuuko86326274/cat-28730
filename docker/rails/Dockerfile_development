@@ -5,6 +5,7 @@ RUN apt-get update -qq && \
   build-essential \
   libpq-dev \
   nodejs \
+  vim \
   default-mysql-client 
 
 ENV RAILS_ROOT /workdir
@@ -20,5 +21,3 @@ RUN bundle install
 COPY . $RAILS_ROOT
 
 EXPOSE 3000
-
-#CMD [ "config/containers/app_cmd.sh" ]
