@@ -12,8 +12,8 @@ ENV RAILS_ROOT /var/www/workdir
 
 WORKDIR $RAILS_ROOT
 
-COPY ./Gemfile $RAILS_ROOT/Gemfile
-COPY ./Gemfile.lock $RAILS_ROOT/Gemfile.lock
+COPY Gemfile $RAILS_ROOT/Gemfile
+COPY Gemfile.lock $RAILS_ROOT/Gemfile.lock
 
 RUN gem install bundler -v 2.1.4
 RUN bundle install
