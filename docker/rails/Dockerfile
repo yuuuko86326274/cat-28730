@@ -15,8 +15,7 @@ RUN mkdir -p $RAILS_ROOT/tmp/pids
 
 WORKDIR $RAILS_ROOT
 
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
+COPY Gemfile Gemfile.lock $RAILS_ROOT/
 
 RUN gem install bundler -v 2.1.4
 RUN bundle install
