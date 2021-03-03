@@ -30,7 +30,7 @@ VOLUME $RAILS_ROOT/tmp
 COPY . $RAILS_ROOT
 
 RUN yarn install --check-files
-RUN SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile \
+RUN $SECRET_KEY_BASE=placeholder bundle exec rails assets:precompile \
  && yarn cache clean \
  && rm -rf node_modules tmp/cache
 
