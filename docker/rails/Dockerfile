@@ -14,7 +14,7 @@ RUN mkdir -p $RAILS_ROOT/tmp/sockets
 RUN mkdir -p $RAILS_ROOT/tmp/pids
 
 WORKDIR $RAILS_ROOT
-
+ 
 COPY Gemfile Gemfile.lock $RAILS_ROOT/
 
 RUN gem install bundler -v 2.1.4
