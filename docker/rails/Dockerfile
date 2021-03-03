@@ -8,7 +8,9 @@ RUN apt-get update -qq && \
   vim \
   default-mysql-client 
 
-ENV RAILS_ROOT /workdir
+ENV RAILS_ROOT /var/www/workdir
+RUN chmod 755 /var/www/workdir
+
 RUN mkdir  -p $RAILS_ROOT/log
 RUN mkdir -p $RAILS_ROOT/tmp/sockets
 RUN mkdir -p $RAILS_ROOT/tmp/pids
