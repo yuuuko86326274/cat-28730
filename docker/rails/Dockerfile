@@ -8,9 +8,11 @@ RUN apt-get update -qq && \
   vim \
   default-mysql-client 
 
-RUN mkdir /var/socks
-ENV RAILS_ROOT /workdir
-RUN mkdir -p $RAILS_ROOT/log
+ENV RAILS_ROOT home/ec2-user/workdir
+RUN mkdir  -p $RAILS_ROOT/log
+RUN mkdir -p $RAILS_ROOT/tmp/sockets
+RUN mkdir -p $RAILS_ROOT/tmp/pids
+
 WORKDIR $RAILS_ROOT
 
 COPY Gemfile $RAILS_ROOT/Gemfile

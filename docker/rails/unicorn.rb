@@ -61,16 +61,16 @@
 
 
 # Railsのルートパスを求める。(RAILS_ROOT/config/unicorn.rbに配置している場合。)
-rails_root = File.expand_path('../../', __FILE__) #ENV['RAILS_ROOT'] 
+rails_root = ENV['RAILS_ROOT'] #File.expand_path('../../', __FILE__)  
 # RAILS_ENVを求める。（RAILS_ENV毎に挙動を変更したい場合に使用。今回は使用しません。)
 # rails_env = ENV['RAILS_ENV'] || "development"
 
 # # 追記に記載してます。入れた方がいいです。
-ENV['BUNDLE_GEMFILE'] = "#{rails_root}/Gemfile" #rails_root + "/Gemfile"
+# ENV['BUNDLE_GEMFILE'] = "#{rails_root}/Gemfile" #rails_root + "/Gemfile"
 # Make sure we use the correct Gemfile on restarts
-# before_exec do |server|
-#   ENV['BUNDLE_GEMFILE'] = "#{rails_root}/Gemfile"
-# end
+before_exec do |server|
+  ENV['BUNDLE_GEMFILE'] = "#{rails_root}/Gemfile"
+end
 
 # Unicornは複数のワーカーで起動するのでワーカー数を定義
 # サーバーのメモリなどによって変更すること。
