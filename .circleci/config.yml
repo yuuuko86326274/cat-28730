@@ -52,6 +52,26 @@ jobs:
           name: docker-compose down
           command: docker-compose down
 
+jobs:
+  db-migrate-on-task-run:
+    executor: container
+    parameters:
+      env:
+        type: enum
+        enum: ['stg', 'prod']
+    steps:
+      - checkout
+      - aws-cli/setup:
+          aws-access-key-id: AWS_ACCESS_KEY_ID
+          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
+          aws-region: AWS_REGION
+      - run:
+          name: "db migrate"
+          command: |
+            aws ecs run-task --region $AWS_REGION \
+              --cluster hoge-<< parameters.env >> \
+              --task-definition hoge-service-<< parameters.env >> \
+              --overrides file://docker/run_task_db_migrate_<< parameters.env >>.json
 orbs:
   aws-ecr: circleci/aws-ecr@6.7.0
   aws-ecs: circleci/aws-ecs@1.1.0
