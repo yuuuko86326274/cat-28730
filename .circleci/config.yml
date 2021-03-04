@@ -61,13 +61,13 @@ jobs:
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
-      - run:
-           name: "db create"
-           command: |
-             aws ecs run-task --region $AWS_REGION \
-               --cluster 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01' \
-               --task-definition 'Task01' \
-               --overrides '{ "containerOverrides": [ { "name": "app", "command": ["rails", "db:create"] } ] }'
+      # - run:
+      #      name: "db create"
+      #      command: |
+      #        aws ecs run-task --region $AWS_REGION \
+      #          --cluster 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01' \
+      #          --task-definition 'Task01' \
+      #          --overrides '{ "containerOverrides": [ { "name": "app", "command": ["rails", "db:create"] } ] }'
       - run:
           name: "db migrate"
           command: |
@@ -120,12 +120,12 @@ workflows:
           filters:
             branches:
               only: master
-      - db-migrate-on-task-run:
-          requires:
-            - aws-ecr/build-and-push-image
+      # - db-migrate-on-task-run:
+      #     requires:
+      #       - aws-ecr/build-and-push-image
       - aws-ecs/deploy-service-update:
           requires:
-            - db-migrate-on-task-run
+            - aws-ecr/build-and-push-image #db-migrate-on-task-run
           family: 'Task01' # ECSのタスク定義名
           cluster-name: 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01' #ECSのクラスターのARN
           service-name: 'ecs-rails-service' #サービス名

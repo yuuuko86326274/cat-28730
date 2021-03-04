@@ -24,8 +24,8 @@ RUN gem install bundler -v 2.1.4
 RUN bundle install
 
 RUN mkdir -p $RAILS_ROOT/tmp/sockets
-VOLUME $RAILS_ROOT/public
-VOLUME $RAILS_ROOT/tmp
+# VOLUME $RAILS_ROOT/public
+# VOLUME $RAILS_ROOT/tmp
 
 COPY . $RAILS_ROOT
 
