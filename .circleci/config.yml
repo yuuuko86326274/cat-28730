@@ -1,8 +1,4 @@
 version: 2.1
-orbs:
-aws-ecr: circleci/aws-ecr@6.6.0
-aws-ecs: circleci/aws-ecs@1.0.4
-aws-cli: circleci/aws-cli@0.1.19
 
 jobs:
   test:
@@ -57,6 +53,12 @@ jobs:
           name: docker-compose down
           command: docker-compose down
 
+orbs:
+aws-ecr: circleci/aws-ecr@6.6.0
+aws-ecs: circleci/aws-ecs@1.0.4
+aws-cli: circleci/aws-cli@0.1.19
+
+jobs:
   db-create-migrate-on-task-run:
     machine:
       image: ubuntu-1604:201903-01
@@ -84,8 +86,9 @@ workflows:
   # build_and_test:  
   #   jobs:  
   #     - test
-  # nginx-deploy:
-  #   jobs:
+  build-and-deploy:
+    jobs:
+#Nginxデプロイ
   #     - aws-ecr/build-and-push-image:
   #         account-url: AWS_ECR_ACCOUNT_URL
   #         region: AWS_REGION
@@ -105,8 +108,7 @@ workflows:
   #         cluster-name: 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01'  #ECSのクラスターのARN
   #         service-name: 'ecs-rails-service'  #サービス名
   #         container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
-  rails-deploy:
-    jobs:
+#RAILSデプロイ
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
