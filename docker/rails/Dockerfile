@@ -31,12 +31,17 @@ COPY . $RAILS_ROOT
 
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
+ARG SECRET_KEY_BASE
+ENV SECRET_KEY_BASE ${SECRET_KEY_BASE}
 
 RUN yarn install --check-files
-RUN bundle exec rails assets:precompile \
+RUN RAILS_ENV="production" \
+ SECRET_KEY_BASE=${SECRET_KEY_BASE} \
+ bundle exec rails assets:precompile \
  && yarn cache clean \
  && rm -rf node_modules tmp/cache
 
+ENV RAILS_SERVE_STATIC_FILES="true"
 COPY entrypoint.sh /usr/bin/
 RUN chmod +x /usr/bin/entrypoint.sh
 ENTRYPOINT ["entrypoint.sh"]
