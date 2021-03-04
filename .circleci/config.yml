@@ -1,8 +1,8 @@
 version: 2.1
 
 orbs:
-aws-ecr: circleci/aws-ecr@6.6.0
-aws-ecs: circleci/aws-ecs@1.0.4
+aws-ecr: circleci/aws-ecr@6.7.0
+aws-ecs: circleci/aws-ecs@1.1.0
 aws-cli: circleci/aws-cli@0.1.19
 
 jobs:
@@ -35,7 +35,7 @@ jobs:
             set -x
             docker-compose exec app rails db:create RAILS_ENV=test
       - run:
-          name: docker-compose exec app rails db:migrate 
+          name: docker-compose exec app rails db:migrate
           command: |
             set -x
             docker-compose exec app rails db:migrate RAILS_ENV=test
@@ -82,11 +82,13 @@ jobs:
               --task-definition 'Task01' \
               --overrides '{ "containerOverrides": [ { "name": "app", "command": ["rails", "db:migrate"] } ] }'
 workflows:
-  build-and-deploy:  
-    jobs:
 #テスト  
+  # build-and-test:
+  #   jobs:
   #     - test
 #Nginxデプロイ
+  # nginx-deploy:
+  #     jobs:
   #     - aws-ecr/build-and-push-image:
   #         account-url: AWS_ECR_ACCOUNT_URL
   #         region: AWS_REGION
@@ -107,6 +109,8 @@ workflows:
   #         service-name: 'ecs-rails-service'  #サービス名
   #         container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
 #RAILSデプロイ
+  rails-deploy:
+    jobs:
       - aws-ecr/build-and-push-image:
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
