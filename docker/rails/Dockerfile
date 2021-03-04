@@ -30,10 +30,16 @@ VOLUME $RAILS_ROOT/tmp
 COPY . $RAILS_ROOT
 
 ARG RAILS_MASTER_KEY
+ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
+
 RUN yarn install --check-files
-RUN RAILS_MASTER_KEY=${RAILS_MASTER_KEY} bundle exec rails assets:precompile \
+RUN bundle exec rails assets:precompile \
  && yarn cache clean \
  && rm -rf node_modules tmp/cache
 
-CMD [ "config/containers/app_cmd.sh" ]
+COPY entrypoint.sh /usr/bin/
+RUN chmod +x /usr/bin/entrypoint.sh
+ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
+
+CMD [ "config/containers/app_cmd.sh" ]
