@@ -121,7 +121,7 @@ workflows:
           filters:
             branches:
               only: master
-       - db-create-migrate-on-task-run:
+      - db-create-migrate-on-task-run:
            requires:
              - aws-ecr/build-and-push-image
       - aws-ecs/deploy-service-update:
