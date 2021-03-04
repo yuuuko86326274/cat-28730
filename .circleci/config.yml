@@ -54,10 +54,6 @@ jobs:
 
   db-migrate-on-task-run:
     executor: container
-    parameters:
-      env:
-        type: enum
-        enum: ['stg', 'prod']
     steps:
       - checkout
       - aws-cli/setup:
@@ -65,12 +61,19 @@ jobs:
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
           aws-region: AWS_REGION
       - run:
+          name: "db create"
+          command: |
+            aws ecs run-task --region $AWS_REGION \
+              --cluster Cluster01 \
+              --task-definition Task01 \
+              --overrides '{ "containerOverrides": [ { "name": "app", "command": ["rails", "db:create"] } ] }'
+      - run:
           name: "db migrate"
           command: |
             aws ecs run-task --region $AWS_REGION \
-              --cluster hoge-<< parameters.env >> \
-              --task-definition hoge-service-<< parameters.env >> \
-              --overrides file://docker/run_task_db_migrate_<< parameters.env >>.json
+              --cluster Cluster01 \
+              --task-definition Task01 \
+              --overrides '{ "containerOverrides": [ { "name": "app", "command": ["rails", "db:migrate"] } ] }'
 orbs:
   aws-ecr: circleci/aws-ecr@6.7.0
   aws-ecs: circleci/aws-ecs@1.1.0
