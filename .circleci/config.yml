@@ -1,4 +1,9 @@
 version: 2.1
+orbs:
+aws-ecr: circleci/aws-ecr@6.6.0
+aws-ecs: circleci/aws-ecs@1.0.4
+aws-cli: circleci/aws-cli@0.1.19
+
 jobs:
   test:
     machine:
@@ -52,12 +57,6 @@ jobs:
           name: docker-compose down
           command: docker-compose down
 
-orbs:
-  aws-ecr: circleci/aws-ecr@6.6.0
-  aws-ecs: circleci/aws-ecs@1.0.4
-  aws-cli: circleci/aws-cli@0.1.19
-
-jobs:
   db-create-migrate-on-task-run:
     machine:
       image: ubuntu-1604:201903-01
