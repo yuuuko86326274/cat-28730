@@ -1,10 +1,4 @@
 version: 2.1
-
-orbs:
-aws-ecr: circleci/aws-ecr@6.7.0
-aws-ecs: circleci/aws-ecs@1.1.0
-aws-cli: circleci/aws-cli@0.1.19
-
 jobs:
   test:
     machine:
@@ -35,7 +29,7 @@ jobs:
             set -x
             docker-compose exec app rails db:create RAILS_ENV=test
       - run:
-          name: docker-compose exec app rails db:migrate
+          name: docker-compose exec app rails db:migrate 
           command: |
             set -x
             docker-compose exec app rails db:migrate RAILS_ENV=test
@@ -58,37 +52,16 @@ jobs:
           name: docker-compose down
           command: docker-compose down
 
-  db-create-migrate-on-task-run:
-    machine:
-      image: ubuntu-1604:201903-01
-    steps:
-      - checkout
-      - aws-cli/setup:
-          aws-access-key-id: AWS_ACCESS_KEY_ID
-          aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          aws-region: AWS_REGION
-      - run:
-          name: "db create"
-          command: |
-            aws ecs run-task --region $AWS_REGION \
-              --cluster 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01' \
-              --task-definition 'Task01' \
-              --overrides '{ "containerOverrides": [ { "name": "app", "command": ["rails", "db:create"] } ] }'
-      - run:
-          name: "db migrate"
-          command: |
-            aws ecs run-task --region $AWS_REGION \
-              --cluster 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01' \
-              --task-definition 'Task01' \
-              --overrides '{ "containerOverrides": [ { "name": "app", "command": ["rails", "db:migrate"] } ] }'
+orbs:
+  aws-ecr: circleci/aws-ecr@6.7.0
+  aws-ecs: circleci/aws-ecs@1.1.0
+
 workflows:
-#テスト  
-  # build-and-test:
-  #   jobs:
+  # build_and_test:  
+  #   jobs:  
   #     - test
-#Nginxデプロイ
   # nginx-deploy:
-  #     jobs:
+  #   jobs:
   #     - aws-ecr/build-and-push-image:
   #         account-url: AWS_ECR_ACCOUNT_URL
   #         region: AWS_REGION
@@ -108,15 +81,14 @@ workflows:
   #         cluster-name: 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01'  #ECSのクラスターのARN
   #         service-name: 'ecs-rails-service'  #サービス名
   #         container-image-name-updates: "container=nginx,tag=${CIRCLE_SHA1}"
-#RAILSデプロイ
   rails-deploy:
     jobs:
       - aws-ecr/build-and-push-image:
+          extra-build-args: '--build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}'
           account-url: AWS_ECR_ACCOUNT_URL
           region: AWS_REGION
           aws-access-key-id: AWS_ACCESS_KEY_ID
           aws-secret-access-key: AWS_SECRET_ACCESS_KEY
-          extra-build-args: '--build-arg RAILS_MASTER_KEY=${RAILS_MASTER_KEY}'
           create-repo: true
           dockerfile: ./docker/rails/Dockerfile
           repo: app
@@ -124,12 +96,9 @@ workflows:
           filters:
             branches:
               only: master
-      - db-create-migrate-on-task-run:
-           requires:
-             - aws-ecr/build-and-push-image
       - aws-ecs/deploy-service-update:
           requires:
-            - db-create-migrate-on-task-run
+            - aws-ecr/build-and-push-image
           family: 'Task01' # ECSのタスク定義名
           cluster-name: 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01' #ECSのクラスターのARN
           service-name: 'ecs-rails-service' #サービス名
