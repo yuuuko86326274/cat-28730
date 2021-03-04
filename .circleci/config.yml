@@ -53,7 +53,8 @@ jobs:
           command: docker-compose down
 
   db-migrate-on-task-run:
-    executor: container
+    machine:
+       image: ubuntu-1604:201903-01
     steps:
       - checkout
       - aws-cli/setup:
