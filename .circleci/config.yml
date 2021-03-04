@@ -82,7 +82,7 @@ jobs:
               --task-definition 'Task01' \
               --overrides '{ "containerOverrides": [ { "name": "app", "command": ["rails", "db:migrate"] } ] }'
 workflows:
-  build_and_test:  
+  build-and-deploy:  
     jobs:
 #テスト  
   #     - test
@@ -125,7 +125,7 @@ workflows:
              - aws-ecr/build-and-push-image
       - aws-ecs/deploy-service-update:
           requires:
-            - aws-ecr/build-and-push-image
+            - db-create-migrate-on-task-run
           family: 'Task01' # ECSのタスク定義名
           cluster-name: 'arn:aws:ecs:ap-northeast-1:308853228710:cluster/Cluster01' #ECSのクラスターのARN
           service-name: 'ecs-rails-service' #サービス名
