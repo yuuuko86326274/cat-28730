@@ -53,13 +53,8 @@ jobs:
           command: docker-compose down
 
   db-migrate-on-task-run:
-    executors:
-      container:
-        working_directory: ~/workdir
-        docker:
-          - image: circleci/ruby:2.6.5
-            environment:
-              TZ: Asia/Tokyo
+    machine:
+       image: ubuntu-1604:201903-01
     steps:
       - checkout
       - aws-cli/setup:
