@@ -1,7 +1,7 @@
 FROM ruby:2.6.5
 
-ENV RAILS_ROOT="/workdir"
-RUN mkdir $RAILS_ROOT
+ENV RAILS_ROOT /var/www/workdir
+RUN mkdir -p $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
 ENV RAILS_ENV="production"
@@ -23,11 +23,11 @@ apt-get update && apt-get install -y yarn
 RUN gem install bundler -v 2.1.4
 RUN bundle install
 
-RUN mkdir -p $RAILS_ROOT/tmp/sockets
-# VOLUME $RAILS_ROOT/public
-# VOLUME $RAILS_ROOT/tmp
-
 COPY . $RAILS_ROOT
+
+RUN mkdir -p $RAILS_ROOT/tmp/sockets
+VOLUME $RAILS_ROOT/public
+VOLUME $RAILS_ROOT/tmp
 
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
@@ -42,9 +42,9 @@ RUN RAILS_ENV="production" \
  && rm -rf node_modules tmp/cache
 
 ENV RAILS_SERVE_STATIC_FILES="true"
-COPY entrypoint.sh /usr/bin/
-RUN chmod +x /usr/bin/entrypoint.sh
-ENTRYPOINT ["entrypoint.sh"]
+# COPY entrypoint.sh /usr/bin/
+# RUN chmod +x /usr/bin/entrypoint.sh
+# ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 CMD [ "config/containers/app_cmd.sh" ]

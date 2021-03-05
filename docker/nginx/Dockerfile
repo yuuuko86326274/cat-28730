@@ -6,7 +6,7 @@ RUN apt-get update && \
   locale-gen ja_JP.UTF-8
 ENV LC_ALL ja_JP.UTF-8
 
-ENV RAILS_ROOT="/workdir"
+ENV RAILS_ROOT /var/www/workdir
 WORKDIR $RAILS_ROOT
 COPY public public/
 
