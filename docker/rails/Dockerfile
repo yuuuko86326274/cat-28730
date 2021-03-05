@@ -2,6 +2,7 @@ FROM ruby:2.6.5
 
 ENV RAILS_ROOT /var/www/workdir
 RUN mkdir -p $RAILS_ROOT
+RUN chmod +x $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
 ENV RAILS_ENV="production"
@@ -26,8 +27,9 @@ RUN bundle install
 COPY . $RAILS_ROOT
 
 RUN mkdir -p $RAILS_ROOT/tmp/sockets
-VOLUME $RAILS_ROOT/public
-VOLUME $RAILS_ROOT/tmp
+RUN mkdir -p $RAILS_ROOT/tmp/pids
+# VOLUME $RAILS_ROOT/public
+# VOLUME $RAILS_ROOT/tmp
 
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
