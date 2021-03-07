@@ -22,7 +22,7 @@ stderr_path  "#{rails_root}/log/unicorn_stderr.log" #File.expand_path('../../log
 stdout_path  "#{rails_root}/log/unicorn_stdout.log" #File.expand_path('../../log/unicorn_stdout.log', __FILE__)
 
 # # Nginxで使用する場合は以下の設定を行う。
-listen  "#{rails_root}/tmp/sockets/unicorn.sock" #"/var/socks/unicorn.sock"  #File.expand_path('../../tmp/sockets/unicorn.sock', __FILE__)
+listen  "/tmp/sockets/unicorn.sock" #"/var/socks/unicorn.sock"  #File.expand_path('../../tmp/sockets/unicorn.sock', __FILE__)
 
 # プロセスの停止などに必要なPIDファイルの保存先を指定。
 pid  "#{rails_root}/tmp/pids/unicorn.pid" #"/var/run/unicorn.pid"#File.expand_path('../../tmp/pids/unicorn.pid', __FILE__)
