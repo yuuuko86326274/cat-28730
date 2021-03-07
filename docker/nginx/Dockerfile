@@ -8,6 +8,7 @@ ENV LC_ALL ja_JP.UTF-8
 
 ENV RAILS_ROOT /var/www/workdir
 WORKDIR $RAILS_ROOT
+RUN mkdir log
 COPY public public/
 
 # 初期状態の設定ファイル

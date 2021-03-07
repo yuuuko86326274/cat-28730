@@ -13,7 +13,7 @@ apt-get update && apt-get install -y yarn
 
 ENV RAILS_ROOT /var/www/workdir
 RUN mkdir -p $RAILS_ROOT
-RUN chmod 766 $RAILS_ROOT
+RUN chmod +x $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
 ENV RAILS_ENV="production"
