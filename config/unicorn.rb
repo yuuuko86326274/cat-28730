@@ -12,7 +12,7 @@ worker_processes 2
 # # 指定しなくても良い。
 # # Unicornの起動コマンドを実行するディレクトリを指定します。
 # # （記載しておけば他のディレクトリでこのファイルを叩けなくなる。）
-working_directory rails_root
+# working_directory rails_root
 
 # 接続タイムアウト時間
 timeout 30
