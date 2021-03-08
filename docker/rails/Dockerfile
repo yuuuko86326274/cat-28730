@@ -1,18 +1,18 @@
 FROM ruby:2.6.5
 
-ENV LANG C.UTF-8
-RUN apt-get update -qq && apt-get install -y build-essential libpq-dev nodejs
+RUN apt-get update -y && \
+    apt-get install --no-install-recommends -y \
+    default-mysql-client \
+    nodejs \
+    npm \
+    vim \
+    sudo && \
+    npm install -g -y yarn && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-RUN curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
-apt-get install nodejs
-
-RUN apt-get update && apt-get install -y curl apt-transport-https wget && \
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
-echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-apt-get update && apt-get install -y yarn
-
-ENV RAILS_ROOT /home/ec2-user/workdir
-RUN mkdir -p $RAILS_ROOT
+ENV RAILS_ROOT /var/www/workdir
+RUN mkdir $RAILS_ROOT
 RUN chmod +x $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
@@ -22,7 +22,10 @@ ENV NODE_ENV="production"
 COPY Gemfile Gemfile.lock $RAILS_ROOT/
 
 RUN gem install bundler -v 2.1.4
-RUN bundle install
+RUN bundle install && \
+    bundle exec rails webpacker:install
+RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
+    echo "Asia/Tokyo" > /etc/timezone
 
 COPY . $RAILS_ROOT
 
