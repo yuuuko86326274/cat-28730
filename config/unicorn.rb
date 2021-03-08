@@ -1,5 +1,5 @@
 # Railsのルートパスを求める。(RAILS_ROOT/config/unicorn.rbに配置している場合。)
-rails_root = File.expand_path('../..', __FILE__) #"/var/www/workdir" #ENV['RAILS_ROOT'] 
+rails_root =  "/home/ec2-user/workdir" #ENV['RAILS_ROOT'] File.expand_path('../..', __FILE__)
 
 before_exec do |server|
   ENV['BUNDLE_GEMFILE'] = "#{rails_root}/Gemfile"

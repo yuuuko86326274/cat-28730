@@ -6,7 +6,7 @@ RUN apt-get update && \
   locale-gen ja_JP.UTF-8
 ENV LC_ALL ja_JP.UTF-8
 
-ENV RAILS_ROOT /workdir
+ENV RAILS_ROOT /home/ec2-user/workdir
 WORKDIR $RAILS_ROOT
 RUN mkdir log
 COPY public public/

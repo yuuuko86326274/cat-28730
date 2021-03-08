@@ -11,7 +11,7 @@ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
 apt-get update && apt-get install -y yarn
 
-ENV RAILS_ROOT /workdir
+ENV RAILS_ROOT /home/ec2-user/workdir
 RUN mkdir -p $RAILS_ROOT
 RUN chmod +x $RAILS_ROOT
 WORKDIR $RAILS_ROOT
@@ -29,7 +29,7 @@ COPY . $RAILS_ROOT
 RUN mkdir -p $RAILS_ROOT/tmp/sockets
 RUN mkdir -p $RAILS_ROOT/tmp/pids
 VOLUME $RAILS_ROOT/public
-VOLUME $RAILS_ROOT/tmp/sockets
+VOLUME $RAILS_ROOT/tmp
 
 ARG RAILS_MASTER_KEY
 ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
@@ -44,9 +44,6 @@ RUN RAILS_ENV="production" \
  && rm -rf node_modules tmp/cache
 
 ENV RAILS_SERVE_STATIC_FILES="true"
-# COPY entrypoint.sh /usr/bin/
-# RUN chmod +x /usr/bin/entrypoint.sh
-# ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 CMD [ "config/containers/app_cmd.sh" ]
