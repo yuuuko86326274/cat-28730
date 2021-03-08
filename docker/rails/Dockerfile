@@ -12,7 +12,7 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
 
 ENV RAILS_ROOT /var/www/workdir
-RUN mkdir $RAILS_ROOT
+RUN mkdir -p $RAILS_ROOT
 RUN chmod +x $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
