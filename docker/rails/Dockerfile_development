@@ -19,4 +19,7 @@ RUN bundle install
 
 COPY . $RAILS_ROOT
 
+RUN mkdir -p $RAILS_ROOT/tmp/sockets
+RUN mkdir -p $RAILS_ROOT/tmp/pids
+
 EXPOSE 3000

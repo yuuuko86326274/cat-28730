@@ -12,8 +12,8 @@ RUN apt-get update -y && \
     rm -rf /var/lib/apt/lists/*
 
 ENV RAILS_ROOT /workdir
-RUN mkdir -p $RAILS_ROOT
-RUN chmod +x $RAILS_ROOT
+RUN mkdir $RAILS_ROOT
+# RUN chmod +x $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
 ENV RAILS_ENV="production"
@@ -31,13 +31,13 @@ COPY . $RAILS_ROOT
 
 RUN mkdir -p $RAILS_ROOT/tmp/sockets
 RUN mkdir -p $RAILS_ROOT/tmp/pids
-VOLUME $RAILS_ROOT/public
-VOLUME $RAILS_ROOT/tmp
+# VOLUME $RAILS_ROOT/public
+# VOLUME $RAILS_ROOT/tmp
 
 ARG RAILS_MASTER_KEY
-ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
+# ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
 ARG SECRET_KEY_BASE
-ENV SECRET_KEY_BASE ${SECRET_KEY_BASE}
+# ENV SECRET_KEY_BASE ${SECRET_KEY_BASE}
 
 RUN yarn install --check-files
 RUN RAILS_ENV="production" \
@@ -46,7 +46,6 @@ RUN RAILS_ENV="production" \
  && yarn cache clean \
  && rm -rf node_modules tmp/cache
 
-ENV RAILS_SERVE_STATIC_FILES="true"
 EXPOSE 3000
 
 CMD [ "config/containers/app_cmd.sh" ]

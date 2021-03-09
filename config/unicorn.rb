@@ -1,5 +1,5 @@
 # Railsのルートパスを求める。(RAILS_ROOT/config/unicorn.rbに配置している場合。)
-rails_root = ENV['RAILS_ROOT'] #File.expand_path('../..', __FILE__)
+rails_root = "/workdir" #File.expand_path('../..', __FILE__) #ENV['RAILS_ROOT']  
 
 before_exec do |server|
   ENV['BUNDLE_GEMFILE'] = "#{rails_root}/Gemfile"
@@ -15,17 +15,24 @@ worker_processes 2
 # working_directory rails_root
 
 # 接続タイムアウト時間
-timeout 30
+timeout 600
 
 # Unicornのエラーログと通常ログの位置を指定。
 stderr_path  "#{rails_root}/log/unicorn_stderr.log" #File.expand_path('../../log/unicorn_stderr.log', __FILE__)
 stdout_path  "#{rails_root}/log/unicorn_stdout.log" #File.expand_path('../../log/unicorn_stdout.log', __FILE__)
 
 # # Nginxで使用する場合は以下の設定を行う。
-listen  "#{rails_root}/tmp/sockets/unicorn.sock" #"/var/socks/unicorn.sock"  #File.expand_path('../../tmp/sockets/unicorn.sock', __FILE__)
+# listen  #"/var/socks/unicorn.sock"  #File.expand_path('../../tmp/sockets/unicorn.sock', __FILE__)
+
+# developmentとproductionで場合分け
+if ENV['RAILS_ENV'] == 'production'
+  listen 3000
+else
+  listen "/workdir/tmp/sockets/unicorn.sock" #"/share/unicorn.sock"
+end
 
 # プロセスの停止などに必要なPIDファイルの保存先を指定。
-pid  "#{rails_root}/tmp/pids/unicorn.pid" #"/var/run/unicorn.pid"#File.expand_path('../../tmp/pids/unicorn.pid', __FILE__)
+pid  "#{rails_root}/tmp/pids/unicorn.pid" #"/var/run/unicorn.pid" #File.expand_path('../../tmp/pids/unicorn.pid', __FILE__)
 
 # 基本的には`true`を指定する。Unicornの再起動時にダウンタイムなしで再起動が行われる。
 preload_app true

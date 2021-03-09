@@ -6,16 +6,18 @@ RUN apt-get update && \
   locale-gen ja_JP.UTF-8
 ENV LC_ALL ja_JP.UTF-8
 
-ENV RAILS_ROOT /workdir
-WORKDIR $RAILS_ROOT
-RUN mkdir log
-COPY public public/
+# ENV RAILS_ROOT /workdir
+# WORKDIR $RAILS_ROOT
+# RUN mkdir log
+# COPY public public/
+
+# VOLUME $RAILS_ROOT/public
+# VOLUME $RAILS_ROOT/tmp
 
 # 初期状態の設定ファイル
 ADD ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
 ADD ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 80
 
 # FROM nginx:1.16
 
