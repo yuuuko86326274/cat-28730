@@ -25,11 +25,11 @@ stdout_path  "#{rails_root}/log/unicorn_stdout.log" #File.expand_path('../../log
 # listen  #"/var/socks/unicorn.sock"  #File.expand_path('../../tmp/sockets/unicorn.sock', __FILE__)
 
 # developmentとproductionで場合分け
-if ENV['RAILS_ENV'] == 'production'
-  listen 3000
-else
-  listen "/workdir/tmp/sockets/unicorn.sock" #"/share/unicorn.sock"
-end
+# if ENV['RAILS_ENV'] == 'production'
+#   listen 3000
+# else
+listen "/workdir/tmp/sockets/unicorn.sock" #"/share/unicorn.sock"
+# end
 
 # プロセスの停止などに必要なPIDファイルの保存先を指定。
 pid  "#{rails_root}/tmp/pids/unicorn.pid" #"/var/run/unicorn.pid" #File.expand_path('../../tmp/pids/unicorn.pid', __FILE__)
