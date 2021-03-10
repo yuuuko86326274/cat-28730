@@ -1,5 +1,5 @@
 # Railsのルートパスを求める。(RAILS_ROOT/config/unicorn.rbに配置している場合。)
-rails_root = "/workdir" #File.expand_path('../..', __FILE__) #ENV['RAILS_ROOT']  
+rails_root = "/var/www/workdir"  #File.expand_path('../..', __FILE__)  #ENV['RAILS_ROOT']  
 
 before_exec do |server|
   ENV['BUNDLE_GEMFILE'] = "#{rails_root}/Gemfile"
@@ -28,7 +28,7 @@ stdout_path  "#{rails_root}/log/unicorn_stdout.log" #File.expand_path('../../log
 # if ENV['RAILS_ENV'] == 'production'
 #   listen 3000
 # else
-listen "/workdir/tmp/sockets/unicorn.sock" #"/share/unicorn.sock"
+listen "///var/www/workdir/tmp/sockets/unicorn.sock" #"/share/unicorn.sock"
 # end
 
 # プロセスの停止などに必要なPIDファイルの保存先を指定。
