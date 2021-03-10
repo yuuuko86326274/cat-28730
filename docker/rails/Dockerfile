@@ -11,8 +11,8 @@ RUN apt-get update -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-ENV RAILS_ROOT /var/www/workdir
-RUN mkdir -p $RAILS_ROOT
+ENV RAILS_ROOT /workdir
+RUN mkdir $RAILS_ROOT
 # RUN chmod +x $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
@@ -30,10 +30,10 @@ RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
 COPY . $RAILS_ROOT
 
 RUN mkdir -p $RAILS_ROOT/tmp/sockets
-RUN mkdir -p $RAILS_ROOT/tmp/pids
-VOLUME $RAILS_ROOT/public
-VOLUME $RAILS_ROOT/tmp
-VOLUME /var/lib/mysql
+# RUN mkdir -p $RAILS_ROOT/tmp/pids
+# VOLUME $RAILS_ROOT/public
+# VOLUME $RAILS_ROOT/tmp
+# VOLUME /var/lib/mysql
 
 ARG RAILS_MASTER_KEY
 # ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
@@ -49,4 +49,5 @@ RUN RAILS_ENV="production" \
 
 EXPOSE 3000
 
-CMD [ "config/containers/app_cmd.sh" ]
+CMD ["bundle", "exec", "puma", "-e", "production", "-C", "config/puma.rb"]
+# CMD [ "config/containers/app_cmd.sh" ]

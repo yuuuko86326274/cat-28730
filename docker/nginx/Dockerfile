@@ -6,12 +6,12 @@ RUN apt-get update && \
   locale-gen ja_JP.UTF-8
 ENV LC_ALL ja_JP.UTF-8
 
-ENV RAILS_ROOT /var/www/workdir
-WORKDIR $RAILS_ROOT
-COPY public public/
+# ENV RAILS_ROOT /var/www/workdir
+# WORKDIR $RAILS_ROOT
+# COPY public public/
 
-VOLUME $RAILS_ROOT/public
-VOLUME $RAILS_ROOT/tmp
+# VOLUME $RAILS_ROOT/public
+# VOLUME $RAILS_ROOT/tmp
 
 # 初期状態の設定ファイル
 ADD ./docker/nginx/nginx.conf /etc/nginx/nginx.conf
