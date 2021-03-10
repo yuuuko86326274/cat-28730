@@ -19,13 +19,14 @@ services:
       dockerfile: ./docker/rails/Dockerfile_development
     environment:
       RAILS_ENV:  development #切替必要test
-    command: bundle exec unicorn -p 3000 -c config/unicorn.rb
+    command: bundle exec puma -C config/puma.rb
     env_file: .env #切替必要
     ports:
-      - "3000:3000"
+      - "3000"
     volumes:
       - .:/workdir
       - /var/tmp
+      - sockets:/app/tmp/sockets
     tty: true
     depends_on:
       - db
@@ -47,3 +48,4 @@ services:
 
 volumes:
   mysql-data:
+  sockets:

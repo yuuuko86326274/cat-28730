@@ -47,7 +47,5 @@ RUN RAILS_ENV="production" \
  && yarn cache clean \
  && rm -rf node_modules tmp/cache
 
-EXPOSE 3000
-
-CMD ["bundle", "exec", "puma", "-e", "production", "-C", "config/puma.rb"]
+CMD ["bundle", "exec", "puma", "-E", "production", "-C", "config/puma.rb"]
 # CMD [ "config/containers/app_cmd.sh" ]
