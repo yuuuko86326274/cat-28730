@@ -30,10 +30,10 @@ RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
 COPY . $RAILS_ROOT
 
 RUN mkdir -p $RAILS_ROOT/tmp/sockets
-# RUN mkdir -p $RAILS_ROOT/tmp/pids
-# VOLUME $RAILS_ROOT/public
-# VOLUME $RAILS_ROOT/tmp
-# VOLUME /var/lib/mysql
+RUN mkdir -p $RAILS_ROOT/tmp/pids
+RUN mkdir -p $RAILS_ROOT/log
+VOLUME $RAILS_ROOT/public
+VOLUME $RAILS_ROOT/tmp
 
 ARG RAILS_MASTER_KEY
 # ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
