@@ -1,7 +1,7 @@
 # アプリケーションディレクトリ
 app_dir = File.expand_path("../../", __FILE__)
 # ソケット通信を図る為bindでURI指定
-bind "unix:///workdir/tmp/sockets/puma.sock"
+bind "unix:#{app_dir}/tmp/sockets/puma.sock"
 # PIDファイル所在(プロセスID)
 pidfile "#{app_dir}/tmp/pids/puma.pid"
 # stateファイルはpumactlコマンドでサーバーを操作する。その所在。
