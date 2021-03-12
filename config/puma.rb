@@ -1,5 +1,5 @@
 # アプリケーションディレクトリ
-app_dir = File.expand_path("../../", __FILE__)
+app_dir = "/workdir" #File.expand_path("../../", __FILE__)
 # ソケット通信を図る為bindでURI指定
 bind "unix://#{app_dir}/tmp/sockets/puma.sock"
 # PIDファイル所在(プロセスID)
