@@ -22,11 +22,11 @@ services:
     command: bundle exec puma -C config/puma.rb
     env_file: .env #切替必要
     ports:
-      - "3000"
+      - "3000:3000"
     volumes:
       - .:/workdir
       - /var/tmp
-      - sockets:/app/tmp/sockets
+      - sockets:/workdir/tmp/sockets
     tty: true
     depends_on:
       - db
