@@ -54,7 +54,7 @@ https://www.neko-matching-service.com/
 - RuboCop
 
 ## インフラ構成図
-![](app/assets/images/infura.png) 
+![](app/assets/images/infura1.png) 
 
 ## 要件一覧
 | 優先順位（高：3、中：2、低：1）| 機能             | 目的                                | 詳細                                                | ストーリー(ユースケース)                            |見積もり（所要時間）       |
