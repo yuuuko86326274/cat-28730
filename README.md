@@ -40,16 +40,15 @@ https://www.neko-matching-service.com/
 - JavaScript (決済処理,投稿画像プレビュー)
 - Ruby 2.6.5
 - Ruby on Rails 6.0.0
-- PayJP (API)
+- PayJP (決済API)
 - MySQL 5.6
 - Nginx
-- Unicorn
+- Puma
 - AWS
   - S3
-  - EC2(VPC/ACM/ELB)
+  - ECS(EC2/VPC/ACM/ALB/ECR/RDS)
   - Route53
 - CercleCI
-- Capistrano
 - RSpec
 - RuboCop
 
