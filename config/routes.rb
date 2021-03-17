@@ -2,13 +2,13 @@ Rails.application.routes.draw do
   get 'traders/show'
   get 'personals/show'
   devise_for :personals, controllers:{
-    # sessions:      'personals/sessions',
-    # passwords:     'personals/passwords',
+    sessions:      'personals/sessions',
+    passwords:     'personals/passwords',
     registrations: 'personals/registrations'
   }
   devise_for :traders, controllers:{
-    # sessions:      'traders/sessions',
-    # passwords:     'traders/passwords',
+    sessions:      'traders/sessions',
+    passwords:     'traders/passwords',
     registrations: 'traders/registrations'
   }
   devise_scope :personal do

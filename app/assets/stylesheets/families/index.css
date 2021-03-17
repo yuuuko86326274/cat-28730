@@ -17,6 +17,7 @@
   display: flex;
   justify-content: center;
   border: 1px solid lightsteelblue;
+  overflow: scroll;
 }
 
 .transaction-sab{
@@ -24,12 +25,18 @@
   padding: 30px;
   min-width: 600px;
   max-width: 950px;
+  min-height: 1000px;
 }
 
 .transaction-title-text{
   text-align: center;
   font-size: x-large;
   font: bold;
+}
+
+.transaction-form-wrap{
+  height: 2000px;
+  min-height: 1000px;
 }
 
 .info-input-haedline{
