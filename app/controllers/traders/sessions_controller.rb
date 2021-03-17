@@ -4,7 +4,7 @@ class Traders::SessionsController < Devise::SessionsController
   def new_guest
     trader = Trader.guest
     sign_in trader
-    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    redirect_to root_path, notice: 'ゲストユーザー（猫を保護した方）としてログインしました。'
   end
   # before_action :configure_sign_in_params, only: [:create]
 
