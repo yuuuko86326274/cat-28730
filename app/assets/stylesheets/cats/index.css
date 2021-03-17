@@ -29,12 +29,6 @@
   align-items: center;
 }
 
-.video{
-  min-height: 300px;
-  width: 60%;
-  height: 38vh;
-}
-
 .contents{
   display: flex;
   flex-direction: column;

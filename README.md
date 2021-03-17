@@ -71,7 +71,6 @@ https://www.neko-matching-service.com/
 - お気に入り登録
 - 検索（占い方式)
 - コメント
-- youtube動画
 
 ## テスト用アカウント等
   ### 猫を飼いたい方用
