@@ -9,6 +9,7 @@
 https://www.neko-matching-service.com/
 - 常時SSL化。
 - ゲストログイン出来ます。
+- レスポンシブデザイン対応。
 
 ## 目指した課題解決
   ### ペルソナ
@@ -48,8 +49,8 @@ https://www.neko-matching-service.com/
 - MySQL 5.6
 - Nginx
 - Puma
-- RSpec
 - RuboCop
+- RSpec
 - AWS
   - S3
   - ECS(EC2/VPC/ACM/ALB/ECR/RDS)
