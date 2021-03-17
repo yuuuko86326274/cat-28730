@@ -35,7 +35,7 @@ ARG RAILS_MASTER_KEY
 ARG SECRET_KEY_BASE
 
 RUN yarn install --check-files
-RUN RAILS_ENV \
+RUN $RAILS_ENV \
  SECRET_KEY_BASE=${SECRET_KEY_BASE} \
  bundle exec rails assets:precompile \
  && yarn cache clean \
