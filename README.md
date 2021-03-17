@@ -48,13 +48,13 @@ https://www.neko-matching-service.com/
 - MySQL 5.6
 - Nginx
 - Puma
+- RSpec
+- RuboCop
 - AWS
   - S3
   - ECS(EC2/VPC/ACM/ALB/ECR/RDS)
-  - Route53
-- CercleCI
-- RSpec
-- RuboCop
+  - Route53(お名前.com)
+- CercleCI/CD
 
 ## 実装した機能
 - 会員登録（猫を買いたい方・猫を保護した方）
