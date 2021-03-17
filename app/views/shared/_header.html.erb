@@ -10,41 +10,44 @@
       <% end %>
     </div>
   </div>
-  
-  <% unless trader_signed_in? %>  
-    <div class="user-menu">↓↓猫を飼いたい方はこちらから↓↓
-    <ul class="header-bar-row">
+
+<%= render 'shared/flash_messages' %>
+
+  <% unless trader_signed_in? %> 
+  ↓↓猫を飼いたい方はこちらから↓↓ 
+    <div class="user-menu">
+    <ul >
       <li class="search">検索</li>
       <li class="favorite">ぴったり猫占い</li>
+    </ul>
+    <ul class="header-bar-row">
     <% if personal_signed_in? %>
-      <li class="grid">
-        <%= link_to "マイページ", personals_show_path, class:"login" %>
-        <%= link_to "ログアウト", destroy_personal_session_path, method: :delete, class:"login" %>
-      </li>
+      <li ><%= link_to "マイページ", personals_show_path, class:"login1" %></li>
+      <li ><%= link_to "ログアウト", destroy_personal_session_path, method: :delete, class:"login1" %></li>
     <% else %>
-      <li class="grid">
-        <%= link_to "ログイン", new_personal_session_path, class:"login" %>
-        <%= link_to "新規登録", new_personal_registration_path, class:"login" %>
-      </li>
+      <li ><%= link_to "ログイン", new_personal_session_path, class:"login2" %></li>
+      <li ><%= link_to "新規登録", new_personal_registration_path, class:"login2" %></li>
+      <li ><%= link_to 'ゲストログイン（閲覧用）', traders_guest_sign_in_path, method: :post, class:"login3" %></li>
     <% end %>
     </ul>
     </div>
   <% end %>
   <% unless  personal_signed_in? %>
-    <div class="user-menu">↓↓猫を保護した方はこちらから↓↓
-    <ul class="header-bar-row">
+  ↓↓猫を保護した方はこちらから↓↓
+    <div class="user-menu">
+    <ul >
       <li class="search">検索</li>
-      <li class="favorite"><%= link_to "猫登録", new_cat_path, class:"cat-registration" %></li>
+      <li ><%= link_to "猫登録", new_cat_path, class:"favorite" %></li>
+    </ul>
+    <ul class="header-bar-row">
     <% if trader_signed_in? %>
-      <li class="grid">
-        <%= link_to "マイページ", "/traders/#{current_trader.id}", class:"login"  %>
-        <%= link_to "ログアウト", destroy_trader_session_path, method: :delete, class:"login"  %>
-      </li>
+      <li ><%= link_to "マイページ", "/traders/#{current_trader.id}", class:"login1"  %></li>
+      <li> <%= link_to "ログアウト", destroy_trader_session_path, method: :delete, class:"login1" %></li>
     <% else %>
-      <li class="grid">
-        <%= link_to "ログイン", new_trader_session_path, class:"login"  %>
-        <%= link_to "新規登録", new_trader_registration_path, class:"login"  %>
-      </li>
+      <li ><%= link_to "ログイン", new_trader_session_path, class:"login2"  %></li>
+      <li ><%= link_to "新規登録", new_trader_registration_path, class:"login2"  %></li>
+      <li ><%= link_to 'ゲストログイン（閲覧用）', personals_guest_sign_in_path, method: :post, class:"login3" %></li>
+    </ul>  
     <% end %>
     </div>
   <% end %>

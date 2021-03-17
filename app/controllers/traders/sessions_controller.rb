@@ -1,6 +1,11 @@
 #  frozen_string_literal: true
 
 class Traders::SessionsController < Devise::SessionsController
+  def new_guest
+    trader = Trader.guest
+    sign_in trader
+    redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+  end
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in

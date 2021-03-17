@@ -2,6 +2,19 @@ class Trader < ApplicationRecord
   extend ActiveHash::Associations::ActiveRecordExtensions
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  def self.guest
+    find_or_create_by(email: 'guest@example.com') do |trader|
+      trader.password = SecureRandom.urlsafe_base64
+      trader.password_confirmation = trader.password
+      trader.t_name = "ゲストユーザー"
+      trader.t_postal_code = "111-1111"
+      trader.area_id = "1"
+      trader.t_city = "横浜市"
+      trader.t_address_num = "下島町5丁目3ー３３"
+      trader.t_tel = "01234567890"
+    end
+  end
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 

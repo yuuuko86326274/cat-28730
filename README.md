@@ -8,6 +8,7 @@
 
 ## URL 
 https://www.neko-matching-service.com/
+    ※ゲストログイン出来ます。
 
 ## 目指した課題解決
   ### ペルソナ
@@ -86,6 +87,7 @@ https://www.neko-matching-service.com/
 - お気に入り登録
 - 検索（占い方式)
 - コメント
+- youtube動画
 
 ## テスト用アカウント等
   ### 飼育決定者用

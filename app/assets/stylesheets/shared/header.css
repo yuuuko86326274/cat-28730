@@ -33,61 +33,66 @@
 
 .user-menu{
   justify-content: center;
+  display: flex;
   background-color: blanchedalmond;
   font-weight: bold;
   height: 75px;
   width: 100%;
 }
 
-.header-bar-row{
+ul {
   display: flex;
-  justify-content: space-between;
   height: 50px;
   width: 100%;
+  background-color: #ffff;
+  height: 50px;
+
+}
+li {
+  width: 50%;
+  padding: 13px 13px;
+  color: royalblue;
+  border: 0.5px solid lightsteelblue;
+  font-weight: bold;
+  text-decoration: none;
+}
+.login2{
+  display: flex;
+  justify-content: center;
+  color: #ffff;
+  font-weight: bold;
+  text-decoration: none;
+}
+.login3{
+  display: flex;
+  justify-content: center;
+  color: aqua;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.header-bar-row{
+  display: flex;
+  justify-content: center;
+  background-color: royalblue;
 }
 
 .search{
+  display: flex;
+  justify-content: center;
   background-color: #ffff;
-  width: 25%;
-  height: 50px;
-  border: 0.5px solid lightsteelblue;
-  color: royalblue;
-  font-weight: bold;
-  padding: 13px 10%;
 }
 
 .favorite{
+  display: flex;
+  justify-content: center;
   background-color: #ffff;
-  width: 25%;
-  height: 50px;
-  border: 0.5px solid lightsteelblue;
+  text-decoration: none;
   color: royalblue;
-  font-weight: bold;
-  padding: 13px 5%;
 }
 
 .cat-registration{
-  width: 25%;
-  height: 50px;
-  color: royalblue;
-  font-weight: bold;
-  padding: 13px 10%;
-}
-
-.grid{
-  background-color: royalblue;
-  height: 50px;
-  width: 50%;
-  font-weight: bold;
   display: flex;
-  justify-content: left;
-}
-
-.login{
-  width: 50%;
-  height: 50px;
-  color: #ffff;
-  text-decoration: none;
-  border: 0.5px solid lightsteelblue;
-  padding: 13px 18%;
+  justify-content: center;
+  background-color: #ffff;
 }

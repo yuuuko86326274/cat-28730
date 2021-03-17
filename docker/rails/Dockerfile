@@ -13,7 +13,6 @@ RUN apt-get update -y && \
 
 ENV RAILS_ROOT /workdir
 RUN mkdir $RAILS_ROOT
-# RUN chmod +x $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
 COPY Gemfile Gemfile.lock $RAILS_ROOT/
@@ -28,14 +27,9 @@ COPY . $RAILS_ROOT
 
 RUN mkdir -p $RAILS_ROOT/tmp/sockets
 RUN mkdir -p $RAILS_ROOT/tmp/pids
-# RUN mkdir -p $RAILS_ROOT/log
-# VOLUME $RAILS_ROOT/public
-# VOLUME $RAILS_ROOT/tmp
 
 ARG RAILS_MASTER_KEY
-# ENV RAILS_MASTER_KEY ${RAILS_MASTER_KEY}
 ARG SECRET_KEY_BASE
-# ENV SECRET_KEY_BASE ${SECRET_KEY_BASE}
 
 RUN yarn install --check-files
 RUN RAILS_ENV="production" \
@@ -45,4 +39,3 @@ RUN RAILS_ENV="production" \
  && rm -rf node_modules tmp/cache
 
 CMD ["bundle", "exec", "puma", "-e", "production", "-C", "config/puma.rb"]
-# CMD [ "config/containers/app_cmd.sh" ]
