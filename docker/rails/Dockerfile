@@ -1,5 +1,8 @@
 FROM ruby:2.6.5
 
+ENV RAILS_ENV="production"
+ENV NODE_ENV="production"
+
 RUN apt-get update -y && \
     apt-get install --no-install-recommends -y \
     default-mysql-client \
@@ -32,7 +35,7 @@ ARG RAILS_MASTER_KEY
 ARG SECRET_KEY_BASE
 
 RUN yarn install --check-files
-RUN RAILS_ENV="production" \
+RUN RAILS_ENV \
  SECRET_KEY_BASE=${SECRET_KEY_BASE} \
  bundle exec rails assets:precompile \
  && yarn cache clean \
