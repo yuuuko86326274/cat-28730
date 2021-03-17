@@ -1,7 +1,13 @@
 FROM ruby:2.6.5
 
+ENV RAILS_ROOT /workdir
+RUN mkdir $RAILS_ROOT
+WORKDIR $RAILS_ROOT
+
 ENV RAILS_ENV="production"
 ENV NODE_ENV="production"
+
+COPY Gemfile Gemfile.lock $RAILS_ROOT/
 
 RUN apt-get update -y && \
     apt-get install --no-install-recommends -y \
@@ -12,17 +18,10 @@ RUN apt-get update -y && \
     sudo && \
     npm install -g -y yarn && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+    rm -rf /var/lib/apt/lists/* \
+ && gem install bundler -v 2.1.4 \
+ && bundle install
 
-ENV RAILS_ROOT /workdir
-RUN mkdir $RAILS_ROOT
-WORKDIR $RAILS_ROOT
-
-COPY Gemfile Gemfile.lock $RAILS_ROOT/
-
-RUN gem install bundler -v 2.1.4
-RUN bundle install && \
-    bundle exec rails webpacker:install
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
     echo "Asia/Tokyo" > /etc/timezone
 
@@ -34,11 +33,10 @@ RUN mkdir -p $RAILS_ROOT/tmp/pids
 ARG RAILS_MASTER_KEY
 ARG SECRET_KEY_BASE
 
-RUN yarn install --check-files
-RUN $RAILS_ENV \
- SECRET_KEY_BASE=${SECRET_KEY_BASE} \
+RUN SECRET_KEY_BASE=${SECRET_KEY_BASE} \
  bundle exec rails assets:precompile \
  && yarn cache clean \
  && rm -rf node_modules tmp/cache
 
+ENV RAILS_SERVE_STATIC_FILES="true"
 CMD ["bundle", "exec", "puma", "-e", "production", "-C", "config/puma.rb"]
