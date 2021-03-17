@@ -38,7 +38,7 @@ https://www.neko-matching-service.com/
 ## 使用技術
 - VScode
 - Git/GitHub (Issues,pull requestで擬似チーム開発)
-- Docker (開発、テスト、本番)
+- Docker/docker-compose (開発、テスト、本番)
 - HTML
 - CSS
 - JavaScript (決済処理,投稿画像プレビュー)
