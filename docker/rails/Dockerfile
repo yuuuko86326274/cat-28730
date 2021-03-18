@@ -4,8 +4,8 @@ ENV RAILS_ROOT /workdir
 RUN mkdir $RAILS_ROOT
 WORKDIR $RAILS_ROOT
 
-ENV RAILS_ENV="production"
-ENV NODE_ENV="production"
+ENV RAILS_ENV production
+ENV NODE_ENV production
 
 COPY Gemfile Gemfile.lock $RAILS_ROOT/
 
@@ -20,7 +20,8 @@ RUN apt-get update -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* \
  && gem install bundler -v 2.1.4 \
- && bundle install
+ && bundle install \
+ && bundle exec rails webpacker:install
 
 RUN cp /usr/share/zoneinfo/Asia/Tokyo /etc/localtime && \
     echo "Asia/Tokyo" > /etc/timezone
@@ -33,8 +34,7 @@ RUN mkdir -p $RAILS_ROOT/tmp/pids
 ARG RAILS_MASTER_KEY
 ARG SECRET_KEY_BASE
 
-RUN SECRET_KEY_BASE=${SECRET_KEY_BASE} \
- bundle exec rails assets:precompile \
+RUN SECRET_KEY_BASE=${SECRET_KEY_BASE} bundle exec rails assets:precompile $RAILS_ENV \
  && yarn cache clean \
  && rm -rf node_modules tmp/cache
 
