@@ -34,7 +34,7 @@ RUN mkdir -p $RAILS_ROOT/tmp/pids
 ARG RAILS_MASTER_KEY
 ARG SECRET_KEY_BASE
 
-RUN SECRET_KEY_BASE=${SECRET_KEY_BASE} bundle exec rails assets:precompile $RAILS_ENV \
+RUN SECRET_KEY_BASE=${SECRET_KEY_BASE} rails assets:precompile $RAILS_ENV \
  && yarn cache clean \
  && rm -rf node_modules tmp/cache
 
