@@ -77,5 +77,6 @@ gem 'mini_magick'
 gem 'image_processing', '~> 1.2'
 gem 'payjp'
 gem 'unicorn', '5.4.1'
+gem 'ransack'
 
 gem "aws-sdk-s3", require: false
