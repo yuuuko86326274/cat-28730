@@ -1,0 +1,236 @@
+<%= render "shared/header" %>
+
+<div class="contents-show">
+  <div class="content">
+    <h3>猫を検索する</h3>
+    <div class="content-search">
+    <%= search_form_for @search, url: search_cats_path do |f| %>
+      <table>
+          <tr>
+            <th ><%= f.label :c_name_id, "キーワード検索" %></th>
+            <td ><%= f.search_field :c_name_cont %></td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th ><%= f.label :price, "保護にかかった金額" %></th>
+            <td ><%= f.number_field :price_gteq %>以上〜</td>
+            <td ><%= f.number_field :price_lt %>未満</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :character_id, "性格" %></th>
+            <td class="detail-value"><%= f.radio_button :character_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :character_id_eq, 1 %>活動的</td>
+            <td class="detail-value"><%= f.radio_button :character_id_eq, 2 %>穏やか</td>
+            <td class="detail-value"><%= f.radio_button :character_id_eq, 3 %>甘えん坊</td>
+            <td class="detail-value"><%= f.radio_button :character_id_eq, 4 %>ツンデレ</td>
+            <td class="detail-value"><%= f.radio_button :character_id_eq, 5 %>ワイルド</td>
+            <td class="detail-value"><%= f.radio_button :character_id_eq, 6 %>怖がり</td>
+            <td class="detail-value"><%= f.radio_button :character_id_eq, 7 %>好奇心旺盛</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :age_id, "年齢" %></th>
+            <td class="detail-value"><%= f.radio_button :age_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :age_id_eq, 1 %>幼猫 ( 半年未満 )</td>
+            <td class="detail-value"><%= f.radio_button :age_id_eq, 2 %>子猫 ( 半年〜１歳 )</td>
+            <td class="detail-value"><%= f.radio_button :age_id_eq, 3 %>若猫 ( １歳〜３歳 )</td>
+            <td class="detail-value"><%= f.radio_button :age_id_eq, 4 %>成猫 ( ３歳〜１５歳 )</td>
+            <td class="detail-value"><%= f.radio_button :age_id_eq, 5 %>老猫 ( １５歳以上 )</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :sex_id, "性別" %></th>
+            <td class="detail-value"><%= f.radio_button :sex_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :sex_id_eq, 1 %>オス</td>
+            <td class="detail-value"><%= f.radio_button :sex_id_eq, 2 %>メス</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :ope_id, "去勢・避妊手術" %></th>
+            <td class="detail-value"><%= f.radio_button :ope_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :ope_id_eq, 1 %>未</td>
+            <td class="detail-value"><%= f.radio_button :ope_id_eq, 2 %>済</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :breed_id, "種類" %></th>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 1 %><%= image_tag '混血猫.png', class:"pic" %>混血猫</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 2 %><%= image_tag 'スコティシュ.png', class:"pic" %>スコティッシュ・フォールド</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 3 %><%= image_tag 'アメショ.jpg', class:"pic" %>アメリカン・ショートヘア</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 4 %>マンチカン</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 5 %>日本猫</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 6 %>ノルウェージャン・フォレスト・キャット</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 7 %>ロシアンブルー</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 8 %>ブリティッシュ・ショートヘア</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 9 %>ラグドール</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 10 %>メイン・クーン</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 11 %>ペルシャ（チンチラ）</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 12 %>ベンガル</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 13 %>ソマリ</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 14 %>アビシニアン</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 15 %>アメリカン・カール</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 16 %>ペルシャ</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 17 %>スコティッシュ・フォールド・ロングヘア</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 18 %>ラガマフィン</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 19 %><%= image_tag 'エキゾチック.png', class:"pic" %>エキゾチック・ショートヘア</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 20 %>シンガプーラ</td>
+            <td class="detail-value"><%= f.radio_button :breed_id_eq, 21 %>その他</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :hair_length_id, "毛の長さ" %></th>
+            <td class="detail-value"><%= f.radio_button :hair_length_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :hair_length_id_eq, 1 %>長毛</td>
+            <td class="detail-value"><%= f.radio_button :hair_length_id_eq, 2 %>短毛</td>
+            <td class="detail-value"><%= f.radio_button :hair_length_id_eq, 3 %>その他</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :color_id, "毛の色" %></th>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 1 %>キジトラ</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 2 %>サバトラ</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 3 %>茶トラ</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 4 %>アグーティタビー</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 5 %>クラシック</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 6 %>タビー</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 7 %>スポッテッドタビー</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 8 %>白</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 9 %>黒</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 10 %>グレー</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 11 %>白黒</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 12 %>三毛</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 13 %>ポイント</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 14 %>サビ</td>
+            <td class="detail-value"><%= f.radio_button :color_id_eq, 15 %>その他</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :eye_color_id, "眼の色" %></th>
+            <td class="detail-value"><%= f.radio_button :eye_color_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :eye_color_id_eq, 1 %>グリーン</td>
+            <td class="detail-value"><%= f.radio_button :eye_color_id_eq, 2 %>ブルー</td>
+            <td class="detail-value"><%= f.radio_button :eye_color_id_eq, 3 %>ヘーゼル</td>
+            <td class="detail-value"><%= f.radio_button :eye_color_id_eq, 4 %>アンバー</td>
+            <td class="detail-value"><%= f.radio_button :eye_color_id_eq, 5 %>カッパー</td>
+            <td class="detail-value"><%= f.radio_button :eye_color_id_eq, 6 %>オッドアイ</td>
+            <td class="detail-value"><%= f.radio_button :eye_color_id_eq, 7 %>レッド</td>
+            <td class="detail-value"><%= f.radio_button :eye_color_id_eq, 8 %>その他</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :how_many_id, "希望飼育頭数" %></th>
+            <td class="detail-value"><%= f.radio_button :how_many_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :how_many_id_eq, 1 %>一頭飼育</td>
+            <td class="detail-value"><%= f.radio_button :how_many_id_eq, 2 %>多頭飼育</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :single_id, "独身者応募" %></th>
+            <td class="detail-value"><%= f.radio_button :single_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :single_id_eq, 1 %>不可</td>
+            <td class="detail-value"><%= f.radio_button :single_id_eq, 2 %>可</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :senior_id, "高齢者応募" %></th>
+            <td class="detail-value"><%= f.radio_button :senior_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :senior_id_eq, 1 %>不可</td>
+            <td class="detail-value"><%= f.radio_button :senior_id_eq, 2 %>可</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :fleas_id, "ノミ取り処置" %></th>
+            <td class="detail-value"><%= f.radio_button :fleas_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :fleas_id_eq, 1 %>未</td>
+            <td class="detail-value"><%= f.radio_button :fleas_id_eq, 2 %>済</td>
+            <td class="detail-value"><%= f.radio_button :fleas_id_eq, 3 %>処置中</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :veccine_id, "ワクチン処置" %></th>
+            <td class="detail-value"><%= f.radio_button :veccine_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :veccine_id_eq, 1 %>未</td>
+            <td class="detail-value"><%= f.radio_button :veccine_id_eq, 2 %>1回済</td>
+            <td class="detail-value"><%= f.radio_button :veccine_id_eq, 3 %>2回済</td>
+          </tr>
+      </table>
+      <table>
+          <tr>
+            <th class="detail-item"><%= f.label :kuchu_id, "駆虫処置" %></th>
+            <td class="detail-value"><%= f.radio_button :kuchu_id_eq, '', {:checked => true} %>指定なし</td>
+            <td class="detail-value"><%= f.radio_button :kuchu_id_eq, 1 %>未</td>
+            <td class="detail-value"><%= f.radio_button :kuchu_id_eq, 2 %>済</td>
+            <td class="detail-value"><%= f.radio_button :kuchu_id_eq, 3 %>処置中</td>
+          </tr>
+      </table>
+    </div>
+    <%= f.submit "検索" %>
+    <% end %>
+    <div class="content-result">  
+      <table >
+        <tbody>
+          <tr>
+            <th><%= sort_link(@search, :c_name, "猫の名前") %></th>
+            <th><%= sort_link(@search, :character_id, "性格") %></th>
+            <th><%= sort_link(@search, :age_id, "年齢") %></th>
+            <th><%= sort_link(@search, :sex_id, "性別") %></th>
+            <th><%= sort_link(@search, :ope_id, "去勢・避妊手術") %></th>
+            <th><%= sort_link(@search, :breed_id, "種類") %></th>
+            <th><%= sort_link(@search, :hair_length_id, "毛の長さ") %></th>
+            <th><%= sort_link(@search, :color_id, "毛の色") %></th>
+            <th><%= sort_link(@search, :eye_color_id, "眼の色") %></th>
+            <th><%= sort_link(@search, :how_many_id, "希望飼育頭数") %></th>
+            <th><%= sort_link(@search, :single_id, "独身者応募") %></th>
+            <th><%= sort_link(@search, :senior_id, "高齢者応募") %></th>
+            <th><%= sort_link(@search, :fleas_id, "ノミ取り処置") %></th>
+            <th><%= sort_link(@search, :veccine_id, "ワクチン処置") %></th>
+            <th><%= sort_link(@search, :kuchu_id, "駆虫処置") %></th>
+            <th><%= sort_link(@search, :price, "保護にかかった金額") %></th>
+          </tr>
+          <% @search_products.each do |search_product| %>
+          <tr>
+            <td><%= search_product.c_name %></td>
+            <td><%= search_product.character_id %></td>
+            <td><%= search_product.age_id %></td>
+            <td><%= search_product.sex_id %></td>
+            <td><%= search_product.ope_id %></td>
+            <td><%= search_product.breed_id %></td>
+            <td><%= search_product.hair_length_id %></td>
+            <td><%= search_product.color_id %></td>
+            <td><%= search_product.eye_color_id %></td>
+            <td><%= search_product.how_many_id %></td>
+            <td><%= search_product.single_id %></td>
+            <td><%= search_product.senior_id %></td>
+            <td><%= search_product.fleas_id %></td>
+            <td><%= search_product.veccine_id %></td>
+            <td><%= search_product.kuchu_id %></td>
+            <td><%= search_product.price %></td>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= link_to "戻る", root_path, class:"link-login" %>
+  </div>
+    </div>
+  </div>
+</div>
+
+<%= render "shared/footer"%>

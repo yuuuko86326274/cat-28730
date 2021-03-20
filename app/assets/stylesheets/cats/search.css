@@ -1,0 +1,22 @@
+.content-search{
+  margin: 10px;
+}
+
+.detail-table{
+  margin: 10px;
+}
+
+.detail-item{
+  padding: 5px;
+  border: 1px solid lightsteelblue;
+}
+
+.detail-value{
+  padding: 5px;
+  border: 1px solid lightsteelblue;
+}
+
+.pic{
+  width: 90px;
+  height: 90px;
+}

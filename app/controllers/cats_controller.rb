@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  before_action :move_to_registration, except: [:index, :show]
+  before_action :move_to_registration, except: [:index, :show, :search]
 
   def index
     @cats = Cat.includes(:trader).order('created_at DESC').limit(30)
@@ -14,7 +14,6 @@ class CatsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @cats = Cat.new(cat_params)
     if @cats.valid?
       @cats.save
@@ -30,7 +29,6 @@ class CatsController < ApplicationController
 
   def update
     @cat = Cat.find(params[:id])
-    # binding.pry
     if @cat.valid?
       @cat.update(cat_params)
       redirect_to cat_path
@@ -46,6 +44,9 @@ class CatsController < ApplicationController
     else
       render 'show'
     end
+  end
+
+  def search
   end
 
   private

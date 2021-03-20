@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::Base
+  before_action :set_search
+
   def after_sign_in_path_for(_resource)
     root_path
+  end
+
+  def set_search
+    @search = Cat.ransack(params[:q]) #ransackの検索メソッド
+    @search_products = @search.result(distinct: true).order(created_at: "DESC").includes(:trader) # productsの検索結果一覧 
   end
 
   # before_action :logged_in_user, only:[:edit, :update, :destroy]

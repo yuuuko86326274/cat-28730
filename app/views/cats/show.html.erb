@@ -38,12 +38,12 @@
         <table class="detail-table">
           <tbody>
             <tr>
-              <th class="detail-item">種類</th>
-              <td class="detail-value"><%= @cat.breed.name %></td>
-            </tr>
-            <tr>
               <th class="detail-item">性格</th>
               <td class="detail-value"><%= @cat.character.name %></td>
+            </tr>
+            <tr>
+              <th class="detail-item">年齢</th>
+              <td class="detail-value"><%= @cat.age.name %></td>
             </tr>
             <tr>
               <th class="detail-item">性別</th>
@@ -52,6 +52,10 @@
             <tr>
               <th class="detail-item">去勢・避妊手術</th>
               <td class="detail-value"><%= @cat.ope.name %></td>
+            </tr>
+            <tr>
+              <th class="detail-item">種類</th>
+              <td class="detail-value"><%= @cat.breed.name %></td>
             </tr>
             <tr>
               <th class="detail-item">毛の長さ</th>
