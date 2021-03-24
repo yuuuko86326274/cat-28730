@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   # resources :users, only: [:new, :create, :destroy]
   resources :cats do
     collection do
-      get :search
+      get 'search' 
     end
     resources :families, only: [:index, :new, :create]
   end

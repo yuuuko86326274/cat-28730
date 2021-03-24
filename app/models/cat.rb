@@ -20,7 +20,7 @@ class Cat < ApplicationRecord
   belongs_to_active_hash :single
   belongs_to_active_hash :senior
 
-  validates :price, numericality: { greater_than_or_equal_to: 1000, less_than_or_equal_to: 9_999_999, allow_blank: true }
+  validates :price, numericality: { greater_than_or_equal_to: 1000, less_than_or_equal_to: 50000, allow_blank: true }
 
   validate :image_type, :image_size, :image_length
 
@@ -73,4 +73,5 @@ class Cat < ApplicationRecord
     image.purge
     errors.add(:images, 'は5枚以内にしてください')
   end
+
 end

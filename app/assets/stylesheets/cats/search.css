@@ -1,22 +1,157 @@
-.content-search{
-  margin: 10px;
+.contents-show{
+  background-color: blanchedalmond;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  overflow: scroll;
+  justify-content: center;
 }
 
-.detail-table{
-  margin: 10px;
-}
-
-.detail-item{
-  padding: 5px;
+.content{
+  background-color: #ffff;
+  width: 80%;
+  height: 80%;
+  min-height: 1300px;
+  min-width: 900px;
+  margin: 50px;
+  display: flex;
+  flex-direction: column;
   border: 1px solid lightsteelblue;
+  overflow: scroll;
 }
 
-.detail-value{
+.content>h3{
+  font-size: xx-large;
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.content-all{
+  width: calc(100% - 100px);
+  height: calc(100% - 100px);
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.list{
+  display: flex;
+  justify-content: space-between;
+  min-width: 500px;
+  margin: 15px;
+}
+
+.indispensable{
+  background: #ea352d;
+  margin-left: 8px;
+  padding: 3px;
+  border-radius: 2px;
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.list-2>select{
+  padding-right: 254px;
+}
+
+.list-3{
   padding: 5px;
-  border: 1px solid lightsteelblue;
+  width: 680px;
+  font-size: 16px;
+  min-height: 250px;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
 }
 
-.pic{
-  width: 90px;
-  height: 90px;
+.cat-image-small{
+  display: flex;
+  flex-wrap: wrap;
+  min-width: 800px;
 }
+
+.image-element{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  height: 230px;
+  margin-right: 5px;
+}
+
+.center-center>div>div>img{
+  width: 200px;
+  height: 200px;
+}
+
+.list-s4>select{
+  padding-right: 268.98px;
+}
+
+.list-s5>select{
+  padding-right: 268.98px;
+}
+.list-s6>select{
+  padding-right: 177.73px;
+}
+.list-s7>select{
+  padding-right: 268.98px;
+}
+.list-s8>select{
+  padding-right: 268.98px;
+}
+.list-s9>select{
+  padding-right: 268.98px;
+}
+.list-s10{
+  width: 358.98px;
+  justify-content: flex-end
+}
+.list-s10>input{
+  width: 310px;
+}
+.list-s11>select{
+  padding-right: 28.98px;
+}
+.list-s12>select{
+  padding-right: 269px;
+}
+.list-s13>select{
+  padding-right: 191.48px;
+}
+.list-s14>select{
+  padding-right: 254px;
+}
+.list-s15>select{
+  padding-right: 268.98px;
+}
+.list-s16>select{
+  padding-right: 268.98px;
+}
+.list-s17>select{
+  padding-right: 268.98px;
+}
+
+.list-center{
+  display: flex;
+  justify-content: center;
+  min-width: 500px;
+  margin: 15px;
+}
+
+.list-18>input{
+  font: bold;
+  font-size: large;
+  background-color: royalblue;
+  color: #ffff;
+  padding: 5px 76.01px;
+}
+/* 
+.list-19>input{
+  font: bold;
+  font-size: large;
+  background-color: gray;
+  color: #ffff;
+  padding: 5px 76.01px;
+} */
