@@ -135,7 +135,7 @@
 
 .list-center{
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   min-width: 500px;
   margin: 15px;
 }
@@ -147,11 +147,16 @@
   color: #ffff;
   padding: 5px 76.01px;
 }
-/* 
-.list-19>input{
+
+.list-19{
+  width: 228px;
+  height: 41.48px;
+  background-color: gray;
+  padding: 5px 76.01px;
+}
+
+.list-19>a{
   font: bold;
   font-size: large;
-  background-color: gray;
   color: #ffff;
-  padding: 5px 76.01px;
-} */
+}

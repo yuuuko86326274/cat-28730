@@ -122,6 +122,9 @@
         <div class="list-18">
         <%= f.submit "検索する" %>
         </div>
+        <div class="list-19">
+        <%= link_to "クリア", search_cats_path %>
+        </div>
       </div>
     <% end %>
     </div>
@@ -158,7 +161,7 @@
       <% end %>
       </div>
     </div>
-    <%= link_to "戻る", :back, class:"link-login" %>
+    <%= link_to "戻る", root_path, class:"link-login" %>
   </div>
 </div>
 
