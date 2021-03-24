@@ -38,7 +38,7 @@ RSpec.describe Donations, type: :model do
       it 'donationが、¥9,999,999より高いと保存できないこと' do
         @donations.donation = '10000000'
         @donations.valid?
-        expect(@donations.errors.full_messages).to include('Donation must be less than or equal to 9999999')
+        expect(@donations.errors.full_messages).to include('Donation must be less than or equal to 50000')
       end
 
       it 'donationは半角数字以外の入力では保存できないこと' do

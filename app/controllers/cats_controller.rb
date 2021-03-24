@@ -1,5 +1,6 @@
 class CatsController < ApplicationController
-  before_action :move_to_registration, except: [:index, :show]
+  before_action :move_to_registration, except: [:index, :show, :search]
+  before_action :set_search, only: :search
 
   def index
     @cats = Cat.includes(:trader).order('created_at DESC').limit(30)
@@ -14,7 +15,6 @@ class CatsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @cats = Cat.new(cat_params)
     if @cats.valid?
       @cats.save
@@ -30,7 +30,6 @@ class CatsController < ApplicationController
 
   def update
     @cat = Cat.find(params[:id])
-    # binding.pry
     if @cat.valid?
       @cat.update(cat_params)
       redirect_to cat_path
@@ -48,8 +47,15 @@ class CatsController < ApplicationController
     end
   end
 
-  private
+  def search
+    @cats = Cat.includes(:trader).order('created_at DESC').limit(30)
+    if @q = Cat.ransack(params[:q])
+      @search_products = @q.result(distinct: true)
+    end
+  end
 
+  private
+    
   def move_to_registration
     redirect_to new_trader_registration_path unless trader_signed_in?
   end

@@ -1,6 +1,26 @@
 class ApplicationController < ActionController::Base
+
   def after_sign_in_path_for(_resource)
     root_path
+  end
+
+  def set_search
+    @q = Cat.ransack(params[:q])
+    @q.build_condition if @q.conditions.empty?
+    @character = Character.all
+    @sex = Sex.all
+    @ope = Ope.all
+    @age = Age.all
+    @fleas = Fleas.all
+    @veccine = Veccine.all
+    @kuchu = Kuchu.all
+    @breed = Breed.all
+    @hair_length = HairLength.all
+    @color = Color.all
+    @eye_color = EyeColor.all
+    @how_many = HowMany.all
+    @single = Single.all
+    @senior = Senior.all
   end
 
   # before_action :logged_in_user, only:[:edit, :update, :destroy]

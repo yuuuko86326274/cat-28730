@@ -17,7 +17,7 @@
   ↓↓猫を飼いたい方はこちらから↓↓ 
     <div class="user-menu">
     <ul >
-      <li class="search">検索</li>
+      <li ><%= link_to "検索", search_cats_path, class:"search" %></li>
       <li class="favorite">ぴったり猫占い</li>
     </ul>
     <ul class="header-bar-row">
@@ -36,7 +36,7 @@
   ↓↓猫を保護した方はこちらから↓↓
     <div class="user-menu">
     <ul >
-      <li class="search">検索</li>
+      <li ><%= link_to "検索", search_cats_path, class:"search" %></li>
       <li ><%= link_to "猫登録", new_cat_path, class:"favorite" %></li>
     </ul>
     <ul class="header-bar-row">

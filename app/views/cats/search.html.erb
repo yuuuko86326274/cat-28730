@@ -1,0 +1,168 @@
+<%= render "shared/header" %>
+
+<div class="contents-show">
+  <div class="content">
+    <h3>猫を検索する</h3>
+    <div class="content-all">
+    <%= search_form_for(@q, url: search_cats_path, local:true)do |f| %>
+      <div class="list">
+        <div class="list-in">名前検索
+        </div>
+          <div class="list-1">
+          <%= f.search_field :c_name_cont, placeholder: "猫の名前を入力", maxlength:"40" %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">性格
+        </div>
+          <div class="list-2">
+          <%= f.collection_select :character_id_eq, @character, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">性別
+        </div>
+          <div class="list-s4">
+          <%= f.collection_select :sex_id_eq, @sex, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">去勢避妊手術
+        </div>
+          <div class="list-s5">
+          <%= f.collection_select :ope_id_eq, @ope, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">年齢
+        </div>
+          <div class="list-s6">
+          <%= f.collection_select :age_id_eq, @age, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">ノミ取り処置
+        </div> 
+          <div class="list-s7">
+          <%= f.collection_select :fleas_id_eq, @fleas, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">ワクチン処置
+        </div>
+          <div class="list-s8">
+          <%= f.collection_select :veccine_id_eq, @veccine, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">駆虫処置
+        </div>
+          <div class="list-s9">
+          <%= f.collection_select :kuchu_id_eq, @kuchu, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">保護にかかった金額
+        </div>
+          <div class="list-s10">
+          <%= f.number_field :price_gteq %>円以上
+          <%= f.number_field :price_lt %>円未満
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">種類
+        </div>
+          <div class="list-s11">
+          <%= f.collection_select :breed_id_eq, @breed, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">毛の長さ
+        </div>
+          <div class="list-s12">
+          <%= f.collection_select :hair_length_id_eq, @hair_length, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">毛の色
+        </div>
+          <div class="list-s13">
+          <%= f.collection_select :color_id_eq, @color, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">目の色
+        </div>
+          <div class="list-s14">
+            <%= f.collection_select :eye_color_id_eq, @eye_color, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+      <div class="list-in">希望飼育頭数
+        </div>
+          <div class="list-s15">
+          <%= f.collection_select :how_many_id_eq, @how_many, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">独身者
+        </div>
+          <div class="list-s16">
+            <%= f.collection_select :single_id_eq, @single, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list">
+        <div class="list-in">高齢者
+        </div>
+          <div class="list-s17">
+            <%= f.collection_select :senior_id_eq, @senior, :id, :name, disabled: 0, :include_blank => '指定なし' %>
+          </div>
+      </div>
+      <div class="list-center">
+        <div class="list-18">
+        <%= f.submit "検索する" %>
+        </div>
+        <div class="list-19">
+        <%= link_to "クリア", search_cats_path %>
+        </div>
+      </div>
+    <% end %>
+    </div>
+
+   <div class="contents-all-cat">
+      <div class="contents">
+        <div class="contents-name">
+          <div class="trader-name-center">検索結果一覧</div>
+        </div>
+      </div>
+      <div class="contents_row">
+      <% @cats.each do |cat| %>
+      <% @search_products.each do |search_product| %>
+      <% if search_product == cat %>  
+          <div class="content_post" >
+            <%= link_to cat_path(cat) do %>
+              <div class="trader-one-cat">
+                <% if cat.images.count > 0 %>
+                  <%= image_tag cat.images.first, class:'cat-image' %>
+                    <% if cat.family.present? %>
+                      <div class='trader-family-done'>
+                        <span>家族ができました!!</span>
+                      </div>
+                    <% end %>
+                <% end %>
+                    <div class="cat-name-center">
+                    <%= cat.c_name %>
+                    </div>
+              </div>
+            <% end %> 
+          </div>
+      <% end %>
+      <% end %>
+      <% end %>
+      </div>
+    </div>
+    <%= link_to "戻る", root_path, class:"link-login" %>
+  </div>
+</div>
+
+<%= render "shared/footer"%>
