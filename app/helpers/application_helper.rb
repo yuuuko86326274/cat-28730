@@ -1,9 +1,5 @@
 module ApplicationHelper
 
-  def reset_tag(value = "Reset form", options = {})
-    options = options.stringify_keys
-    tag :input, { type: "reset", value: value }.update(options)
-  end
   # def log_in(user)
   #   session[:user_id] = user.id
   # end
