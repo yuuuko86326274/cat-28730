@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  before_action :move_to_registration, except: [:index, :show, :search]
+  before_action :move_to_registration, except: [:index, :show, :search, :fortune]
   before_action :set_search, only: :search
 
   def index

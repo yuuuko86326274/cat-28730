@@ -18,7 +18,7 @@
     <div class="user-menu">
     <ul >
       <li ><%= link_to "検索", search_cats_path, class:"search" %></li>
-      <li class="favorite">ぴったり猫占い</li>
+      <li ><%= link_to "ぴったり猫占い",  cats_fortune_path, class:"favorite" %></li>
     </ul>
     <ul class="header-bar-row">
     <% if personal_signed_in? %>

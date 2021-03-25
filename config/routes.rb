@@ -19,6 +19,7 @@ Rails.application.routes.draw do
   end
   root to: 'cats#index'
   # resources :users, only: [:new, :create, :destroy]
+  get 'cats/fortune'
   resources :cats do
     collection do
       get 'search' 
