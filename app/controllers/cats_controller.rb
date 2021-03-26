@@ -8,6 +8,8 @@ class CatsController < ApplicationController
 
   def show
     @cat = Cat.find(params[:id])
+    @comment = Comment.new
+    @comments = @cat.comments.includes(:personal, :trader)
   end
 
   def new

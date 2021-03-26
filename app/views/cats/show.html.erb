@@ -14,7 +14,13 @@
           <% end %>
         <% end %>
       </div>
-
+      <div class="show-pictures">
+      <div class="show-cat-pictures">
+        <% @cat.images.each do |img| %>
+          <p><%= image_tag(img, class: "show-cat-images") %></p>
+        <% end %>
+      </div>
+      </div>
       <div class="btn">
       <% if trader_signed_in? && current_trader.id == @cat.trader_id %>
         <%= link_to '編集', edit_cat_path, method: :get, class: "item-red-btn" %>
@@ -34,6 +40,7 @@
           <%= "#{@cat.c_name}ちゃん" %>
         <% end %>
       </h2>
+      
       <div class="table-twin">
         <table class="detail-table">
           <tbody>
@@ -118,8 +125,35 @@
             </tr>
           </tbody>
         </table>
-        <%= link_to "戻る", root_path, class:"link-login" %>
+        <div class="comment-container">
+          <div class="comment-center">
+          <% if trader_signed_in? or personal_signed_in? %>
+            <%= form_with(model: [@cat, @comment], local: true) do |f| %>
+              <%= f.text_area :comment, placeholder: "コメントする(300文字以内)", maxlength: "300", class:"comment-form" %>
+              <%= f.submit "コメント投稿", class:"item-blue-btn" %>
+            <% end %>
+          <% else %>
+            <strong><p>※※※ コメントの投稿には新規登録/ログインが必要です ※※※</p></strong>
+          <% end %>
+          </div>
+          <div class="comments">
+            <h4>＜コメント一覧＞</h4>
+            <% if @comments.present? %>
+              <% @comments.each do |comment| %>
+                <p>
+                <% if comment.personal_id.present? %> 
+                      <strong>匿名：</strong>
+                <% else %>
+                      <strong><%= comment.trader.t_name %>：</strong>
+                <% end %>
+                  <%= comment.comment %>
+                </p>
+              <% end %>
+            <% end %>
     </div> 
+          </div>
+        <%= link_to "戻る", root_path, class:"link-login" %>
+        </div>
   </div>
 </div>
   <%# /商品の概要 %>

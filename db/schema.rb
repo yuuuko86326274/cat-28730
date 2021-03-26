@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_23_100632) do
+ActiveRecord::Schema.define(version: 2021_03_25_125348) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -73,6 +73,18 @@ ActiveRecord::Schema.define(version: 2020_09_23_100632) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["trader_id"], name: "index_cats_on_trader_id"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "personal_id"
+    t.bigint "trader_id"
+    t.bigint "cat_id", null: false
+    t.text "comment", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cat_id"], name: "index_comments_on_cat_id"
+    t.index ["personal_id"], name: "index_comments_on_personal_id"
+    t.index ["trader_id"], name: "index_comments_on_trader_id"
   end
 
   create_table "families", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
