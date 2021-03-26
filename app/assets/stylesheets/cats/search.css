@@ -26,9 +26,9 @@
   margin-top: 30px;
 }
 
-.content-all{
+.content-all-search{
   width: calc(100% - 100px);
-  height: calc(100% - 100px);
+  height: calc(80% - 100px);
   margin: 30px;
   display: flex;
   flex-direction: column;
