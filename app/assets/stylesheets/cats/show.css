@@ -10,39 +10,75 @@
 
 .item-box{
   background-color: #ffff;
-  height: 1426px;
+  height: 130vh;
   width: 80%;
   min-width: 560px;
-  min-height: 1300px;
-  margin: 50px;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid lightsteelblue;
-}
-
-.show-one-cat{
-  width: calc(100% - 60px);
-  height: calc(100% - 60px);
-  margin: 50px;
+  min-height: 3000px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  border: 1px solid lightsteelblue;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.show-one-cat{
+  height: 130vh;
+  width: 80%;
+  min-width: 560px;
+  min-height: 1800px;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 .show-cat-scroll{
-  height: 510px;
-  width: 510px;
+  max-height: 510px;
+  max-width: 510px;
+  min-width: 510px;
+  min-height: 510px;
   overflow-x:scroll;
   overflow-y:hidden;
   display: flex;
-  position: relative;
   background-color: #ffff;
+  position: relative;
 }
 
 .show-cat-image{
-  height: 510px;
-  width: 510px;
+  min-height: 510px;
+  min-width: 510px;
   margin: 1px;
+}
+
+.show-pictures{
+  height: 50px;
+  width: 510px;
+  min-width: 510px;
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.show-cat-pictures{
+  display: flex;
+  justify-content: flex-end; 
+}
+
+.show-cat-pictures>p{
+  min-height: 50px;
+  max-height: 50px;
+  min-width: 50px;
+  max-width: 50px;
+  display: flex;
+  background-color: #ffff;
+  position: relative;
+}
+
+.show-cat-images{
+  min-height: 50px;
+  min-width: 50px;
+  margin: 3px;
 }
 
 .show-family-done {
@@ -137,4 +173,34 @@
   word-wrap: break-word;
   display: -webkit-box;
   -webkit-box-orient: vertical;
+}
+
+.comment-center>form{
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-form{
+  width: 480px;
+  height: 100px;
+}
+
+
+.comment-container{
+  margin-top: 20px;
+  padding: 5px;
+  max-width: 500px;
+  min-width: 480px;
+  border: 1px solid lightsteelblue;
+  
+}
+
+.comments>p{
+  border: 1px solid lightsalmon;
+  margin: 10px;
+  padding: 5px;
+  word-wrap: break-word;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  font-size: 16px;
 }

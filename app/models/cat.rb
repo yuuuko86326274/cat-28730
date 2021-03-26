@@ -4,6 +4,7 @@ class Cat < ApplicationRecord
   belongs_to :trader
   has_one :family, dependent: :destroy
   has_many_attached :images
+  has_many :comments
   # has_one :favorite
   belongs_to_active_hash :breed
   belongs_to_active_hash :ope
@@ -35,6 +36,7 @@ class Cat < ApplicationRecord
     validates :veccine_id
     validates :kuchu_id
     validates :trader_id
+    validates :images
   end
 
   with_options numericality: { other_than: 0 } do
