@@ -67,7 +67,7 @@ https://www.neko-matching-service.com/
 - 猫編集
 - 猫削除
 - 検索
-- コメント
+- コメント 
 
 ## 実装予定の機能
 - お気に入り登録
