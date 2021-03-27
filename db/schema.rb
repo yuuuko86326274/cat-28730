@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(version: 2021_03_25_125348) do
 
   create_table "families", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "donation", null: false
-    t.string "message", null: false
+    t.text "message", null: false
     t.bigint "cat_id", null: false
     t.bigint "trader_id", null: false
     t.bigint "personal_id", null: false

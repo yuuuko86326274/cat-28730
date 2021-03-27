@@ -89,7 +89,7 @@ https://www.neko-matching-service.com/
 
 # テーブル設計
 ### ER図
-![](app/assets/images/drowio.png) 
+![](app/assets/images/draw-io.png) 
 
 ## users テーブル
 | Column           | Type       | Option                   |
@@ -113,6 +113,7 @@ https://www.neko-matching-service.com/
 ### Association
 - has_many :families, dependent: :destroy
 - has_many :cats, dependent: :destroy
+- has_many :comments
 - belongs_to_active_hash :area
 
 ##  personals テーブル
@@ -124,6 +125,7 @@ https://www.neko-matching-service.com/
 ### Association
 - has_many :favorites
 - has_many :families
+- has_many :comments
 - belongs_to :user
 
 ##  addresses テーブル
@@ -171,6 +173,7 @@ https://www.neko-matching-service.com/
 - has_one :family, dependent: :destroy
 - has_many_attached :images
 - has_one :favorite
+- has_many :comments
 - belongs_to_active_hash :breed
 - belongs_to_active_hash :ope
 - belongs_to_active_hash :sex
@@ -190,7 +193,7 @@ https://www.neko-matching-service.com/
 | Column              | Type       | Option                                 |
 | ------------------- | ---------- | -------------------------------------- |
 | donation            | string     | null: false                            |
-| message             | string     | null: false                            |
+| message             | text       | null: false                            |
 | cat                 | references | null: false, forein_key: true          |
 | personal            | references | null: false, forein_key: true          |
 | trader              | references | null: false, forein_key: true          |
@@ -208,6 +211,19 @@ https://www.neko-matching-service.com/
 ### Association
 - belongs_to :cat
 - belongs_to :personal
+
+##  comments テーブル
+| Column              | Type       | Option                                             |
+| ------------------- | ---------- | -------------------------------------------------- |
+| comment             | text       | null: false                                        |
+| cat                 | references | null: false, forein_key: true                      |
+| personal            | references |              forein_key: true, optional: true      |
+| trader              | references |              forein_key: true, optional: true      |
+### Association
+- belongs_to :cat
+- belongs_to :personal
+- belongs_to :trader
+
 
 ## 要件一覧
 | 優先順位（高：3、中：2、低：1）| 機能             | 目的                                | 詳細                                                | ストーリー(ユースケース)                            |見積もり（所要時間）       |
