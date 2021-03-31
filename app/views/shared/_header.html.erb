@@ -22,7 +22,7 @@
     </ul>
     <ul class="header-bar-row">
     <% if personal_signed_in? %>
-      <li ><%= link_to "マイページ", personals_show_path, class:"login2" %></li>
+      <li ><%= link_to "マイページ", "/personals/#{current_personal.id}", class:"login2" %></li>
       <li ><%= link_to "ログアウト", destroy_personal_session_path, method: :delete, class:"login2" %></li>
     <% else %>
       <li ><%= link_to "ログイン", new_personal_session_path, class:"login2" %></li>

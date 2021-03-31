@@ -1,0 +1,1 @@
+document.getElementById('favorite_<%= @cat.id %>').innerHTML = '<%= escape_javascript(render partial: 'favorites/favorite', locals: { cat: @cat }) %>'

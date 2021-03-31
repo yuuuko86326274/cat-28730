@@ -11,9 +11,9 @@ class Personal < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  # has_many :favorites
+  has_many :favorites, dependent: :destroy
   has_many :families
-  has_many :comments
+  has_many :comments, dependent: :destroy
   # belongs_to :user
 
   with_options presence: true do

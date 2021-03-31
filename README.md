@@ -68,9 +68,9 @@ https://www.neko-matching-service.com/
 - 猫削除
 - 検索
 - コメント 
+- お気に入り登録
 
 ## 実装予定の機能
-- お気に入り登録
 - 猫ぴったり占い
 
 ## テスト用アカウント等
@@ -123,7 +123,7 @@ https://www.neko-matching-service.com/
 | password         | string     | null: false                   |
 | user             | references | null: false, forein_key: true |
 ### Association
-- has_many :favorites
+- has_many :favorites, dependent: :destroy
 - has_many :families
 - has_many :comments
 - belongs_to :user
@@ -172,7 +172,7 @@ https://www.neko-matching-service.com/
 - belongs_to :trader
 - has_one :family, dependent: :destroy
 - has_many_attached :images
-- has_one :favorite
+- has_many :favorite, dependent: :destroy
 - has_many :comments
 - belongs_to_active_hash :breed
 - belongs_to_active_hash :ope

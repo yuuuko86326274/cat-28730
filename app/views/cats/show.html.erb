@@ -27,7 +27,7 @@
         <p class='or-text'>or</p>
         <%= link_to '削除', cat_path, method: :delete, class:'item-destroy' %>
       <% else %>
-        <% unless @cat.family.present?  %>
+        <% unless @cat.family.present? %>
           <%= link_to '飼育決定画面に進む',  cat_families_path(@cat.id), class:"item-blue-btn" %>
         <% end %>
       <% end %>
@@ -40,7 +40,9 @@
           <%= "#{@cat.c_name}ちゃん" %>
         <% end %>
       </h2>
-      
+
+      <%= render "favorites/favorite", cat: @cat %>
+
       <div class="table-twin">
         <table class="detail-table">
           <tbody>

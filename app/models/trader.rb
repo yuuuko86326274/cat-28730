@@ -20,7 +20,7 @@ class Trader < ApplicationRecord
 
   has_many :families, dependent: :destroy
   has_many :cats, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to_active_hash :area
 
   with_options presence: true do

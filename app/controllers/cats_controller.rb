@@ -1,6 +1,8 @@
 class CatsController < ApplicationController
   before_action :move_to_registration, except: [:index, :show, :search, :fortune]
   before_action :set_search, only: :search
+  # before_action :authenticate_personal!, except: [:index, :show, :search, :fortune]
+  # before_action :authenticate_trader!, except: [:index, :show, :search, :fortune]
 
   def index
     @cats = Cat.includes(:trader).order('created_at DESC').limit(30)

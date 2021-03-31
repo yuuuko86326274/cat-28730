@@ -5,7 +5,7 @@ class Cat < ApplicationRecord
   has_one :family, dependent: :destroy
   has_many_attached :images
   has_many :comments
-  # has_one :favorite
+  has_many :favorite, dependent: :destroy
   belongs_to_active_hash :breed
   belongs_to_active_hash :ope
   belongs_to_active_hash :sex
