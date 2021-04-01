@@ -1,0 +1,24 @@
+<% if personal_signed_in? %>
+  <div id="favorite_<%= @cat.id %>" class="favorite-all">
+    <% if Favorite.exists?(personal_id: current_personal.id, cat_id: @cat.id) %>
+      <%= link_to cat_favorites_path(@cat), method: :delete, remote: true, class: "favorite-btn-delete" do %>
+        <div class="fa-thumbs-down">
+          <span> お気に入り登録済</span>
+          ❤️ <%= @cat.favorite.length %>
+        </div>
+      <% end %>
+    <% else %>
+      <%= link_to cat_favorites_path(@cat), method: :post, remote: true, class: "favorite-btn-create" do %>
+        <div class="fa-thumbs-up">
+          <span> お気に入り   登録</span>
+          ❤️ <%= @cat.favorite.length %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+<% else %>
+  <div class="fa-thumbs-up">
+    <span> お気に入り登録数</span>
+    ❤️<%= @cat.favorite.length %>
+  </div>
+<% end %>

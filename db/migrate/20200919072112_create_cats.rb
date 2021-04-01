@@ -2,7 +2,7 @@ class CreateCats < ActiveRecord::Migration[6.0]
   def change
     create_table :cats do |t|
       t.string :c_name                ,null:false
-      t.text :c_text                  ,null:false
+      t.text   :c_text                  ,null:false
       t.integer :price
       t.integer :breed_id
       t.integer :ope_id               ,null:false

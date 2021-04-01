@@ -2,7 +2,7 @@
   display: flex;
   background-color: blanchedalmond;
   justify-content: center;
-  height: 140vh;
+  height: 130vh;
   width: 100%;
   min-height: 600px;
   overflow: scroll;
@@ -10,10 +10,10 @@
 
 .item-box{
   background-color: #ffff;
-  height: 130vh;
+  height: 100vh;
   width: 80%;
   min-width: 560px;
-  min-height: 3000px;
+  min-height: 2550px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -195,7 +195,16 @@
   
 }
 
-.comments>p{
+.comment-scroll{
+  max-height: 800px;
+  overflow: scroll;
+}
+
+.comment-scroll>p>strong{
+  margin: 5px 0 5px 0;
+}
+
+.comment-scroll>p{
   border: 1px solid lightsalmon;
   margin: 10px;
   padding: 5px;
@@ -203,4 +212,6 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
 }

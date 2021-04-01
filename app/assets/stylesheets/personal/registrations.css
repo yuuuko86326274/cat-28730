@@ -1,4 +1,4 @@
-.user-contents-row{
+.user-contents-rows-personal{
   width: 100%;
   height: 100vh;
   background-color: blanchedalmond;
@@ -8,11 +8,11 @@
   overflow: scroll;
 }
 
-.user-container{
+.user-containers-personal{
   width: 50%;
-  min-width: 250px;
-  height: 30%;
-  min-height: 480px;
+  min-width: 500px;
+  height: 40%;
+  min-height: 500px;
   background-color: #ffff;
   display: flex;
   flex-direction: column;

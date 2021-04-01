@@ -4,6 +4,7 @@ class DeviseCreatePersonals < ActiveRecord::Migration[6.0]
   def change
     create_table :personals do |t|
       ## Database authenticatable
+      t.string :nickname,           null:false
       t.string :email,              null: false, default: ""
       t.string :encrypted_password, null: false, default: ""
       # t.references :user          , null: false, forein_key: true

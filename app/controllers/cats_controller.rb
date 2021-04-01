@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  before_action :move_to_registration, except: [:index, :show, :search, :fortune]
+  before_action :authenticate_trader!, except: [:index, :show, :search, :fortune]
   before_action :set_search, only: :search
 
   def index
@@ -57,10 +57,6 @@ class CatsController < ApplicationController
   end
 
   private
-    
-  def move_to_registration
-    redirect_to new_trader_registration_path unless trader_signed_in?
-  end
 
   def cat_params
     params.require(:cat).permit(

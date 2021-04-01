@@ -6,7 +6,7 @@ class Trader < ApplicationRecord
     find_or_create_by(email: 'guest@example.com') do |trader|
       trader.password = SecureRandom.urlsafe_base64
       trader.password_confirmation = trader.password
-      trader.t_name = "ゲストユーザー"
+      trader.t_name = "ゲストユーザー(保護した方)"
       trader.t_postal_code = "111-1111"
       trader.area_id = "1"
       trader.t_city = "横浜市"
@@ -20,7 +20,7 @@ class Trader < ApplicationRecord
 
   has_many :families, dependent: :destroy
   has_many :cats, dependent: :destroy
-  has_many :comments
+  has_many :comments, dependent: :destroy
   belongs_to_active_hash :area
 
   with_options presence: true do

@@ -27,7 +27,7 @@
         <p class='or-text'>or</p>
         <%= link_to '削除', cat_path, method: :delete, class:'item-destroy' %>
       <% else %>
-        <% unless @cat.family.present?  %>
+        <% unless @cat.family.present? %>
           <%= link_to '飼育決定画面に進む',  cat_families_path(@cat.id), class:"item-blue-btn" %>
         <% end %>
       <% end %>
@@ -40,7 +40,9 @@
           <%= "#{@cat.c_name}ちゃん" %>
         <% end %>
       </h2>
-      
+
+      <%= render "favorites/favorite", cat: @cat %>
+
       <div class="table-twin">
         <table class="detail-table">
           <tbody>
@@ -125,6 +127,7 @@
             </tr>
           </tbody>
         </table>
+
         <div class="comment-container">
           <div class="comment-center">
           <% if trader_signed_in? or personal_signed_in? %>
@@ -138,11 +141,12 @@
           </div>
           <div class="comments">
             <h4>＜コメント一覧＞</h4>
+            <div class="comment-scroll">
             <% if @comments.present? %>
               <% @comments.each do |comment| %>
                 <p>
-                <% if comment.personal_id.present? %> 
-                      <strong>匿名：</strong>
+                <% if comment.personal_id.present? %>
+                      <strong><%= comment.personal.nickname %>：</strong>
                 <% else %>
                       <strong><%= comment.trader.t_name %>：</strong>
                 <% end %>
@@ -150,10 +154,12 @@
                 </p>
               <% end %>
             <% end %>
-    </div> 
-          </div>
-        <%= link_to "戻る", root_path, class:"link-login" %>
+            </div>
         </div>
+
+      </div>
+    <%= link_to "戻る", root_path, class:"link-login" %>
+    </div>
   </div>
 </div>
   <%# /商品の概要 %>

@@ -8,6 +8,10 @@
     <table class="detail-table">
       <tbody>
         <tr>
+          <th class="detail-item">登録名</th>
+          <td class="detail-value"><%= current_personal.nickname %></td>
+        </tr>
+        <tr>
           <th class="detail-item">メールアドレス</th>
           <td class="detail-value"><%= current_personal.email %></td>
         </tr>
@@ -15,8 +19,39 @@
     </table>
     <%= link_to "マイページ内容の編集はこちら", edit_personal_registration_path %>
 
-    <div class="personal-favorite">
-    お気に入りの猫一覧
+    <div class="contents-all-cat">
+      <div class="contents">
+        <div class="contents-name">
+          <div class="trader-name-center">お気に入りの猫一覧</div>
+        </div>
+      </div>
+      <div class="contents_row">
+        <% if @favorites.present? %>
+        <% @favorites.each do |cat| %>
+          <div class="content_post" >
+            <%= link_to cat_path(cat) do %>
+              <div class="trader-one-cat">
+              <% if cat.images.count > 0 %>
+                <%= image_tag cat.images.first, class:'cat-image' %>
+                  <% if cat.family.present? %>
+                  <div class='trader-family-done'>
+                    <span>家族ができました!!</span>
+                  </div>
+                  <% end %>
+              <% end %>
+              <div class="cat-name-center">
+              <% if cat.sex_id == 1 %>
+                <%= "#{cat.c_name}くん" %>
+              <% elsif cat.sex_id == 2 %>
+                <%= "#{cat.c_name}ちゃん" %>
+              <% end %>
+              </div>
+              </div>
+            <% end %> 
+          </div>
+        <% end %>
+        <% end %>
+      </div>
     </div>
     <%= link_to "戻る", root_path, class:"link-login" %>
   </div>

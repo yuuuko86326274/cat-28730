@@ -1,0 +1,34 @@
+.favorite-all{
+    display: flex;
+    width: 400px;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.favorite-btn-create>div>span{
+  text-decoration: none;
+  color: #ffff;
+  border: 3px solid lightsalmon;
+  background-color: lightcoral;
+  padding: 5px;
+}
+
+.fa-thumbs-down{
+  text-decoration: none;
+  color: black;
+}
+
+.favorite-btn-delete>div>span{
+  text-decoration: none;
+  color: #ffff;
+  border: 3px solid lightblue;
+  background-color: lightskyblue;
+  padding: 5px;
+}
+
+.fa-thumbs-up{
+  text-decoration: none;
+  color: black;
+}
+
+

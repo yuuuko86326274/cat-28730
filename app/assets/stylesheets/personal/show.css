@@ -11,8 +11,8 @@
 .mypage-in{
   width: 80%;
   min-width: 250px;
-  height: 30%;
-  min-height: 500px;
+  height: 80vh;
+  min-height: 750px;
   background-color: #ffff;
   display: flex;
   flex-direction: column;

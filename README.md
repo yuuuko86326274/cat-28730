@@ -58,8 +58,8 @@ https://www.neko-matching-service.com/
 - CercleCI/CD
 
 ## 実装した機能
-- 会員登録（猫を買いたい方・猫を保護した方）
-- マイページ（猫を買いたい方・猫を保護した方）
+- 会員登録（猫を飼いたい方・猫を保護した方）
+- マイページ（猫を飼いたい方・猫を保護した方）
 - 一覧表示
 - 詳細表示
 - 猫飼育決定（決済）
@@ -67,11 +67,13 @@ https://www.neko-matching-service.com/
 - 猫編集
 - 猫削除
 - 検索
-- コメント 
+- コメント
+- お気に入り登録
 
 ## 実装予定の機能
-- お気に入り登録
-- 猫ぴったり占い
+- 猫ぴったり占い(JavaScriptで実装)
+- コメント編集・削除機能
+- 検索範囲の拡張
 
 ## テスト用アカウント等
   ### 猫を飼いたい方用
@@ -89,14 +91,7 @@ https://www.neko-matching-service.com/
 
 # テーブル設計
 ### ER図
-![](app/assets/images/drowio.png) 
-
-## users テーブル
-| Column           | Type       | Option                   |
-| ---------------- | ---------- | ------------------------ |
-| nickname         | string     | null: false              |
-### Association
-- has_one :personal
+![](app/assets/images/draw-io.png) 
 
 ##  traders テーブル
 | Column           | Type       | Option                                 |
@@ -113,18 +108,20 @@ https://www.neko-matching-service.com/
 ### Association
 - has_many :families, dependent: :destroy
 - has_many :cats, dependent: :destroy
+- has_many :comments, dependent: :destroy
 - belongs_to_active_hash :area
 
 ##  personals テーブル
 | Column           | Type       | Option                        |
 | ---------------- | ---------- | ----------------------------- |
+| nickname         | string     | null: false                   |
 | email            | string     | null: false                   |
 | password         | string     | null: false                   |
 | user             | references | null: false, forein_key: true |
 ### Association
-- has_many :favorites
-- has_many :families
-- belongs_to :user
+- has_many :favorites, dependent: :destroy
+- has_many :families, dependent: :destroy
+- has_many :comments, dependent: :destroy
 
 ##  addresses テーブル
 | Column           | Type       | Option                                 |
@@ -170,7 +167,8 @@ https://www.neko-matching-service.com/
 - belongs_to :trader
 - has_one :family, dependent: :destroy
 - has_many_attached :images
-- has_one :favorite
+- has_many :favorite, dependent: :destroy
+- has_many :comments, dependent: :destroy
 - belongs_to_active_hash :breed
 - belongs_to_active_hash :ope
 - belongs_to_active_hash :sex
@@ -190,7 +188,7 @@ https://www.neko-matching-service.com/
 | Column              | Type       | Option                                 |
 | ------------------- | ---------- | -------------------------------------- |
 | donation            | string     | null: false                            |
-| message             | string     | null: false                            |
+| message             | text       | null: false                            |
 | cat                 | references | null: false, forein_key: true          |
 | personal            | references | null: false, forein_key: true          |
 | trader              | references | null: false, forein_key: true          |
@@ -208,6 +206,19 @@ https://www.neko-matching-service.com/
 ### Association
 - belongs_to :cat
 - belongs_to :personal
+
+##  comments テーブル
+| Column              | Type       | Option                                             |
+| ------------------- | ---------- | -------------------------------------------------- |
+| comment             | text       | null: false                                        |
+| cat                 | references | null: false, forein_key: true                      |
+| personal            | references |              forein_key: true, optional: true      |
+| trader              | references |              forein_key: true, optional: true      |
+### Association
+- belongs_to :cat
+- belongs_to :personal
+- belongs_to :trader
+
 
 ## 要件一覧
 | 優先順位（高：3、中：2、低：1）| 機能             | 目的                                | 詳細                                                | ストーリー(ユースケース)                            |見積もり（所要時間）       |

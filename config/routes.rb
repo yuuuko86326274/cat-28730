@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   devise_scope :trader do
     post 'traders/guest_sign_in', to: 'traders/sessions#new_guest'
   end
+
   root to: 'cats#index'
   # resources :users, only: [:new, :create, :destroy]
   get 'cats/fortune'
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
     collection do
       get 'search' 
     end
+    resource :favorites, only: [:create, :destroy]
     resources :families, only: [:index, :new, :create]
   end
   resources :traders, only: :show

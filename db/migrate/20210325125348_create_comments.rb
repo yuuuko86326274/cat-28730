@@ -4,7 +4,7 @@ class CreateComments < ActiveRecord::Migration[6.0]
       t.references :personal                  , forein_key: true
       t.references :trader                    , forein_key: true
       t.references :cat            ,null:false, forein_key: true
-      t.text :comment              ,null:false
+      t.text       :comment        ,null:false
       t.timestamps
     end
   end
