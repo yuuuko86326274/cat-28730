@@ -91,7 +91,7 @@ https://www.neko-matching-service.com/
 
 # テーブル設計
 ### ER図
-![](app/assets/images/draw-io.png) 
+![](app/assets/images/drawio.png) 
 
 ##  traders テーブル
 | Column           | Type       | Option                                 |
