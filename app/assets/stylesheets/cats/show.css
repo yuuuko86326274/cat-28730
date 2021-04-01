@@ -195,6 +195,10 @@
   
 }
 
+.comments>p>strong{
+  margin: 5px 0 5px 0;
+}
+
 .comments>p{
   border: 1px solid lightsalmon;
   margin: 10px;
@@ -203,4 +207,6 @@
   display: -webkit-box;
   -webkit-box-orient: vertical;
   font-size: 16px;
+  display: flex;
+  flex-direction: column;
 }

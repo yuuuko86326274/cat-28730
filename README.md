@@ -91,13 +91,6 @@ https://www.neko-matching-service.com/
 ### ER図
 ![](app/assets/images/draw-io.png) 
 
-## users テーブル
-| Column           | Type       | Option                   |
-| ---------------- | ---------- | ------------------------ |
-| nickname         | string     | null: false              |
-### Association
-- has_one :personal
-
 ##  traders テーブル
 | Column           | Type       | Option                                 |
 | ---------------- | ---------- | -------------------------------------- |
@@ -113,20 +106,20 @@ https://www.neko-matching-service.com/
 ### Association
 - has_many :families, dependent: :destroy
 - has_many :cats, dependent: :destroy
-- has_many :comments
+- has_many :comments, dependent: :destroy
 - belongs_to_active_hash :area
 
 ##  personals テーブル
 | Column           | Type       | Option                        |
 | ---------------- | ---------- | ----------------------------- |
+| nickname         | string     | null: false                   |
 | email            | string     | null: false                   |
 | password         | string     | null: false                   |
 | user             | references | null: false, forein_key: true |
 ### Association
 - has_many :favorites, dependent: :destroy
-- has_many :families
-- has_many :comments
-- belongs_to :user
+- has_many :families, dependent: :destroy
+- has_many :comments, dependent: :destroy
 
 ##  addresses テーブル
 | Column           | Type       | Option                                 |
@@ -173,7 +166,7 @@ https://www.neko-matching-service.com/
 - has_one :family, dependent: :destroy
 - has_many_attached :images
 - has_many :favorite, dependent: :destroy
-- has_many :comments
+- has_many :comments, dependent: :destroy
 - belongs_to_active_hash :breed
 - belongs_to_active_hash :ope
 - belongs_to_active_hash :sex

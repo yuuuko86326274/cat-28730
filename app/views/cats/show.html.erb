@@ -127,6 +127,7 @@
             </tr>
           </tbody>
         </table>
+
         <div class="comment-container">
           <div class="comment-center">
           <% if trader_signed_in? or personal_signed_in? %>
@@ -143,8 +144,8 @@
             <% if @comments.present? %>
               <% @comments.each do |comment| %>
                 <p>
-                <% if comment.personal_id.present? %> 
-                      <strong>匿名：</strong>
+                <% if comment.personal_id.present? %>
+                      <strong><%= comment.personal.nickname %>：</strong>
                 <% else %>
                       <strong><%= comment.trader.t_name %>：</strong>
                 <% end %>
@@ -152,10 +153,11 @@
                 </p>
               <% end %>
             <% end %>
-    </div> 
-          </div>
-        <%= link_to "戻る", root_path, class:"link-login" %>
         </div>
+
+      </div>
+    <%= link_to "戻る", root_path, class:"link-login" %>
+    </div>
   </div>
 </div>
   <%# /商品の概要 %>

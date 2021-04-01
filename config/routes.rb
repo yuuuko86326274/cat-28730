@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   get 'traders/show'
-  resources :personals, only: :show do
-    get :favorites, on: :collection
-  end
+  get 'personals/show'
   devise_for :personals, controllers:{
     sessions:      'personals/sessions',
     passwords:     'personals/passwords',

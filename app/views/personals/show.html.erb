@@ -4,10 +4,13 @@
   <div class="mypage-in">
 
     <h2>マイページ</h2>
-    <% if personal_signed_in? %>
 
     <table class="detail-table">
       <tbody>
+        <tr>
+          <th class="detail-item">登録名</th>
+          <td class="detail-value"><%= current_personal.nickname %></td>
+        </tr>
         <tr>
           <th class="detail-item">メールアドレス</th>
           <td class="detail-value"><%= current_personal.email %></td>
@@ -16,7 +19,7 @@
     </table>
     <%= link_to "マイページ内容の編集はこちら", edit_personal_registration_path %>
 
-<div class="contents-all-cat">
+    <div class="contents-all-cat">
       <div class="contents">
         <div class="contents-name">
           <div class="trader-name-center">お気に入りの猫一覧</div>
@@ -46,7 +49,6 @@
         <% end %>
       </div>
     </div>
-    <% end %>
     <%= link_to "戻る", root_path, class:"link-login" %>
   </div>
 </div>
