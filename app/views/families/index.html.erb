@@ -21,9 +21,10 @@
                 ＜本人確認＞
               </p>
               <p class='form-info-text'>
-                安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。他の会員さまに公開されることはありません。
+                安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。<br />
+                他の会員さまに公開されることはありません。
               </p>
-              <p class='info-text'>※ 本人情報は正しく入力してください。確認後、保護された方から登録電話番号にご連絡いたしますので、通じるようにしてお待ちください。</p>
+              <p class='info-text'>※ 本人情報は正しく入力してください。確認後、登録連絡先にご連絡いたします。</p>
             </div>
             <div class="form-group">
               <div class='form-text-wrap'>
@@ -114,7 +115,12 @@
             <h1 class='item-payment-title'>寄付額入力</h1>
               <h1 class='credit-card-form'>
               </h1>
-            <div class="item-payment-cash"><%= @cat.c_name %>の保護にかかった金額
+            <div class="item-payment-cash">
+            <% if @cat.sex_id == 1 %>
+              <%= "#{@cat.c_name}くんの保護にかかった金額" %>
+            <% elsif @cat.sex_id == 2 %>
+              <%= "#{@cat.c_name}ちゃんの保護にかかった金額" %>
+            <% end %>
               <p class='item-payment-price'>
                 <%= @cat.price %>円
               </p>
@@ -179,7 +185,11 @@
                 <% end %>
                 <div class='buy-item-right-content'>
                   <h2 class='buy-item-text'>
-                    <%= @cat.c_name %>
+                    <% if @cat.sex_id == 1 %>
+                      <%= "#{@cat.c_name}くん" %>
+                    <% elsif @cat.sex_id == 2 %>
+                      <%= "#{@cat.c_name}ちゃん" %>
+                    <% end %>
                   </h2>
                 </div>
               </div>

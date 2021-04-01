@@ -141,6 +141,7 @@
           </div>
           <div class="comments">
             <h4>＜コメント一覧＞</h4>
+            <div class="comment-scroll">
             <% if @comments.present? %>
               <% @comments.each do |comment| %>
                 <p>
@@ -153,6 +154,7 @@
                 </p>
               <% end %>
             <% end %>
+            </div>
         </div>
 
       </div>

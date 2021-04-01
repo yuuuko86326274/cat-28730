@@ -40,7 +40,11 @@
                   <% end %>
               <% end %>
               <div class="cat-name-center">
-              <%= cat.c_name %>
+              <% if cat.sex_id == 1 %>
+                <%= "#{cat.c_name}くん" %>
+              <% elsif cat.sex_id == 2 %>
+                <%= "#{cat.c_name}ちゃん" %>
+              <% end %>
               </div>
               </div>
             <% end %> 
