@@ -25,7 +25,7 @@
       <% if trader_signed_in? && current_trader.id == @cat.trader_id %>
         <%= link_to '編集', edit_cat_path, method: :get, class: "item-red-btn" %>
         <p class='or-text'>or</p>
-        <%= link_to '削除', cat_path, method: :delete, class:'item-destroy' %>
+        <%= link_to '削除', cat_path, method: :delete, class:'item-destroy', data: { confirm: '本当に削除しますか？' } %>
       <% else %>
         <% unless @cat.family.present? %>
           <%= link_to '飼育決定画面に進む',  cat_families_path(@cat.id), class:"item-blue-btn" %>

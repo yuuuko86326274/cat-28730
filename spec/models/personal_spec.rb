@@ -18,6 +18,12 @@ RSpec.describe Personal, type: :model do
       end
     end
     context '保存がうまくいかないとき' do
+      it 'nicknameが空だと保存できないこと' do
+        @personal.nickname = nil
+        @personal.valid?
+        expect(@personal.errors.full_messages).to include("Nickname can't be blank")
+      end
+
       it 'emailが空では登録できないこと' do
         @personal.email = nil
         @personal.valid?

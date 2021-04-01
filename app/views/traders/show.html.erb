@@ -69,7 +69,7 @@
             <div class="choice"> 
             <%= link_to "編集", edit_cat_path(cat), class: "item-red-btn" %>
             <div class="choice-or">or</div>
-            <%= link_to '削除', cat_path(cat), method: :delete, class:'item-destroy' %>
+            <%= link_to '削除', cat_path(cat), method: :delete, class:'item-destroy', data: { confirm: '本当に削除しますか？' } %>
             </div>
           </div>
         <% end %>

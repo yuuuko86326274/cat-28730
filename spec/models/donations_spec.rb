@@ -35,7 +35,7 @@ RSpec.describe Donations, type: :model do
         expect(@donations.errors.full_messages).to include("Donation can't be blank")
       end
 
-      it 'donationが、¥9,999,999より高いと保存できないこと' do
+      it 'donationが、¥50000より高いと保存できないこと' do
         @donations.donation = '10000000'
         @donations.valid?
         expect(@donations.errors.full_messages).to include('Donation must be less than or equal to 50000')
