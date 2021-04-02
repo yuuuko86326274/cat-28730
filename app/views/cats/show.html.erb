@@ -132,7 +132,7 @@
           <div class="comment-center">
           <% if trader_signed_in? or personal_signed_in? %>
             <%= form_with(model: [@cat, @comment], local: true) do |f| %>
-              <%= f.text_area :comment, placeholder: "コメントする(300文字以内)", maxlength: "300", class:"comment-form" %>
+              <%= f.text_area :comment, placeholder: "コメントする(300文字以内)", maxlength: "300", class:"comment-form", wrap:"hard" %>
               <%= f.submit "コメント投稿", class:"item-blue-btn" %>
             <% end %>
           <% else %>
