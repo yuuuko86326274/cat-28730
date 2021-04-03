@@ -37,25 +37,23 @@ https://www.neko-matching-service.com/
 ![](app/assets/images/infura1.png) 
 
 ## 使用技術
-- VScode
-- Git/GitHub (Issues,pull requestで擬似チーム開発)
-- Docker/docker-compose (開発、テスト、本番)
-- HTML
-- CSS
-- JavaScript (決済処理,投稿画像プレビュー)
+### バックエンド
 - Ruby 2.6.5
 - Ruby on Rails 6.0.0
-- PayJP (決済API)
+- Rubocop（コード解析ツール）
+- RSpec（テスト）
 - MySQL 5.6
 - Nginx
 - Puma
-- RuboCop
-- RSpec
-- AWS
-  - S3
-  - ECS(EC2/VPC/ACM/ALB/ECR/RDS)
-  - Route53(お名前.com)
-- CercleCI/CD
+- PayJP （決済API）
+### フロントエンド
+- HTML/CSS
+- Javascript(決済処理、投稿画像プレビュー、お気に入り登録)
+### インフラ・開発環境
+- Git/GitHub （Issues、pull requestで擬似チーム開発）
+- Docker/Docker-compose（開発、テスト、本番）
+- AWS（ECR、ECS、EC2、VPC、S3、Route53、ALB、RDS、ACM）
+- CircleCI（CI/CD）
 
 ## 実装した機能
 - 会員登録（猫を飼いたい方・猫を保護した方）
@@ -72,8 +70,11 @@ https://www.neko-matching-service.com/
 
 ## 実装予定の機能
 - 猫ぴったり占い(JavaScriptで実装)
+
+## 改良予定
 - コメント編集・削除機能
 - 検索範囲の拡張
+- TOPページデザイン変更
 
 ## テスト用アカウント等
   ### 猫を飼いたい方用
