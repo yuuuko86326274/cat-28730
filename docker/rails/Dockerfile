@@ -10,7 +10,6 @@ ENV NODE_ENV production
 COPY Gemfile Gemfile.lock $RAILS_ROOT/
 
 
-RUN sudo pip3 install --upgrade pip
 RUN apt-get update -y && \
     apt-get install --no-install-recommends -y \
     default-mysql-client \
