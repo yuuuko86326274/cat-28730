@@ -40,18 +40,27 @@
   width: 100%;
 }
 
-ul {
+.user-menu>ul {
   display: flex;
   height: 50px;
   width: 100%;
   background-color: #ffff;
   height: 50px;
-
 }
-li {
+
+.user-menu>ul>li {
   width: 50%;
   padding: 13px 13px;
   color: royalblue;
+  border: 0.5px solid lightsteelblue;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.header-bar-row>li{
+  width: 50%;
+  padding: 13px 13px;
+  background-color: royalblue;
   border: 0.5px solid lightsteelblue;
   font-weight: bold;
   text-decoration: none;
