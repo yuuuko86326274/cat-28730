@@ -77,7 +77,7 @@ jobs:
               --overrides '{ "containerOverrides": [ { "name": "app", "command": ["rails", "db:migrate"] } ] }'
 orbs:
   aws-ecr: circleci/aws-ecr@6.15.3
-  aws-ecs: circleci/aws-ecs@2.1.0
+  aws-ecs: circleci/aws-ecs@1.1.0
   aws-cli: circleci/aws-cli@2.0.0
 
 workflows:
