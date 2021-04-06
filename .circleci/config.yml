@@ -78,7 +78,7 @@ jobs:
 orbs:
   aws-ecr: circleci/aws-ecr@6.7.0
   aws-ecs: circleci/aws-ecs@1.1.0
-  aws-cli: circleci/aws-cli@0.1.16
+  # aws-cli: circleci/aws-cli@0.1.16
 
 workflows:
   # build_and_test:  
