@@ -53,7 +53,7 @@ https://www.neko-matching-service.com/
 - Git/GitHub （Issues、pull requestで擬似チーム開発）
 - Docker/Docker-compose（開発、テスト、本番）
 - AWS（ECR、ECS、EC2、VPC、S3、Route53、ALB、RDS、ACM）
-- CircleCI（CI/CD）
+- CircleCI（CI/CD
 
 ## 実装した機能
 - 会員登録（猫を飼いたい方・猫を保護した方）
