@@ -4,9 +4,7 @@ class Traders::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create, :edit, :update, :destroy]
   before_action :check_guest, only: [:update, :destroy]
   def check_guest
-    if resource.email == 'guest@example.com'
-      redirect_to root_path, alert: 'ゲストユーザーの編集・削除はできません。'
-    end
+    redirect_to root_path, alert: 'ゲストユーザーの編集・削除はできません。' if resource.email == 'guest@example.com'
   end
   # before_action :configure_account_update_params, only: [:update]
 

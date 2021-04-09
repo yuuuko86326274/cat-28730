@@ -3,7 +3,6 @@ class FamiliesController < ApplicationController
   before_action :authenticate_personal!
   before_action :cat_id_search
 
-
   def index
     @donation = Donations.new
   end

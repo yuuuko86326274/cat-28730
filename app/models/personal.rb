@@ -4,7 +4,7 @@ class Personal < ApplicationRecord
 
   def self.guest
     find_or_create_by(email: 'guest@example.com') do |personal|
-      personal.nickname = "ゲストユーザー(飼いたい方)"
+      personal.nickname = 'ゲストユーザー(飼いたい方)'
       personal.password = SecureRandom.urlsafe_base64
     end
   end
