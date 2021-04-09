@@ -1,10 +1,18 @@
 # frozen_string_literal: true
 
 class Personals::SessionsController < Devise::SessionsController
+  before_action :redirect_root
+
   def new_guest
     personal = Personal.guest
     sign_in personal
     redirect_to root_path, notice: 'ゲストユーザー（猫を飼いたい方）としてログインしました。'
+  end
+
+  def redirect_root
+    if trader_signed_in?
+      redirect_to root_path
+    end 
   end
   # before_action :configure_sign_in_params, only: [:create]
 

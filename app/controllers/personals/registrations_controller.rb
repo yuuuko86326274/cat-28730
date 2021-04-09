@@ -3,9 +3,16 @@
 class Personals::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create, :edit, :update, :destroy]
   before_action :check_guest, only: %i[update destroy]
+  before_action :redirect_root
 
   def check_guest
     redirect_to root_path, alert: 'ゲストユーザーの編集・削除はできません。' if resource.email == 'guest@example.com'
+  end
+
+  def redirect_root
+    if trader_signed_in?
+      redirect_to root_path
+    end 
   end
 
   protected

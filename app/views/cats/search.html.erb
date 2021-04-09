@@ -144,7 +144,7 @@
               <div class="trader-one-cat">
                 <% if cat.images.count > 0 %>
                   <%= image_tag cat.images.first, class:'cat-image' %>
-                  <% if personal_signed_in? && Family.exists?(personal_id: current_personal.id, cat_id: cat.id)  %>
+                    <% if personal_signed_in? && Family.exists?(personal_id: current_personal.id, cat_id: cat.id)  %>
                     <div class='family-done'>
                         <span>サポートしています</span>
                     </div>
@@ -154,7 +154,8 @@
                       <%= image_tag '137515.png', class:"icon-heart" %>
                       </div>
                     <% end %>
-                  <% end %>
+                    
+                <% end %>
                     <div class="cat-name-center">
                     <% if cat.sex_id == 1 %>
                       <%= "#{cat.c_name}くん" %>
