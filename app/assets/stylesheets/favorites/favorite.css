@@ -16,6 +16,9 @@
 .fa-thumbs-down{
   text-decoration: none;
   color: black;
+  font-size: larger;
+  display: flex;
+  align-items: center;
 }
 
 .favorite-btn-delete>div>span{
@@ -29,6 +32,12 @@
 .fa-thumbs-up{
   text-decoration: none;
   color: black;
+  font-size: larger;
+  display: flex;
+  align-items: center;
 }
 
-
+.icon-heart{
+  height: 50px;
+  width: 50px;
+}

@@ -80,7 +80,7 @@
   top: 60%;
   width: 100%;
   text-align: center;
-  background-color: crimson;
+  background-color: royalblue;
   transform: skewY(-10deg);
 }
 
@@ -89,6 +89,15 @@
   font-size: 20px;
   font: bold;
 }
+ 
+.favorite-mark {
+  position: absolute;
+  bottom: 15%;
+  left: 78%;
+  width: 20%;
+  text-align: center;
+}
+
 
 .cat-name-center{
   display: flex;

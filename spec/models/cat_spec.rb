@@ -119,10 +119,10 @@ RSpec.describe Cat, type: :model do
         expect(@cat.errors.full_messages).to include('Price must be greater than or equal to 1000')
       end
 
-      it 'priceが、¥50000より高いと保存できないこと' do
-        @cat.price = '50001'
+      it 'priceが、¥9,999,999より高いと保存できないこと' do
+        @cat.price = '10000000'
         @cat.valid?
-        expect(@cat.errors.full_messages).to include('Price must be less than or equal to 50000')
+        expect(@cat.errors.full_messages).to include('Price must be less than or equal to 9999999')
       end
 
       it 'priceは半角数字のみの入力で保存できること' do

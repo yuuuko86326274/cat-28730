@@ -33,11 +33,6 @@
               <div class="trader-one-cat">
               <% if cat.images.count > 0 %>
                 <%= image_tag cat.images.first, class:'cat-image' %>
-                  <% if cat.family.present? %>
-                  <div class='trader-family-done'>
-                    <span>家族ができました!!</span>
-                  </div>
-                  <% end %>
               <% end %>
               <div class="cat-name-center">
               <% if cat.sex_id == 1 %>
@@ -50,6 +45,31 @@
             <% end %> 
           </div>
         <% end %>
+        <% end %>
+      </div>
+      <div class="contents">
+        <div class="contents-name">
+          <div class="trader-name-center">サポートしている猫一覧</div>
+        </div>
+      </div>
+      <div class="contents_row">
+        <% @cats.each do |cat| %>
+          <div class="content_post" >
+            <%= link_to cat_path(cat) do %>
+              <div class="trader-one-cat">
+              <% if cat.images.count > 0 %>
+                <%= image_tag cat.images.first, class:'cat-image' %>
+              <% end %>
+              <div class="cat-name-center">
+              <% if cat.sex_id == 1 %>
+                <%= "#{cat.c_name}くん" %>
+              <% elsif cat.sex_id == 2 %>
+                <%= "#{cat.c_name}ちゃん" %>
+              <% end %>
+              </div>
+              </div>
+            <% end %> 
+          </div>
         <% end %>
       </div>
     </div>

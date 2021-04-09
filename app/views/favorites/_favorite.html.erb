@@ -4,14 +4,14 @@
       <%= link_to cat_favorites_path(@cat), method: :delete, remote: true, class: "favorite-btn-delete" do %>
         <div class="fa-thumbs-down">
           <span> お気に入り登録済</span>
-          ❤️ <%= @cat.favorite.length %>
+          <%= image_tag '137515.png', class:"icon-heart" %> <%= @cat.favorite.length %>
         </div>
       <% end %>
     <% else %>
       <%= link_to cat_favorites_path(@cat), method: :post, remote: true, class: "favorite-btn-create" do %>
         <div class="fa-thumbs-up">
           <span> お気に入り   登録</span>
-          ❤️ <%= @cat.favorite.length %>
+          <%= image_tag '137515.png', class:"icon-heart" %> <%= @cat.favorite.length %>
         </div>
       <% end %>
     <% end %>

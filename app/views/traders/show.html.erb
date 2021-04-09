@@ -51,11 +51,11 @@
               <div class="trader-one-cat">
               <% if cat.images.count > 0 %>
                 <%= image_tag cat.images.first, class:'cat-image' %>
-                  <% if cat.family.present? %>
+                <% if cat.family.present? %>
                   <div class='trader-family-done'>
-                    <span>家族ができました!!</span>
+                    <span>サポートを受けています</span>
                   </div>
-                  <% end %>
+                <% end %>
               <% end %>
               <div class="cat-name-center">
               <% if cat.sex_id == 1 %>

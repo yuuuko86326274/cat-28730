@@ -1,6 +1,10 @@
 <%= render "shared/header" %>
 
 <div class="main">
+  <%# <div class="family-top-base" > %>
+    <%#= render "cats/top1" %>
+  <%# </div> %>
+
   <div class="movie">
   <p>本日の猫ちゃん  毎日6：00動画更新中</p>
     <div class="video_flame">
@@ -25,11 +29,16 @@
           <div class="one_cat">
           <% if cat.images.count > 0 %>
             <%= image_tag cat.images.first, class:'cat-image' %>
-              <% if cat.family.present? %>
+              <% if personal_signed_in? && Family.exists?(personal_id: current_personal.id, cat_id: cat.id)  %>
               <div class='family-done'>
-                  <span>家族ができました!!</span>
+                  <span>サポートしています</span>
               </div>
               <% end  %>
+              <% if personal_signed_in? && Favorite.exists?(personal_id: current_personal.id, cat_id: cat.id) %>
+                <div class="favorite-mark">
+                <%= image_tag '137515.png', class:"icon-heart" %>
+                </div>
+              <% end %>
           <% end %>
           <div class="cat-name-center">
           <% if cat.sex_id == 1 %>

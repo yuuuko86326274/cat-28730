@@ -4,7 +4,7 @@
   <div class='transaction-main'>
     <div class='transaction-sab'>
       <h1 class='transaction-title-text'>
-        飼育決定内容の確認
+        サポーター登録
       </h1>
       <%# 購入内容の表示 %>
      
@@ -13,6 +13,7 @@
       <%= render 'shared/error_messages', model: @donation %>
         <%# 配送先の入力 %>
         <div class='shipping-address-form'>
+        <%= link_to "サポーターとは？", '#' %>
           <h1 class='info-input-haedline'>
             個人情報入力
           </h1>
@@ -24,7 +25,7 @@
                 安心・安全にご利用いただくために、お客さまの本人情報の登録にご協力ください。<br />
                 他の会員さまに公開されることはありません。
               </p>
-              <p class='info-text'>※ 本人情報は正しく入力してください。確認後、登録連絡先にご連絡いたします。</p>
+              <p class='info-text'>※ 本人情報は正しく入力してください。</p>
             </div>
             <div class="form-group">
               <div class='form-text-wrap'>
@@ -102,7 +103,7 @@
             </div>
             <div class="form-group">
               <div class='form-text-wrap'>
-                <label class="form-text">保護されている方へのメッセージ</label>
+                <label class="form-text">保護されている方、猫ちゃんへのメッセージ</label>
                 <span class="indispensable">必須</span>
               </div>
               <div class='input-name-wrap'>
@@ -133,9 +134,9 @@
               <label class="form-text">任意の寄付金額</label>
               <span class="indispensable">必須</span>
             </div>
-            <div class='item-payment-price'>寄付金額は任意です。（最低額1000円は諸費用としてお支払いお願いします。）</div>
+            <div class='item-payment-price'>寄付金額は任意です。（最低額100円）</div>
             <div class='input-name-wrap'>
-              <%= f.text_field :donation, placeholder: "1000円以上でお願いします", class:"input-default" %>
+              <%= f.text_field :donation, placeholder: "100円以上で入力", class:"input-default" %>
             </div>
           </div>
           <div class="card-defalt">
@@ -196,7 +197,7 @@
             </div>
           </div>
           <div class='buy-btn'>
-            <%= f.submit "飼育を決定する" ,class:"buy-red-btn" %>
+            <%= f.submit "サポーター登録する" ,class:"buy-red-btn" %>
           </div>
           <div class='buy-btn'>
             <%= link_to "戻る", :back, class:"link-login" %>

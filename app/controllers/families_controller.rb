@@ -2,7 +2,7 @@ class FamiliesController < ApplicationController
   require 'payjp'
   before_action :authenticate_personal!
   before_action :cat_id_search
-  before_action :family_cat
+
 
   def index
     @donation = Donations.new
@@ -25,16 +25,16 @@ class FamiliesController < ApplicationController
 
   private
 
-  def family_cat
-    if @cat.family.present? && current_trader.id == @cat.trader_id
-      redirect_to root_path
-    end
-    if trader_signed_in?
-      if @cat.family.present? || current_trader.id != @cat.trader_id
-        redirect_to root_path
-      end
-    end
-  end
+  # def family_cat
+  #   if @cat.family.present? && current_trader.id == @cat.trader_id
+  #     redirect_to root_path
+  #   end
+  #   if trader_signed_in?
+  #     if @cat.family.present? || current_trader.id != @cat.trader_id
+  #       redirect_to root_path
+  #     end
+  #   end
+  # end
 
   def cat_id_search
     @cat = Cat.find(params[:cat_id])

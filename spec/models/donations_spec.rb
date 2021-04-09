@@ -22,8 +22,8 @@ RSpec.describe Donations, type: :model do
         expect(@donations).to be_valid
       end
 
-      it 'donationの範囲が、半角数字の入力で、¥1000〜¥9,999,999だと保存できること' do
-        @donations.donation = 1000
+      it 'donationの範囲が、半角数字の入力で、¥100〜¥9,999,999だと保存できること' do
+        @donations.donation = 100
         expect(@donations).to be_valid
       end
     end
@@ -35,10 +35,10 @@ RSpec.describe Donations, type: :model do
         expect(@donations.errors.full_messages).to include("Donation can't be blank")
       end
 
-      it 'donationが、¥50000より高いと保存できないこと' do
+      it 'donationが、¥10,000,000より高いと保存できないこと' do
         @donations.donation = '10000000'
         @donations.valid?
-        expect(@donations.errors.full_messages).to include('Donation must be less than or equal to 50000')
+        expect(@donations.errors.full_messages).to include('Donation must be less than or equal to 9999999')
       end
 
       it 'donationは半角数字以外の入力では保存できないこと' do

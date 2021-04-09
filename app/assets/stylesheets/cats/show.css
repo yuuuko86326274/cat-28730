@@ -86,7 +86,7 @@
   top: 80%;
   width: 100%;
   text-align: center;
-  background-color: crimson;
+  background-color: royalblue;
   transform: skewY(-10deg);
 }
 
@@ -101,6 +101,8 @@
   width: 400px;
   justify-content: space-around;
   margin-top: 30px;
+  display: flex;
+  align-items: center;
 }
 
 .or-text{
@@ -126,7 +128,15 @@
   padding: 5px;
   margin: 5px;
   color: #ffff;
+  font-size: larger;
 }
+
+.fa-thumbs-suport>span{
+  text-decoration: none;
+  color: black;
+  font-size: larger;
+}
+
 
 .name{
   font-size: x-large;

@@ -7,11 +7,6 @@
       <div class="show-cat-scroll">
         <% @cat.images.each do |img| %>
           <%= image_tag(img, class: "show-cat-image") %>
-          <% if @cat.family.present? %>
-            <div class='show-family-done'>
-              <span>家族が出来ました!!</span>
-            </div>
-          <% end %>
         <% end %>
       </div>
       <div class="show-pictures">
@@ -27,11 +22,15 @@
         <p class='or-text'>or</p>
         <%= link_to '削除', cat_path, method: :delete, class:'item-destroy', data: { confirm: '本当に削除しますか？' } %>
       <% else %>
-        <% unless @cat.family.present? %>
-          <%= link_to '飼育決定画面に進む',  cat_families_path(@cat.id), class:"item-blue-btn" %>
-        <% end %>
+            <%= link_to "サポーターになる",  cat_families_path(@cat.id), class:"item-blue-btn" %>
+            <% if personal_signed_in? && Family.exists?(personal_id: current_personal.id, cat_id: @cat.id)  %>
+              <div class="fa-thumbs-suport">
+                  <span>あなたはこの子を</br>サポートしています</span>
+              </div>
+            <% end  %>
       <% end %>
       </div>
+
 
       <h2 class="name">
         <% if @cat.sex_id == 1 %>

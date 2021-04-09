@@ -1,7 +1,7 @@
 FactoryBot.define do
   factory :donations do
     token {'tok_5ca06b51685e001723a2c3b4aeb4'}
-    donation {Faker::Number.between(from: 1000, to: 50000)}
+    donation {Faker::Number.between(from: 100, to: 9999999)}
     first_name {'山田'}
     last_name {'太郎'}
     first_pkey {'ヤマダ'}
