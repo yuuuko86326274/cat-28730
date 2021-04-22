@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   root to: 'cats#index'
   # resources :users, only: [:new, :create, :destroy]
   get 'cats/fortune'
+  get 'cats/info'
+  get 'cats/_top2'
+  get 'cats/_top1'
   resources :cats do
     resources :comments, only: :create
     collection do
