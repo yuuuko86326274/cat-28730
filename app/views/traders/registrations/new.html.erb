@@ -8,55 +8,52 @@
       <%= render "traders/shared/error_messages", resource: resource %>
 
       <div class="field">
+        <%= f.label :t_name, "登録名" %><br />
+        <%= f.text_field :t_name, placeholder:"例）（株）ニャンコ、山田 太郎", class:"field-in" %>
+      </div>
+
+      <div class="field">
         <%= f.label :email %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"PC・携帯どちらでも可" , class:"field-in"%>
       </div>
 
       <div class="field">
         <%= f.label :password %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> characters minimum)</em>
-        <% end %><br />
-        <%= f.password_field :password, autocomplete: "new-password", placeholder:"6文字以上の半角英数字混合", class:"field-in" %>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder:"#{@minimum_password_length}文字以上の半角英数字混合", class:"field-in" %>
       </div>
 
       <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"同じパスワードを入力", class:"field-in" %>
+        <%= f.label :password_confirmation, "パスワード（確認）" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"#{@minimum_password_length}文字以上の半角英数字混合", class:"field-in" %>
       </div>
 
       <div class="field">
-        <%= f.label 'name' %><br />
-        <%= f.text_field :t_name, placeholder:"例）（株）ニャンコ、山田 太郎", class:"field-in" %>
-      </div>
-
-      <div class="field">
-        <%= f.label 'postal_code' %><br />
+        <%= f.label 'postal_code', "郵便番号" %><br />
         <%= f.text_field :t_postal_code, placeholder:"例）123-4567",maxlength:"8" , class:"field-in"%>
       </div>
 
       <div class="field">
-        <%= f.label 'area' %><br />
+        <%= f.label 'area', "都道府県" %><br />
         <%= f.collection_select(:area_id, Area.all, :id, :name, {class:"field-in"}) %>
       </div>
 
       <div class="field">
-        <%= f.label 'city' %><br />
+        <%= f.label 'city', "市区町村" %><br />
         <%= f.text_field :t_city, placeholder:"例）横浜市緑区", class:"field-in" %>
       </div>
 
       <div class="field">
-        <%= f.label 'address' %><br />
+        <%= f.label 'address', "番地" %><br />
         <%= f.text_field :t_address_num, placeholder:"例）青山1-1-1", class:"field-in" %>
       </div>
 
       <div class="field">
-        <%= f.label 'building' %><br />
+        <%= f.label 'building', "建物名" %><br />
         <%= f.text_field :t_building_num, placeholder:"例）小山ビル209", class:"field-in" %>
       </div>
 
       <div class="field">
-        <%= f.label 'tel' %><br />
+        <%= f.label 'tel', "電話番号" %><br />
         <%= f.text_field :t_tel, placeholder:"半角、ハイフンなし", class:"field-in" %>
       </div>
 

@@ -8,7 +8,7 @@
       <%= render "personals/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <%= f.label 'name' %><br />
+        <%= f.label :nickname %><br />
         <%= f.text_field :nickname, placeholder:"ニックネーム", class:"field-in" %>
       </div>
 
@@ -22,22 +22,20 @@
       <% end %>
 
       <div class="field">
-        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-        <%= f.password_field :password, autocomplete: "new-password", placeholder:"6文字以上の半角英数字混合", class:"field-in" %>
-        <% if @minimum_password_length %>
-          <br />
-          <em><%= @minimum_password_length %> characters minimum</em>
-        <% end %>
+        <%= f.label :password, "新パスワード" %><br /> 
+        <%# <i>(変更したくない場合は空白のままにしてください)</i> %>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length}文字以上の半角英数字混合", class:"field-in" %>
       </div>
 
       <div class="field">
-        <%= f.label :password_confirmation %><br />
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"同じパスワードを入力", class:"field-in" %>
+        <%= f.label :password_confirmation, "新パスワード（確認）"  %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "#{@minimum_password_length}文字以上の半角英数字混合", class:"field-in" %>
       </div>
 
       <div class="field">
-        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-        <%= f.password_field :current_password, autocomplete: "current-password", placeholder:"現在のパスワードを入力", class:"field-in" %>
+        <%= f.label :current_password, "現在のパスワード" %> <br />
+        <%# <i>(変更を確認するには、現在のパスワードが必要です)</i> %>
+        <%= f.password_field :current_password, autocomplete: "current-password", placeholder:"現在のパスワード", class:"field-in" %>
       </div>
 
       <div class="actions">

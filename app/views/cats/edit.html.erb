@@ -7,7 +7,7 @@
     <%= form_with model: @cat, url: cat_path, method: :patch, local: true do |f| %>
     <%= render 'shared/error_messages', model: f.object %>
       <div class="list">
-        <div class="list-in">名前
+        <div class="list-in">個体名
           <span class="indispensable">必須</span>
         </div>
         <div class="list-1">
@@ -39,7 +39,7 @@
           </div>
       </div>
       <div class="list">
-        <div class="list-in">紹介
+        <div class="list-in">紹介文
           <span class="indispensable">必須</span>
         </div>
           <div >
@@ -55,7 +55,7 @@
           </div>
       </div>
       <div class="list">
-        <div class="list-in">去勢避妊手術
+        <div class="list-in">避妊去勢手術
           <span class="indispensable">必須</span>
         </div>
           <div class="list-5">
@@ -123,7 +123,7 @@
           </div>
       </div>
       <div class="list">
-        <div class="list-in">目の色
+        <div class="list-in">眼の色
         </div>
           <div class="list-14">
             <%= f.collection_select :eye_color_id, EyeColor.all, :id, :name, {} %>

@@ -1,0 +1,113 @@
+ja:
+  activerecord:
+    models:
+      trader: 里親を探したい方
+      personal: ユーザー
+      address: 住所
+      cat: 猫
+      family: サポート
+      comment: コメント
+
+    attributes:
+      trader:
+        email: メールアドレス
+        password: パスワード
+        t_name: 登録名
+        t_postal_code: 郵便番号
+        area_id: 都道府県
+        t_city: 市区長村
+        t_address_num: 番地
+        t_building_num: 建物名
+        t_tel: 電話番号
+
+      personal:
+        nickname: ニックネーム
+        email: メールアドレス
+        password: パスワード
+
+      address:
+        postal_code: 郵便番号
+        area_id: 都道府県
+        city: 市区長村
+        address_num: 番地
+        building_num: 建物名
+        tel: 電話番号
+        first_name: 姓（全角）
+        last_name: 名（全角）
+        first_pkey: 姓カナ（全角）
+        last_pkey: 名カナ（全角）
+
+      cat:
+        images: 写真
+        c_name: 個体名
+        c_text: 紹介文
+        breed_id: 性別
+        ope_id: 避妊去勢手術
+        sex_id: 性別
+        age_id: 年齢
+        hair_length_id: 毛の長さ
+        color_id: 毛の色
+        how_many_id: 希望飼育頭数
+        eye_color_id: 眼の色
+        character_id: 種類
+        fleas_id: ノミ取り処置
+        veccine_id: ワクチン処置
+        kuchu_id: 駆虫処置
+        single_id: 独身者
+        sinior_id: 高齢者
+        price: 保護にかかった金額
+
+      family:
+        donation: 寄付金額
+        message: メッセージ
+
+      comment:
+        comment: コメント
+    
+  
+  activemodel:
+    models:
+      donations: サポーター
+    attributes:
+      donations:
+        donation: 寄付金額
+        token: 正しくカード情報
+        first_name: 姓（全角）
+        last_name: 名（全角）
+        first_pkey: 姓カナ（全角）
+        last_pkey: 名カナ（全角）
+        postal_code: 郵便番号
+        area_id: 都道府県
+        city: 市区長村
+        address_num: 番地
+        building_num: 建物名
+        tel: 電話番号
+        message: メッセージ
+  
+  errors:
+    format: "%{attribute}%{message}"
+    messages:
+      accepted: を受諾してください
+      blank: を入力してください
+      confirmation: と%{attribute}の入力が一致しません
+      empty: を入力してください
+      equal_to: は%{count}にしてください
+      even: は偶数にしてください
+      exclusion: は予約されています
+      greater_than: は%{count}より大きい値にしてください
+      greater_than_or_equal_to: は%{count}以上の値にしてください
+      inclusion: は一覧にありません
+      invalid: は不正な値です
+      less_than: は%{count}より小さい値にしてください
+      less_than_or_equal_to: は%{count}以下の値にしてください
+      model_invalid: 'バリデーションに失敗しました: %{errors}'
+      not_a_number: は数値で入力してください
+      not_an_integer: は整数で入力してください
+      odd: は奇数にしてください
+      other_than: を選択してください
+      present: は入力しないでください
+      required: を入力してください
+      taken: はすでに存在します
+      too_long: は%{count}文字以内で入力してください
+      too_short: は%{count}文字以上で入力してください
+      wrong_length: は%{count}文字で入力してください

@@ -24,7 +24,8 @@
       <% end %>
 
       <div class="actions">
-        <%= f.submit "ログインする", class:"signup-btn" %>
+        <%= f.submit "ログイン", class:"signup-btn" %>
+        <%= link_to 'ゲストログイン', personals_guest_sign_in_path, method: :post, class:"guest-signup-btn" %>
       </div>
     <% end %>
      <div class="signup-footer">

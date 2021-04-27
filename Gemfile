@@ -78,5 +78,6 @@ gem 'image_processing', '~> 1.2'
 gem 'payjp'
 gem 'unicorn', '5.4.1'
 gem 'ransack'
+gem 'rails-i18n'
 
 gem "aws-sdk-s3", require: false
