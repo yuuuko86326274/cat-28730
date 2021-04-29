@@ -1,7 +1,7 @@
 ja:
   activerecord:
     models:
-      trader: 里親を探したい方
+      trader: 管理ユーザー
       personal: ユーザー
       address: 住所
       cat: 猫
@@ -10,9 +10,9 @@ ja:
 
     attributes:
       trader:
+        t_name: 登録名
         email: メールアドレス
         password: パスワード
-        t_name: 登録名
         t_postal_code: 郵便番号
         area_id: 都道府県
         t_city: 市区長村

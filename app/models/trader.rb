@@ -24,9 +24,9 @@ class Trader < ApplicationRecord
   belongs_to_active_hash :area
 
   with_options presence: true do
+    validates :t_name
     validates :email
     validates :password, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }, length: { minimum: 6 }
-    validates :t_name
     validates :t_postal_code, format: { with: /\A\d{3}-\d{4}\z/ }
     validates :area_id, numericality: { other_than: 0 }
     validates :t_city

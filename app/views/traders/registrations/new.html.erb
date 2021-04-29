@@ -1,7 +1,7 @@
 <%= render "shared/header" %>
 
-<div class="user-contents-rows">
-  <div class="user-containers">
+<div class="user-contents-rows-trader">
+  <div class="user-containers-trader">
     <h2>会員登録</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: 'new_user') do |f| %>
@@ -9,11 +9,11 @@
 
       <div class="field">
         <%= f.label :t_name, "登録名" %><br />
-        <%= f.text_field :t_name, placeholder:"例）（株）ニャンコ、山田 太郎", class:"field-in" %>
+        <%= f.text_field :t_name, placeholder:"例）（株）ニャンコ、山田 太郎", class:"field-in", maxlength:"40" %>
       </div>
 
       <div class="field">
-        <%= f.label :email %><br />
+        <%= f.label :email, "メールアドレス" %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"PC・携帯どちらでも可" , class:"field-in"%>
       </div>
 
@@ -54,7 +54,7 @@
 
       <div class="field">
         <%= f.label 'tel', "電話番号" %><br />
-        <%= f.text_field :t_tel, placeholder:"半角、ハイフンなし", class:"field-in" %>
+        <%= f.text_field :t_tel, placeholder:"半角、ハイフンなし", class:"field-in", maxlength:"11" %>
       </div>
 
       <div class="actions">

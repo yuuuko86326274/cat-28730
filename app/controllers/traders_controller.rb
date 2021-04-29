@@ -2,6 +2,7 @@ class TradersController < ApplicationController
   before_action :redirect_root
 
   def show
+    
   end
 
   private

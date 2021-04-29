@@ -19,7 +19,11 @@
           <td class="detail-value"><%= current_trader.t_postal_code %></td>
         </tr>
         <tr>
-          <th class="detail-item">市</th>
+          <th class="detail-item">都道府県</th>
+          <td class="detail-value"><%= current_trader.area.name %></td>
+        </tr>
+        <tr>
+          <th class="detail-item">市区長村</th>
           <td class="detail-value"><%= current_trader.t_city %></td>
         </tr>
         <tr>
@@ -27,7 +31,7 @@
           <td class="detail-value"><%= current_trader.t_address_num %></td>
         </tr>
         <tr>
-          <th class="detail-item">ビルの名前</th>
+          <th class="detail-item">建物名</th>
           <td class="detail-value"><%= current_trader.t_building_num %></td>
         </tr>
         <tr>

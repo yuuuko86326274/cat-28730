@@ -1,19 +1,19 @@
 <%= render "shared/header" %>
 
-<div class="user-contents-rows">
-  <div class="user-containers">
+<div class="user-contents-rows-personal">
+  <div class="user-containers-personal">
     <h2>会員情報編集</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, class: 'new_user') do |f| %>
       <%= render "personals/shared/error_messages", resource: resource %>
 
       <div class="field">
-        <%= f.label :nickname %><br />
-        <%= f.text_field :nickname, placeholder:"ニックネーム", class:"field-in" %>
+        <%= f.label :nickname %>
+        <%= f.text_field :nickname, placeholder:"40文字以内", class:"field-in", maxlength:"40" %>
       </div>
 
       <div class="field">
-        <%= f.label :email %><br />
+        <%= f.label :email %>
         <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"PC・携帯どちらでも可" , class:"field-in"  %>
       </div>
 
@@ -22,18 +22,18 @@
       <% end %>
 
       <div class="field">
-        <%= f.label :password, "新パスワード" %><br /> 
+        <%= f.label :password, "新パスワード" %> 
         <%# <i>(変更したくない場合は空白のままにしてください)</i> %>
         <%= f.password_field :password, autocomplete: "new-password", placeholder: "#{@minimum_password_length}文字以上の半角英数字混合", class:"field-in" %>
       </div>
 
       <div class="field">
-        <%= f.label :password_confirmation, "新パスワード（確認）"  %><br />
+        <%= f.label :password_confirmation, "新パスワード（確認）"  %>
         <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "#{@minimum_password_length}文字以上の半角英数字混合", class:"field-in" %>
       </div>
 
       <div class="field">
-        <%= f.label :current_password, "現在のパスワード" %> <br />
+        <%= f.label :current_password, "現在のパスワード" %>
         <%# <i>(変更を確認するには、現在のパスワードが必要です)</i> %>
         <%= f.password_field :current_password, autocomplete: "current-password", placeholder:"現在のパスワード", class:"field-in" %>
       </div>
