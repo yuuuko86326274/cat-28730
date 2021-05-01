@@ -1,0 +1,56 @@
+
+.family-top-base{
+  display: flex;
+  justify-content: center;
+  background-color: blanchedalmond;
+  margin: 30px;
+}
+
+.family-top-base-pic{
+  display: flex;
+  justify-content: center;
+  background-color: blanchedalmond;
+  position: relative;
+}
+
+.family-top-base-buttun{
+  width: 1050px;
+  height: 450px;
+  display: flex;
+  justify-content: space-between;
+  position: absolute;
+}
+
+.mypic-arrow{
+ width: 60px;
+ height: 450px;
+ opacity:0.25;
+ border: 0px;
+}
+
+
+.family-top-base-info{
+  display: flex;
+  flex-direction: column;
+  height: 450px;
+  width: 350px;
+  background-color: #ffff;
+  align-items: center;
+}
+
+.family-top-info{
+  display: flex;
+  flex-direction: column;
+  font-size: xx-large;
+  font-weight: bold;
+  color: royalblue;
+  height: 220px;
+  padding-top: 160px;
+}
+
+.family-top-info2{
+  display: flex;
+  flex-direction: column;
+  font-size: x-large;
+  color: black;
+}
