@@ -160,3 +160,12 @@
   font-size: large;
   color: #ffff;
 }
+
+.contents-search{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #ffff;
+  width: 80%;
+  min-width: 1050px;
+}
