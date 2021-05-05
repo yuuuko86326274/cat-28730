@@ -7,12 +7,18 @@
 }
 
 .title{
-  height: 50px;
+  height: 180px;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 
 .title-link{
-  width: 460px;
+  width: 600px;
+}
+
+.trader-link{
+  width: 50%;
 }
 
 .title-jump{
@@ -20,8 +26,8 @@
 }
 
 .title-name{
-  width: 390px;
-  font-size: x-large;
+  width: 600px;
+  font-size: xx-large;
   color: royalblue;
   font-weight: bold;
 }
@@ -31,14 +37,14 @@
   width: 35px;
 }
 
-.user-menu{
+/* .user-menu{
   justify-content: center;
   display: flex;
   background-color: blanchedalmond;
   font-weight: bold;
   height: 75px;
   width: 100%;
-}
+} */
 
 .user-menu>ul {
   display: flex;
@@ -50,14 +56,15 @@
 
 .user-menu>ul>li {
   width: 50%;
-  padding: 13px 13px;
-  color: royalblue;
-  border: 0.5px solid lightsteelblue;
-  font-weight: bold;
-  text-decoration: none;
+  height: 50px;
+  /* padding: 13px 13px; */
+  /* color: royalblue; */
+  /* border: 0.5px solid lightsteelblue; */
+  /* font-weight: bold; */
+  /* text-decoration: none; */
 }
 
-.header-bar-row>li{
+/* .header-bar-row>li{
   width: 50%;
   padding: 13px 13px;
   background-color: royalblue;
@@ -79,7 +86,7 @@
   color: aqua;
   font-weight: bold;
   text-decoration: none;
-}
+} */
 
 .header-bar-row{
   display: flex;
@@ -87,18 +94,16 @@
   background-color: royalblue;
 }
 
-.search{
-  display: flex;
-  justify-content: center;
-  background-color: #ffff;
-  color: royalblue;
-}
-
 .favorite{
+  height: 50px;
+  color: royalblue;
+  border: 0.5px solid lightsteelblue;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #ffff;
   text-decoration: none;
+  font-weight: bold;
   color: royalblue;
 }
 
@@ -106,4 +111,14 @@
   display: flex;
   justify-content: center;
   background-color: #ffff;
+}
+
+.alert {
+  display: block;
+  background-color: royalblue;
+  font-size: 14px;
+  text-align: center;
+  padding: 12px;
+  color: #ffff;
+  font-weight: bold;
 }

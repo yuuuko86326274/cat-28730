@@ -1,10 +1,20 @@
 .main{
   width: 100%;
-  height: 150vh;
-  position: relative;
+  height: 120vh;
+  /* position: relative; */
   background-color: blanchedalmond;
   overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
+
+.mypic-arrow{
+  width: 60px;
+  height: 450px;
+  opacity:0.25;
+  border:0px;
+ }
 
 .movie{
   width: 100%;
@@ -32,29 +42,35 @@
 .contents{
   display: flex;
   flex-direction: column;
+  justify-content: center;
   background-color: #ffff;
+  border: 1px solid lightsteelblue;
+  width: 80%;
+  min-width: 1050px;
 }
 
 .contents-name{
   display: flex;
   justify-content: center;
-  align-items: center;
   height: 50px;
+  margin-top: 30px;
 }
 
 .contents-name-center{
-  font-weight: bold;
-  font-size: x-large;
+  font-size: xx-large;
 }
 
 .contents-all{
-  border: 10px solid lightsteelblue;
+  width: 100%;
+  background-color: blanchedalmond;
+  display: flex;
+  justify-content: center;
 }
 
 .contents_row{
   display: flex;
   background-color: #ffff;
-  padding: 10px 10px;
+  padding: 30px;
   flex-wrap: wrap;
   justify-content: center;
 }

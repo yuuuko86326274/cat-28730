@@ -1,55 +1,63 @@
+<%= render 'shared/flash_messages' %>
+
 <header class="header">
   <div class="title">
     <div class="title-link">
       <%= link_to root_path do %>
       <div class="title-jump">
-        <div class="title-name">あなたにぴったりのネコに出会おう</div>
+        <div class="title-name">Catmee</br>あなたにぴったりのネコに出会おう</div>
         <%= image_tag 'k0130_13 (1).png', class:"icon"%>
         <%= image_tag 'k0130_7.png', class:"icon"%>
       </div>
       <% end %>
     </div>
+
+        <div class="trader-link">
+        <% if personal_signed_in? %>
+          <li ><%= link_to "マイページ", "/personals/#{current_personal.id}" %></li>
+          <li ><%= link_to "ログアウト", destroy_personal_session_path, method: :delete %></li>
+        <% elsif trader_signed_in? %>
+          <li ><%= link_to "マイページ", "/traders/#{current_trader.id}"  %></li>
+          <li> <%= link_to "ログアウト", destroy_trader_session_path, method: :delete %></li>
+        <% else %>
+          <li ><%= link_to "p新規登録", new_personal_registration_path %></li>
+          <li ><%= link_to "pログイン", new_personal_session_path %></li>
+          <li ><%= link_to "t新規登録", new_trader_registration_path %></li>
+          <li><%= link_to "tログイン", new_trader_session_path %></li>
+        <% end %>
+        </div>  
+
   </div>
 
-<%= render 'shared/flash_messages' %>
 
-  <% unless trader_signed_in? %> 
-  ↓↓猫を飼いたい方はこちらから↓↓ 
     <div class="user-menu">
     <ul >
-      <li ><%= link_to "検索", search_cats_path, class:"search" %></li>
+      <li ><%= link_to "検索", search_cats_path, class:"favorite" %></li>
       <li ><%= link_to "ぴったり猫占い",  cats_fortune_path, class:"favorite" %></li>
-    </ul>
-    <ul class="header-bar-row">
-    <% if personal_signed_in? %>
-      <li ><%= link_to "マイページ", "/personals/#{current_personal.id}", class:"login2" %></li>
-      <li ><%= link_to "ログアウト", destroy_personal_session_path, method: :delete, class:"login2" %></li>
-    <% else %>
-      <li ><%= link_to "ログイン", new_personal_session_path, class:"login2" %></li>
-      <li ><%= link_to "新規登録", new_personal_registration_path, class:"login2" %></li>
-      <li ><%= link_to 'ゲストログイン（閲覧用）', personals_guest_sign_in_path, method: :post, class:"login3" %></li>
-    <% end %>
-    </ul>
-    </div>
-  <% end %>
-  <% unless personal_signed_in? %>
-  ↓↓猫を保護した方はこちらから↓↓
-    <div class="user-menu">
-    <ul >
-      <li ><%= link_to "検索", search_cats_path, class:"search" %></li>
+      <% if trader_signed_in? %>
       <li ><%= link_to "猫登録", new_cat_path, class:"favorite" %></li>
+      <% end %>
     </ul>
-    <ul class="header-bar-row">
-    <% if trader_signed_in? %>
-      <li ><%= link_to "マイページ", "/traders/#{current_trader.id}", class:"login2"  %></li>
-      <li> <%= link_to "ログアウト", destroy_trader_session_path, method: :delete, class:"login2" %></li>
-    <% else %>
-      <li ><%= link_to "ログイン", new_trader_session_path, class:"login2"  %></li>
-      <li ><%= link_to "新規登録", new_trader_registration_path, class:"login2"  %></li>
-      <li ><%= link_to 'ゲストログイン（閲覧用）', traders_guest_sign_in_path, method: :post, class:"login3" %></li>
-    </ul>  
-    <% end %>
+    <script>
+    const button = document.getElementsByClassName("favorite");
+      var buttons = Array.from(button);
+      
+      buttons.forEach(function(target){
+        
+        target.addEventListener('mouseover', function(){
+          target.setAttribute("style", "background-color:royalblue; color:#ffff;");
+        })
+        target.addEventListener('mouseout', function(){
+          target.removeAttribute("style", "background-color:royalblue; color:#ffff;");
+        })
+      });
+    </script>
+
+
+    <%# <ul class="header-bar-row">
+    </ul> %>
+    
     </div>
-  <% end %>
-  </div>
+
+
 </header>
