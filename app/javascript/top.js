@@ -1,3 +1,32 @@
+var swiper = new Swiper('.family-top-base', {
+  slidesPerView: 1,
+  spaceBetween: 10,
+  // init: false,
+  pagination: {
+    el: '.swiper-pagination',
+    clickable: true,
+  },
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+  breakpoints: {
+    '@0.00': {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+    '@0.75': {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+    '@1.00': {
+      slidesPerView: 3,
+      spaceBetween: 30,
+    },
+  }
+});
+
+
 // window.addEventListener('load', function () {
   
 //   setTimeout(function () {
