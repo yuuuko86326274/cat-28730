@@ -3,7 +3,7 @@ var swiper = new Swiper('.family-top-base', {
   spaceBetween: 10,
   // init: false,
   pagination: {
-    el: '.swiper-pagination',
+    el: '.',
     clickable: true,
   },
   autoplay: {
