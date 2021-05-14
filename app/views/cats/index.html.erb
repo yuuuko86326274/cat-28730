@@ -1,7 +1,7 @@
 <%= render "shared/header" %>
 
 <div class="main">
-  <div class="family-top-base" id="info"> 
+  <%# <div class="family-top-base" id="info"> 
     <div class="family-top-base-pic" >  
       <img src="/assets/1.jpg"  width="700" height="450" >
       <div class="family-top-base-info">
@@ -13,10 +13,9 @@
         <input type="button" value="▶︎" onclick="go_forward()" class="mypic-arrow" >
       </div>
     </div>
-  </div>
+  </div> %>
 
-<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
-<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<%= render "cats/index_swiper" %>
 
   <%# <div class="movie">
   <p>本日の猫ちゃん  毎日6：00動画更新中</p>

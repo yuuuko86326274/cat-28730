@@ -1,29 +1,23 @@
-var swiper = new Swiper('.family-top-base', {
-  slidesPerView: 1,
-  spaceBetween: 10,
-  // init: false,
-  pagination: {
-    el: '.',
-    clickable: true,
-  },
-  autoplay: {
-    delay: 3000,
-    disableOnInteraction: false,
-  },
-  breakpoints: {
-    '@0.00': {
-      slidesPerView: 3,
-      spaceBetween: 30,
+var swiper = new Swiper('.swiper-container', {
+    // Optional parameters
+    direction: 'vertical',
+    loop: true,
+  
+    // If we need pagination
+    pagination: {
+      el: '.swiper-pagination',
     },
-    '@0.75': {
-      slidesPerView: 3,
-      spaceBetween: 30,
+  
+    // Navigation arrows
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
     },
-    '@1.00': {
-      slidesPerView: 3,
-      spaceBetween: 30,
+  
+    // And if we need scrollbar
+    scrollbar: {
+      el: '.swiper-scrollbar',
     },
-  }
 });
 
 
