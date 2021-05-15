@@ -1,8 +1,16 @@
-var swiper = new Swiper('.swiper-container', {
+document.addEventListener("DOMContentLoaded", function(){
+  var swiper = new Swiper('.swiper-container', {
     // Optional parameters
-    direction: 'vertical',
+    direction: 'horizontal',
     loop: true,
   
+    autoplay: {
+      delay: 5000,
+      stopOnLastSlide: false,
+      disableOnInteraction: false,
+      reverseDirection: false
+    },
+
     // If we need pagination
     pagination: {
       el: '.swiper-pagination',
@@ -13,11 +21,7 @@ var swiper = new Swiper('.swiper-container', {
       nextEl: '.swiper-button-next',
       prevEl: '.swiper-button-prev',
     },
-  
-    // And if we need scrollbar
-    scrollbar: {
-      el: '.swiper-scrollbar',
-    },
+  });
 });
 
 

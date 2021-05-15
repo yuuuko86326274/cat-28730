@@ -140,18 +140,18 @@
 	line-height: 250px;
 }
 /* 4の倍数＋1枚目のスライドのスタイル（1枚目、5枚目…） */
-.swiper-slide:nth-child(4n+1) {
+/* .swiper-slide:nth-child(4n+1) {
 	background-color: #EECB27;
-}
+} */
 /* 4の倍数＋2枚目のスライドのスタイル（2枚目、6枚目…） */
-.swiper-slide:nth-child(4n+2) {
+/* .swiper-slide:nth-child(4n+2) {
 	background-color: #E13239;
-}
+} */
 /* 4の倍数＋3枚目のスライドのスタイル（3枚目、7枚目…） */
-.swiper-slide:nth-child(4n+3) {
+/* .swiper-slide:nth-child(4n+3) {
 	background-color: #1F1762;
-}
+} */
 /* 4の倍数＋4枚目のスライドのスタイル（4枚目、8枚目…） */
-.swiper-slide:nth-child(4n+4) {
+/* .swiper-slide:nth-child(4n+4) {
 	background-color: #BEDAE5;
-}
+} */
