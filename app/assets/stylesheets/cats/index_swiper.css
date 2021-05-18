@@ -1,20 +1,24 @@
 .swiper-container {
   width: 100%;
-  height: 450px;
+  min-height: 450px;
+  display: flex;
+  justify-content: center;
+  background-color: #ffebcd;
+  /* margin: 30px; */
 }
 
 /* 全体のスタイル */
 .swiper-wrapper {
-	width: 80%;
+  width: 80%;
 	height: 450px;
 }
 /* 全スライド共通スタイル */
 .swiper-slide {
-	color: #ffffff;
+	/* color: #ffffff;
 	width: 100%;
 	height: 450px;
 	text-align: center;
-	line-height: 450px;
+	line-height: 450px; */
 }
 /* 4の倍数＋1枚目のスライドのスタイル（1枚目、5枚目…） */
 /* .swiper-slide:nth-child(4n+1) {
@@ -33,43 +37,44 @@
 	background-color: #BEDAE5;
 } */
 
-.family-top-base{
-  display: flex;
-  justify-content: center;
-  background-color: #ffebcd;
-  margin: 30px;
-}
-
 .family-top-base-pic{
-  display: flex;
+  /* display: flex;
   justify-content: center;
   background-color: blanchedalmond;
-  position: relative;
+  position: relative; */
 }
 
 
 .family-top-base-info{
-  display: flex;
-  flex-direction: column;
-  /* height: 450px; */
+  /* display: flex;
+  flex-direction: column; */
+  height: 450px;
   width: 350px;
   background-color: #ffff;
   /* align-items: center; */
 }
 
 .family-top-info{
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   font-size: xx-large;
   font-weight: bold;
   color: royalblue;
   /* height: 220px; */
-  padding-top: 160px;
+  /* padding-top: 160px; */ 
 }
 
 .family-top-info2{
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   font-size: x-large;
-  color: black;
+  color: black; */
+}
+
+.swiper-button-prev{
+
+}
+
+.swiper-button-next{
+
 }
