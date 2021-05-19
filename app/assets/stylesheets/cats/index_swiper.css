@@ -1,10 +1,11 @@
 .swiper-container {
-  width: 100%;
+  width: 80%;
+  min-width: 1050px;
   min-height: 450px;
   display: flex;
   justify-content: center;
   background-color: #ffebcd;
-  /* margin: 30px; */
+  margin: 30px 0 ;
 }
 
 /* 全体のスタイル */
@@ -38,10 +39,10 @@
 } */
 
 .family-top-base-pic{
-  /* display: flex;
-  justify-content: center;
-  background-color: blanchedalmond;
-  position: relative; */
+  display: flex;
+  /* justify-content: center; */
+  /* background-color: blanchedalmond; */
+  /* position: relative; */
 }
 
 
