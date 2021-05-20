@@ -2,23 +2,24 @@
   <div class="swiper-wrapper">
     <div class="swiper-slide family-top-base-pic">
       <img src="/assets/1.jpg"  width="700" height="450" >
+      <%= link_to cats_info_path do%>
       <div class="family-top-base-info">
         <div class="family-top-info">初めて使う方へ</div>
         <div class="family-top-info2">使い方説明</div>
       </div>
+      <% end %>
     </div>
     <div class="swiper-slide family-top-base-pic">
       <img src="/assets/2.jpg"  width="700" height="450" >
+      <%= link_to cats_how_to_have_path do%>
       <div class="family-top-base-info">
-        <div class="family-top-info">猫を初めて飼う方へ</div>
+        <div class="family-top-info">猫と暮らそう</div>
         <div class="family-top-info2">猫の飼い方</div>
       </div>
+      <% end %>
     </div>
   </div>
   <div class="swiper-pagination"></div>
-
-  <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div>
 </div>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>

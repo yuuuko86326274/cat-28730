@@ -1,5 +1,5 @@
 class CatsController < ApplicationController
-  before_action :authenticate_trader!, except: [:index, :show, :search, :fortune, :_top1, :_top2]
+  before_action :authenticate_trader!, except: [:index, :show, :search, :fortune, :info, :how_to_have]
   before_action :set_search, only: :search
 
   def index

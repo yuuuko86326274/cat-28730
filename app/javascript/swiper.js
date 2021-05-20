@@ -5,12 +5,12 @@ document.addEventListener("DOMContentLoaded", function(){
     loop: true,
     speed: 1500,
   
-    // autoplay: {
-    //   delay: 3000,
-    //   stopOnLastSlide: false,
-    //   disableOnInteraction: false,
-    //   reverseDirection: false
-    // },
+    autoplay: {
+      delay: 3000,
+      stopOnLastSlide: false,
+      disableOnInteraction: false,
+      reverseDirection: false
+    },
 
     // If we need pagination
     pagination: {

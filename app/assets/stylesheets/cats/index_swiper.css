@@ -1,20 +1,24 @@
 .swiper-container {
-  width: 80%;
   min-width: 1050px;
+  /* max-width: 1440px; */
   min-height: 450px;
   display: flex;
   justify-content: center;
+  align-items: center;
   background-color: #ffebcd;
   margin: 30px 0 ;
 }
 
 /* 全体のスタイル */
 .swiper-wrapper {
-  width: 80%;
-	height: 450px;
+  /* width: 80%; */
+	/* height: 450px; */
+  
 }
 /* 全スライド共通スタイル */
 .swiper-slide {
+  display: flex;
+  justify-content: center;
 	/* color: #ffffff;
 	width: 100%;
 	height: 450px;
@@ -56,20 +60,18 @@
 }
 
 .family-top-info{
-  /* display: flex;
-  flex-direction: column;
   font-size: xx-large;
   font-weight: bold;
   color: royalblue;
-  /* height: 220px; */
-  /* padding-top: 160px; */ 
+  text-align: center;
+  height: 220px;
+  padding-top: 160px; 
 }
 
 .family-top-info2{
-  /* display: flex;
-  flex-direction: column;
   font-size: x-large;
-  color: black; */
+  color: black;
+  text-align: center;
 }
 
 .swiper-button-prev{
