@@ -5,6 +5,15 @@
   background-color: blanchedalmond;
   overflow: scroll;
   /* display: flex;
-  flex-direction: column; */
-  /* justify-content: center; */
+  flex-direction: column;
+  justify-content: center; */
+  font-size: large;
+}
+
+.entry-content>h2{
+  font-size: xx-large;
+}
+
+.entry-content>h3{
+  font-size: x-large;
 }
